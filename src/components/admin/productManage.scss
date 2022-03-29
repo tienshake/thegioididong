@@ -1,0 +1,16 @@
+.product-manage {
+    h4 {
+        font-weight: 700;
+        color      : #9b9c9c;
+    }
+
+    .manage__content-form {
+        display: flex;
+
+        select {
+            flex : 1;
+            width: 200px;
+        }
+    }
+
+}

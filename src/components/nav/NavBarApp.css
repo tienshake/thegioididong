@@ -1,0 +1,234 @@
+/* Nav */
+header {}
+
+.toolbar__top {
+    height    : 39px;
+    width     : 100%;
+    background: #000;
+    position  : fixed;
+    z-index   : 100;
+    top       : 48.99px;
+}
+
+.toolbar__top {
+    display        : flex;
+    justify-content: center;
+}
+
+.img__top__nav {
+    width   : 100%;
+    position: fixed;
+    z-index : 100;
+    top     : 0;
+}
+
+.wrap__search__nav {
+    width  : 230px;
+    display: flex;
+}
+
+.wrap__search__nav input {
+    margin       : auto;
+    border-radius: 5px;
+    width        : 90%;
+    height       : 35px;
+    font-size    : 14px;
+}
+
+.wrap__cart {
+    width        : 100px;
+    height       : 29px;
+    display      : flex;
+    color        : #fff;
+    font-size    : 14px;
+    border       : 1px solid #8f8f8f;
+    text-align   : center;
+    border-radius: 5px;
+    margin-top   : 5px;
+    font-weight  : 500;
+}
+
+.wrap__cart p {
+    margin   : auto;
+    font-size: 13px;
+    cursor   : pointer;
+}
+
+.service__nav p:hover {
+    color: #fed100;
+}
+
+.service__nav {
+    width      : 80px;
+    color      : #fff;
+    border     : 1px solid #232323;
+    text-align : center;
+    font-size  : 11.5px;
+    text-align : center;
+    font-weight: 500;
+}
+
+.service__nav p {
+    text-decoration: none;
+    color          : #fff;
+}
+
+/*  */
+.toolbar__navigation {
+    display    : flex;
+    align-items: center;
+    height     : 100%;
+    padding    : 0 1rem;
+    /* khoản cách trái phải */
+}
+
+.toolbar {
+    position        : fixed;
+    width           : 100%;
+    background-color: #fed100;
+    height          : 44px;
+    left            : 0;
+    top             : 87.88px;
+    z-index         : 100;
+    /* cấp đồ đè lên nhau */
+    box-shadow      : 0px 4px 2px rgba(0, 0, 0, 0.1);
+}
+
+.toolbar__logo {
+    /* color: #009e7f; */
+    text-decoration: none;
+    font-size      : 1.5rem;
+}
+
+.toolbar__navigation-items ul {
+    display   : flex;
+    list-style: none;
+    margin    : 0;
+    padding   : 0;
+}
+
+.toolbar__navigation-items ul li {
+    height     : 43px;
+    width      : 120px;
+    text-align : center;
+    font-weight: 500;
+}
+
+.item__bar {
+    display: flex;
+}
+
+.item__bar p {
+    line-height: 40px;
+    margin-top : 13px;
+    width      : 100%;
+    margin     : auto;
+}
+
+.toolbar__navigation-items ul li:hover {
+    background: #fff;
+}
+
+/* .toolbar__navigation-items li .item__bar:hover {
+    color: #fff;
+    background: #009e7f;
+} */
+.toolbar__navigation-items li {
+    padding: 0 0.5rem;
+}
+
+.toolbar__navigation-items ul .item__bar {
+    color          : #000;
+    text-decoration: none;
+    text-transform : uppercase;
+    font-size      : 13px;
+}
+
+/* .toolbar__navigation-items ul .item__bar:hover {
+    color: red;
+
+} */
+.spacer {
+    flex: 1;
+}
+
+/* icon hiển thị thanh kẹp */
+.icon-drawer {
+    font-size: 20px;
+    color    : #000;
+}
+
+.toolbar__navigation-user-store ul {
+    display   : flex;
+    list-style: none;
+    margin    : 0;
+    padding   : 0;
+}
+
+/* phần nav login */
+.toolbar__navigation-user-store ul li {
+    line-height: 50px;
+    width      : 65px;
+    text-align : center;
+}
+
+.toolbar__navigation-user-store li {
+    padding: 0 0.5rem;
+}
+
+/* .toolbar__navigation-user-store ul .item__bar {
+    color: #009e7f;
+    text-decoration: none;
+}
+.toolbar__navigation-user-store ul .item__bar:hover {
+    color: coral;
+} */
+.faBar {
+    display: none;
+}
+
+.note {
+    display        : none;
+    text-decoration: none;
+    color          : #fff;
+}
+
+@media only screen and (max-width: 53.9375em) {
+    .faBar {
+        display: block;
+    }
+
+    /* .toolbar__navigation-items {
+        display: none;
+    } */
+    .toolbar__top div {
+        display: none;
+    }
+
+    .toolbar__top p {
+        display: none;
+    }
+
+    .note {
+        display: flex;
+    }
+}
+
+.item__count {
+    position        : fixed;
+    top             : 1px;
+    right           : 85px;
+    color           : rgb(7, 170, 80);
+    width           : 19px;
+    text-align      : center;
+    height          : 17px;
+    background-color: rgb(236, 230, 147);
+    border-radius   : 45%;
+}
+
+.item__count span {
+    position : absolute;
+    top      : -16px;
+    right    : 5px;
+    font-size: 14px;
+}
