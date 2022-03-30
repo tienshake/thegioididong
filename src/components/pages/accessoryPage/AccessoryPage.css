@@ -4,8 +4,8 @@
 
 .products__header {
     display         : flex;
-    width           : 80%;
-    background-color: #F4F4F4F4;
+    width           : 91%;
+    /* background-color: red; */
     height          : 145px;
     /* background   : rgb(255, 228, 95); */
 }

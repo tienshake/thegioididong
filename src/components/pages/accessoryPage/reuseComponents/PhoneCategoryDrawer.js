@@ -14,70 +14,70 @@ export default function PhoneCategoryDrawer() {
                     </div>
                 </Link>
 
-                <Link style={{textDecoration: 'none'}} to='/cc'>
+                <Link style={{textDecoration: 'none'}} to='/ss'>
                     <div>
                         <img src='https://cdn.tgdd.vn/Category/57/5-Pinsa%CC%A3cdu%CC%9B%CC%A3pho%CC%80ng-120x120.png' alt='' />
                         <p>sac, Cap</p>
                     </div>
                 </Link>
 
-                <Link style={{textDecoration: 'none'}} to='/cc'>
+                <Link style={{textDecoration: 'none'}} to='/ss'>
                     <div>
                         <img src='https://cdn.tgdd.vn/Category/57/5-Pinsa%CC%A3cdu%CC%9B%CC%A3pho%CC%80ng-120x120.png' alt='' />
                         <p>sac du phong</p>
                     </div>
                 </Link>
 
-                <Link style={{textDecoration: 'none'}} to='/cc'>
+                <Link style={{textDecoration: 'none'}} to='/ss'>
                     <div>
                         <img src='https://cdn.tgdd.vn/Category/57/5-Pinsa%CC%A3cdu%CC%9B%CC%A3pho%CC%80ng-120x120.png' alt='' />
                         <p>sac du phong</p>
                     </div>
                 </Link>
 
-                <Link style={{textDecoration: 'none'}} to='/cc'>
+                <Link style={{textDecoration: 'none'}} to='/ss'>
                     <div>
                         <img src='https://cdn.tgdd.vn/Category/57/5-Pinsa%CC%A3cdu%CC%9B%CC%A3pho%CC%80ng-120x120.png' alt='' />
                         <p>sac du phong</p>
                     </div>
                 </Link>
 
-                <Link style={{textDecoration: 'none'}} to='/cc'>
+                <Link style={{textDecoration: 'none'}} to='/ss'>
                     <div>
                         <img src='https://cdn.tgdd.vn/Category/57/5-Pinsa%CC%A3cdu%CC%9B%CC%A3pho%CC%80ng-120x120.png' alt='' />
                         <p>sac du phong</p>
                     </div>
                 </Link>
 
-                <Link style={{textDecoration: 'none'}} to='/cc'>
+                <Link style={{textDecoration: 'none'}} to='/ss'>
                     <div>
                         <img src='https://cdn.tgdd.vn/Category/57/5-Pinsa%CC%A3cdu%CC%9B%CC%A3pho%CC%80ng-120x120.png' alt='' />
                         <p>sac du phong</p>
                     </div>
                 </Link>
 
-                <Link style={{textDecoration: 'none'}} to='/cc'>
+                <Link style={{textDecoration: 'none'}} to='/ss'>
                     <div>
                         <img src='https://cdn.tgdd.vn/Category/57/5-Pinsa%CC%A3cdu%CC%9B%CC%A3pho%CC%80ng-120x120.png' alt='' />
                         <p>sac du phong</p>
                     </div>
                 </Link>
 
-                <Link style={{textDecoration: 'none'}} to='/cc'>
+                <Link style={{textDecoration: 'none'}} to='/ss'>
                     <div>
                         <img src='https://cdn.tgdd.vn/Category/57/5-Pinsa%CC%A3cdu%CC%9B%CC%A3pho%CC%80ng-120x120.png' alt='' />
                         <p>sac du phong</p>
                     </div>
                 </Link>
 
-                <Link style={{textDecoration: 'none'}} to='/cc'>
+                <Link style={{textDecoration: 'none'}} to='/ss'>
                     <div>
                         <img src='https://cdn.tgdd.vn/Category/57/5-Pinsa%CC%A3cdu%CC%9B%CC%A3pho%CC%80ng-120x120.png' alt='' />
                         <p>sac du phong</p>
                     </div>
                 </Link>
 
-                <Link style={{textDecoration: 'none'}} to='/cc'>
+                <Link style={{textDecoration: 'none'}} to='/ss'>
                     <div>
                         <img src='https://cdn.tgdd.vn/Category/57/5-Pinsa%CC%A3cdu%CC%9B%CC%A3pho%CC%80ng-120x120.png' alt='' />
                         <p>sac du phong</p>
