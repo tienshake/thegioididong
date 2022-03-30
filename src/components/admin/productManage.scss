@@ -4,6 +4,56 @@
         color      : #9b9c9c;
     }
 
+    .preview-upload {
+        border: 1px solid #9b9c9c;
+        margin: 30px 0;
+    }
+
+    .quantity {
+        height: 50px;
+        width : 50px;
+    }
+
+    .multiple-upload {
+        gap      : 10px;
+        display  : flex;
+        flex-wrap: wrap;
+
+        .previewMultiple {
+            border: 1px solid #9b9c9c;
+
+            width : 100px;
+            height: 100px;
+
+        }
+    }
+
+
+    .manage__content-color {
+        display: flex;
+        gap    : 10px;
+
+        button {
+            border       : 1px solid rgb(41, 40, 40);
+            width        : 100px;
+            font-size    : 13px;
+            color        : #c2c0c0;
+            outline      : none;
+            border-radius: 5px;
+            overflow     : hidden;
+            height       : 30px;
+
+            &.active {
+                border: 5px solid rgb(11, 215, 230);
+            }
+
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+
+    }
+
     .manage__content-form {
         display: flex;
 
@@ -11,6 +61,8 @@
             flex : 1;
             width: 200px;
         }
+
+
     }
 
 }

@@ -10,8 +10,20 @@ const getAllUserService = async (id, limit, page) => {
 const createUserService = async (data) => {
     return await axios.post('/api/createUser', data);
 };
+const createProductService = async (data) => {
+    return await axios.post('/api/create-product', data);
+};
+const createColorProductService = async (data) => {
+    return await axios.post('/api/create-color-product', data);
+};
+const createImgDetailProductService = async (data) => {
+    return await axios.post('/api/create-imgDetail-product', data);
+};
 export {
     createUserService,
     getAllUserService,
-    getAllUCodeService
+    getAllUCodeService,
+    createProductService,
+    createColorProductService,
+    createImgDetailProductService
 }

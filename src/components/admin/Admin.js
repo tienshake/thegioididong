@@ -9,28 +9,59 @@ import {
 import './Admin.scss';
 import { IoAppsOutline, IoPhonePortraitOutline, IoCreate } from "react-icons/io5";
 import { AiFillMail, AiOutlineUser, AiOutlineFileSync, AiOutlineUpload } from "react-icons/ai";
-import UserManage from './UserMange';
 import React, { useState, useEffect } from 'react';
-import { createUserService, getAllUCodeService, } from '../../services/userService';
+import { createUserService, createColorProductService, createProductService, createImgDetailProductService } from '../../services/userService';
 import { alert } from 'react-bootstrap-confirmation';
 import { confirm } from 'react-bootstrap-confirmation';
 
 const Admin = (props) => {
-
-    const createUser = async (data) => {
+    const createToAdmin = async (data, type, colors, imageMultiple) => {
         try {
-            const isValid = await confirm("Bạn có muốn tạo người dùng này không?")
-            if (isValid) {
-                const res = await createUserService(data);
-                console.log(res);
+            const isConfirm = await confirm("Bạn có muốn tạo không?");
+            if (isConfirm) {
+                let res = '';
+                if (type === "CREATE-USER") {
+                    res = await createUserService(data);
+                }
+                if (type === "CREATE-PRODUCT") {
+                    res = await createProductService(data);
+                    console.log('color', colors);
+                    if (res && res.errCode === 0) {
+                        if (colors && colors.length > 0) {
+                            let result = []
+                            colors.forEach(item => {
+                                let object = {};
+                                object.productId = res.test
+                                object.color = item.keyMap
+                                result.push(object);
+                            })
+                            const color = await createColorProductService(result);
+                            console.log('data result', result);
+                        } else {
+                            alert("Invalid select time!")
+                        }
+                        if (imageMultiple && imageMultiple.length > 0) {
+                            let result = []
+                            imageMultiple.forEach(item => {
+                                let object = {};
+                                object.productId = res.test
+                                object.image = item.avatar
+                                result.push(object);
+                            })
+                            const color = await createImgDetailProductService(result);
+                            console.log('data result', result);
+                        } else {
+                            alert("Invalid select time!")
+                        }
+                    }
+                }
                 if (res && res.errCode === 0) {
+                    alert("Bạn đã tạo thành công");
                     console.log(res);
-                    alert("Bạn đã tạo thành công")
                 } else {
                     alert("Bạn đã thất bại")
                 }
             }
-
         } catch (e) {
             console.log(e)
         }
@@ -81,7 +112,7 @@ const Admin = (props) => {
                 </div>
                 <div className="manage__content">
                     <div className="manage__content-center">
-                        <Outlet context={{ createUser }} />
+                        <Outlet context={{ createToAdmin }} />
                     </div>
                 </div>
             </div>
