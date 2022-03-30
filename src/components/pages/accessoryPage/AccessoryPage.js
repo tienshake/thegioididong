@@ -1,13 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './AccessoryPage.css';
 import CardCategory from './reuseComponents/CardCategory';
 import CategorySalienContext from '../../../store/accessory/CategorySalienContext';
 import { useContext } from 'react';
 import Brands from './reuseComponents/Brands';
+import CardProductBody from './reuseComponents/CardProductBody';
+import axios from 'axios';
+
+const tabsCategory = ['cardProductsOne', 'cardProductsTwo'];
+
 
 export default function AccessoryPage() {
     const { handleHideCategorySalienAll } = useContext(CategorySalienContext);
 
+    //
+    const [cardProducts, setCardProducts] = useState([]);
+    const [typeCategoryProduct, setTypeCategoryProduct] = useState('cardProductsOne');
+
+
+    useEffect(() => {
+        axios(`http://localhost:3000/${typeCategoryProduct}`) //  ` ` template string
+            .then(res => {
+                setCardProducts(res.data)
+            })
+
+    }, [typeCategoryProduct])
 
     return (
         <>
@@ -85,103 +102,46 @@ export default function AccessoryPage() {
 
 
                     <div className='container-fluid wrap__card__product__acce'>
-                        <div className='carosel'></div>
+                        {/* <div className='carosel'></div> */}
 
                         <div className='container nav-category-product'>
-                            <div><p>Nổi bậc</p></div>
-                            <div style={{ width: '200px' }}> <p>dung lượng 10000mAh</p></div>
-                            <div style={{ width: '200px' }}><p>dung lượng 20000mAh</p></div>
-                            <div><p>dưới 300.000đ</p></div>
-                            <div><p>Xmobile</p></div>
+                            <div onClick={() => setTypeCategoryProduct('cardProductsOne')}><p>Nổi bậc</p></div>
+                            <div onClick={() => setTypeCategoryProduct('cardProductsTwo')}><p>Tai Nge</p></div>
+                            <div onClick={() => setTypeCategoryProduct('cardProductsThree')}><p>Adapter sạc</p></div>
+                            <div onClick={() => setTypeCategoryProduct('cardProductsOne')}><p>Cáp sạc</p></div>
+                            <div onClick={() => setTypeCategoryProduct('cardProductsTwo')}><p>Ốp lưng</p></div>
+                            {/* <button
+                                key={tabCategory}
+                                style={type === tab ? {
+                                    color: '#fff',
+                                    backgroundColor: '#333'
+                                } : {}}
+                                // trong tình huống type = tab thì sẽ thêm css vào obj đầu nếu không thì sẽ truyền 1 obj rỗng
+                                onClick={() => setTypeCategoryProduct(tabCategory)}
+                            >
+                                {tabCategory}
+                            </button> */}
                         </div>
 
-                        <div className=' card-product-accessory'>
-                            <div className="card__product card">
-                                <div style={{ height: '30px', width: '38%', marginTop: '5px' }}>
-                                    <p style={{ background: '#F1F1F1', width: '75%', height: '18px', fontSize: '11px', margin: 'auto', marginTop: '5px', color: '#767676', textAlign: 'center' }}><b>Trả góp 0%</b></p>
-                                </div>
-                                <img src="https://cdn.tgdd.vn/Products/Images/54/253802/bluetooth-airpods-pro-magsafe-charge-apple-mlwk3-thumb-600x600.jpeg" className="card-img-top" alt="..." />
-                                <div className="card-body">
-                                    <div style={{ height: '19.97px', width: '80px', background: 'rgb(220, 26, 5)', display: 'flex', borderRadius: '50px' }}>
-                                        <img style={{ height: '20px', width: '20px' }} src='https://cdn.tgdd.vn/2020/10/content/icon1-50x50.png' alt='' />
-                                        <p style={{ fontSize: '10px', textTransform: 'uppercase', margin: 'auto', color: '#fff', textAlign: 'center' }}><b>giảm sốc</b></p>
-                                    </div>
+                        <div className='card-product-accessory'>
+                            {cardProducts.map((data, index) => (
+                                <CardProductBody
+                                    key={index}
+                                    nameCard={data.nameCard}
+                                    price={data.price}
+                                    imgCard={data.imgCard}
+                                />
 
-                                    <p style={{ fontSize: '14.50px', height: '25px', marginTop: '10px' }} className="card-text">Tai nghe Bluetooth AirPods 3 Apple MME73</p>
-                                    <p style={{ height: '10px' }}>online giá rẻ</p>
-                                    <p><b>5.490.000đ</b></p>
-                                </div>
+                            ))}
+
+                            <div className='wrap-loadMore'>
+                                <button className='btn-loadMore'>Xem thêm sản phẩm</button>
                             </div>
 
+                        </div>
 
-                            <div className="card__product card">
-                                <div style={{ height: '30px', width: '38%', marginTop: '5px' }}>
-                                    <p style={{ background: '#F1F1F1', width: '75%', height: '18px', fontSize: '11px', margin: 'auto', marginTop: '5px', color: '#767676', textAlign: 'center' }}><b>Trả góp 0%</b></p>
-                                </div>
-                                <img src="https://cdn.tgdd.vn/Products/Images/54/253802/bluetooth-airpods-pro-magsafe-charge-apple-mlwk3-thumb-600x600.jpeg" className="card-img-top" alt="..." />
-                                <div className="card-body">
-                                    <div style={{ height: '19.97px', width: '80px', background: 'rgb(220, 26, 5)', display: 'flex', borderRadius: '50px' }}>
-                                        <img style={{ height: '20px', width: '20px' }} src='https://cdn.tgdd.vn/2020/10/content/icon1-50x50.png' alt='' />
-                                        <p style={{ fontSize: '10px', textTransform: 'uppercase', margin: 'auto', color: '#fff', textAlign: 'center' }}><b>giảm sốc</b></p>
-                                    </div>
-
-                                    <p style={{ fontSize: '14.50px', height: '25px', marginTop: '10px' }} className="card-text">Tai nghe Bluetooth AirPods 3 Apple MME73</p>
-                                    <p style={{ height: '10px' }}>online giá rẻ</p>
-                                    <p><b>5.490.000đ</b></p>
-                                </div>
-                            </div>
-
-
-                            <div className="card__product card">
-                                <div style={{ height: '30px', width: '38%', marginTop: '5px' }}>
-                                    <p style={{ background: '#F1F1F1', width: '75%', height: '18px', fontSize: '11px', margin: 'auto', marginTop: '5px', color: '#767676', textAlign: 'center' }}><b>Trả góp 0%</b></p>
-                                </div>
-                                <img src="https://cdn.tgdd.vn/Products/Images/54/253802/bluetooth-airpods-pro-magsafe-charge-apple-mlwk3-thumb-600x600.jpeg" className="card-img-top" alt="..." />
-                                <div className="card-body">
-                                    <div style={{ height: '19.97px', width: '80px', background: 'rgb(220, 26, 5)', display: 'flex', borderRadius: '50px' }}>
-                                        <img style={{ height: '20px', width: '20px' }} src='https://cdn.tgdd.vn/2020/10/content/icon1-50x50.png' alt='' />
-                                        <p style={{ fontSize: '10px', textTransform: 'uppercase', margin: 'auto', color: '#fff', textAlign: 'center' }}><b>giảm sốc</b></p>
-                                    </div>
-
-                                    <p style={{ fontSize: '14.50px', height: '25px', marginTop: '10px' }} className="card-text">Tai nghe Bluetooth AirPods 3 Apple MME73</p>
-                                    <p style={{ height: '10px' }}>online giá rẻ</p>
-                                    <p><b>5.490.000đ</b></p>
-                                </div>
-                            </div>
-
-                            <div className="card__product card">
-                                <div style={{ height: '30px', width: '38%', marginTop: '5px' }}>
-                                    <p style={{ background: '#F1F1F1', width: '75%', height: '18px', fontSize: '11px', margin: 'auto', marginTop: '5px', color: '#767676', textAlign: 'center' }}><b>Trả góp 0%</b></p>
-                                </div>
-                                <img src="https://cdn.tgdd.vn/Products/Images/54/253802/bluetooth-airpods-pro-magsafe-charge-apple-mlwk3-thumb-600x600.jpeg" className="card-img-top" alt="..." />
-                                <div className="card-body">
-                                    <div style={{ height: '19.97px', width: '80px', background: 'rgb(220, 26, 5)', display: 'flex', borderRadius: '50px' }}>
-                                        <img style={{ height: '20px', width: '20px' }} src='https://cdn.tgdd.vn/2020/10/content/icon1-50x50.png' alt='' />
-                                        <p style={{ fontSize: '10px', textTransform: 'uppercase', margin: 'auto', color: '#fff', textAlign: 'center' }}><b>giảm sốc</b></p>
-                                    </div>
-
-                                    <p style={{ fontSize: '14.50px', height: '25px', marginTop: '10px' }} className="card-text">Tai nghe Bluetooth AirPods 3 Apple MME73</p>
-                                    <p style={{ height: '10px' }}>online giá rẻ</p>
-                                    <p><b>5.490.000đ</b></p>
-                                </div>
-                            </div>
-
-                            <div className="card__product card">
-                                <div style={{ height: '30px', width: '38%', marginTop: '5px' }}>
-                                    <p style={{ background: '#F1F1F1', width: '75%', height: '18px', fontSize: '11px', margin: 'auto', marginTop: '5px', color: '#767676', textAlign: 'center' }}><b>Trả góp 0%</b></p>
-                                </div>
-                                <img src="https://cdn.tgdd.vn/Products/Images/54/253802/bluetooth-airpods-pro-magsafe-charge-apple-mlwk3-thumb-600x600.jpeg" className="card-img-top" alt="..." />
-                                <div className="card-body">
-                                    <div style={{ height: '19.97px', width: '80px', background: 'rgb(220, 26, 5)', display: 'flex', borderRadius: '50px' }}>
-                                        <img style={{ height: '20px', width: '20px' }} src='https://cdn.tgdd.vn/2020/10/content/icon1-50x50.png' alt='' />
-                                        <p style={{ fontSize: '10px', textTransform: 'uppercase', margin: 'auto', color: '#fff', textAlign: 'center' }}><b>giảm sốc</b></p>
-                                    </div>
-
-                                    <p style={{ fontSize: '14.50px', height: '25px', marginTop: '10px' }} className="card-text">Tai nghe Bluetooth AirPods 3 Apple MME73</p>
-                                    <p style={{ height: '10px' }}>online giá rẻ</p>
-                                    <p><b>5.490.000đ</b></p>
-                                </div>
-                            </div>
+                        <div style={{ display: 'flex', marginTop: '70px', justifyContent: 'center' }}>
+                            <img style={{ width: '92%' }} src='https://cdn.tgdd.vn/2022/02/banner/DESKTOPTagline2-1200x150-1.png'></img>
                         </div>
                     </div>
                 </div>
