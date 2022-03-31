@@ -24,12 +24,12 @@ export default function CardCategory() {
             <div style={{ background: '#F4F4F4F4', paddingTop: '20px'}}>
                 <div className='container-fluid products__header'>
                     {showCatetoryPhone.showCatetoryPhone && (<PhoneCategoryDrawer />)}
-                    <div onMouseOut={handleHideCategorySalienAll} className='wrapper__group__iphone'>
+                    <div className='wrapper__group__iphone'>
                         <img onMouseOver={handleShowCategorySalienPhone} src='https://cdn.tgdd.vn/mwgcart/mwg-site/ContentMwg/images/accessory/tgdd/desk-phone_2.png' alt='' />
                     </div>
 
                     {showCatetoryLapTopPC.showCatetoryLapTopPC && (<LapTopPCCatetoryDrawer />)}
-                    <div  onMouseOut={handleHideCategorySalienAll} className='wrapper__group__laptopPc'>
+                    <div className='wrapper__group__laptopPc'>
                         <img onMouseOver={handleShowCategorySalienLapTopPC} src='https://cdn.tgdd.vn/mwgcart/mwg-site/ContentMwg/images/accessory/tgdd/desk-lap_2.png' alt='' />
                     </div>
 

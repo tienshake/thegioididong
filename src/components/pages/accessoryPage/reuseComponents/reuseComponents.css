@@ -3,6 +3,7 @@
     width: 46%;
     height: 250px;
     background: #fff;
+    top: 570px;
     position: absolute;
     bottom: -140px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
@@ -33,7 +34,7 @@
     height: 250px;
     background: #fff;
     position: absolute;
-    bottom: -140px;
+    top: 570px;
     left: 320px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
 }
@@ -42,7 +43,7 @@
     height: 280px;
     background: #fff;
     position: absolute;
-    bottom: -170px;
+    top: 570px;
     right: 160px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
 }

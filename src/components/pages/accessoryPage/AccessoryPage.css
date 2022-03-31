@@ -1,169 +1,159 @@
 .accessory__page {
     margin-top: 132px;
 }
-
 .products__header {
-    display         : flex;
-    width           : 80%;
+    display: flex;
+    width: 90%;
     background-color: #F4F4F4F4;
-    height          : 145px;
-    /* background   : rgb(255, 228, 95); */
+    height: 145px;
+    /* background: rgb(255, 228, 95); */
 }
-
 .wrapper__group__iphone {
     margin-right: 12px;
-    cursor      : pointer;
+    cursor: pointer;
 }
-
 .wrapper__group__laptop {
     margin-right: 12px;
-    cursor      : pointer;
+    cursor: pointer;
 }
-
 .wrapper__group__laptopPc {
     margin-right: 12px;
-    cursor      : pointer;
+    cursor: pointer;
 }
-
 .body__accessory {
     background: #fff;
 }
-
 .wrap__category__salien h1 {
     margin-top: 66px;
 }
-
 .wrap__category__salien .list__group__salien {
     display: flex;
 }
-
 .list__group__salien div {
-    flex      : 1;
+    flex: 1;
     margin-top: 10px;
     text-align: center;
 }
-
 .item__accessory__salien img {
     border-radius: 50%;
-    width        : 70px;
-    height       : 70px;
-    background   : pink;
+    width: 70px;
+    height: 70px;
+    background: pink;
 }
-
 .list__group__salien .item__salien__sacDuPhong img {
-    background   : pink;
+    background: pink;
     border-radius: 50%;
     border-radius: 50%;
-    width        : 70px;
-    height       : 70px;
+    width: 70px;
+    height: 70px;
 }
-
 .list__group__salien .item__salien__sacCap img {
-    background   : yellowgreen;
+    background: yellowgreen;
     border-radius: 50%;
     border-radius: 50%;
-    width        : 70px;
-    height       : 70px;
+    width: 70px;
+    height: 70px;
 }
-
 .list__group__salien .item__salien__taiNge img {
-    background   : orange;
+    background: orange;
     border-radius: 50%;
     border-radius: 50%;
-    width        : 70px;
-    height       : 70px;
+    width: 70px;
+    height: 70px;
 }
-
 .list__group__salien .item__salien__loa img {
-    background   : yellow;
+    background: yellow;
     border-radius: 50%;
     border-radius: 50%;
-    width        : 70px;
-    height       : 70px;
+    width: 70px;
+    height: 70px;
 }
 
 /*  */
 .wrap__top__brands {
-    display          : flex;
-    margin-top       : 10px;
-    text-align       : center;
-    /*     background: red; */
-
+    display: flex;
+    margin-top: 10px;
+    text-align: center;
 }
-
 .wrap__top__brands div {
-    flex        : 1;
-    height      : 50px;
+    flex: 1;
+    height: 50px;
     margin-right: 6px;
-    border      : 1px solid #F4F4F4F4;
-    display     : flex;
+    border: 1px solid #F4F4F4F4;
+    display: flex;
 }
-
 .wrap__top__brands div img {
     margin: auto;
-    width : 81%;
+    width: 81%;
 }
-
 .wrap__top__brands div p {
     margin: auto;
-    width : 80%;
+    width: 80%;
 }
 
 
 /*  */
 .wrap__card__product {
-    height    : 500px;
+    height: 500px;
     background: pink;
-    width     : 100%;
+    width: 100%;
 }
-
 .wrap__card__product__acce {
     background: rgb(255, 237, 151);
+    padding-bottom: 10px;
 }
-
 .nav-category-product {
-    display        : flex;
-    width          : 80%;
+    display: flex;
+    width: 80%;
     justify-content: center;
 }
-
 .nav-category-product div {
-    margin-top   : 20px;
-    margin-left  : 10px;
-    height       : 40px;
-    min-width    : 130px;
-    background   : #FFF;
+    margin-top: 20px;
+    margin-left: 10px;
+    height: 40px;
+    min-width: 130px;
+    background:  #FFF;
     border-radius: 50px;
-    text-align   : center;
+    text-align: center;
     margin-bottom: 20px;
 }
-
 .nav-category-product div p {
     margin-top: 7px;
 }
-
-.nav-category-product div:hover {
+.nav-category-product div:hover{
     background-color: #ffe500;
-    cursor          : pointer;
-    font-weight     : 700;
-    display         : block;
+    cursor: pointer;
+    font-weight: 700;
+    display: block;
 }
 
 /*  */
 .card-product-accessory {
-    display   : flex;
-    flex-wrap : wrap;
-    width     : 92%;
-    margin    : auto;
+    display: flex;
+    flex-wrap: wrap;
+    width: 92%;
+    margin: auto;
     background: rgb(255, 237, 151);
+    cursor: pointer;
 }
-
 .card-product-accessory .card__product {
-    width          : 236px;
-    margin         : auto;
-    height         : 500px;
-    margin-top     : 10px;
+    width: 232px;
+    margin-left: 10px;
+    height: 500px;
+    margin-top: 10px;
     justify-content: center;
 }
 
-/*  */
+/* btn-loadMore */
+.wrap-loadMore {
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
+    justify-content: center;
+}
+.wrap-loadMore .btn-loadMore {
+    width: 365px;
+    height: 35px;
+    border: none;
+    background: #fff;
+}
