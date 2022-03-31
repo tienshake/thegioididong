@@ -11,12 +11,13 @@ const ProductManage = (props) => {
     const [nameItem, setNameItem] = useState('');
     const [quantity, setQuantity] = useState('');
     const [price, setPrice] = useState('');
-    const [priceFormat, setPriceFormat] = useState('');
-
     const [type, setType] = useState('PL1');
     const [manufacturer, setManufacturer] = useState('TP1');
     const [ram, setRam] = useState('4GB');
     const [rom, setRom] = useState('16GB');
+    const [pin, setPin] = useState('PIN3');
+    const [display, setDisplay] = useState('DIS5');
+    const [camera, setCamera] = useState('CAM8');
     const [image, setImage] = useState('');
     const [imageMultiple, setMultiple] = useState([]);
     //================================================
@@ -24,19 +25,31 @@ const ProductManage = (props) => {
     const [selectPloai, setSelectPloai] = useState([]);
     const [selectColor, setSelectColor] = useState([]);
 
+    const [selectPin, setSelectPin] = useState([]);
+    const [selectDisplay, setSelectDisplay] = useState([]);
+    const [selectCamera, setSelectCamera] = useState([]);
     useEffect(() => {
         const fetch = async (e) => {
             const resType = await getAllUCodeService('TYPEPHONE');
             const resPloai = await getAllUCodeService('PLOAI');
             const resColor = await getAllUCodeService('COLOR');
 
+            const resPin = await getAllUCodeService('PIN');
+            const resDisplay = await getAllUCodeService('DISPLAY');
+            const resCamera = await getAllUCodeService('CAMERA');
             if (resType && resType.errCode === 0 &&
                 resPloai && resPloai.errCode === 0 &&
-                resColor && resColor.errCode === 0
+                resColor && resColor.errCode === 0 &&
+                resPin && resPin.errCode === 0 &&
+                resDisplay && resDisplay.errCode === 0 &&
+                resCamera && resCamera.errCode === 0
             ) {
                 setSelectType(resType.data)
                 setSelectPloai(resPloai.data)
                 setSelectColor(resColor.data)
+                setSelectPin(resPin.data)
+                setSelectDisplay(resDisplay.data)
+                setSelectCamera(resCamera.data)
             } else {
             }
 
@@ -59,8 +72,12 @@ const ProductManage = (props) => {
             selectColor,
             image,
             imageMultiple,
+            pin,
+            display,
+            camera,
         };
-        const arrInput = ['nameItem',
+        const arrInput = [
+            'nameItem',
             'quantity',
             'price',
             'type',
@@ -69,18 +86,21 @@ const ProductManage = (props) => {
             'rom',
             'selectColor',
             'image',
-            'imageMultiple']
+            'imageMultiple',
+            'pin',
+            'display',
+            'camera']
         for (let i = 0; i < arrInput.length; i++) {
-            if (!object[arrInput[i]]) {
+            if (!object[arrInput[i]] || object[arrInput[i]].length === 0) {
                 alert('Bạn đã nhập thiếu ' + arrInput[i]);
                 isValid = false
                 break;
             }
-            if (object[arrInput[i]].length === 0) {
-                alert('Bạn đã nhập thiếu ' + arrInput[i]);
-                isValid = false
-                break;
-            }
+            // if () {
+            //     alert('Bạn đã nhập thiếu ' + arrInput[i]);
+            //     isValid = false
+            //     break;
+            // }
         }
         return isValid;
     }
@@ -91,9 +111,10 @@ const ProductManage = (props) => {
             outletContext.createToAdmin({
                 nameItem, price, type, manufacturer,
                 ram, rom, quantity,
-                image: image.avatar
+                image: image.avatar,
+                pin, display, camera
             }, typeData, selectColor.filter(item => item.isSelected === true), imageMultiple)
-            console.log(nameItem, price, type, manufacturer, ram, rom, selectColor, quantity, image)
+            console.log(pin, display, camera)
         }
 
 
@@ -146,8 +167,7 @@ const ProductManage = (props) => {
             })
         } else {
             setSelectColor((prev) => {
-                prev[index].isSelected = false
-
+                prev[index].isSelected = false;
                 return [...prev]
             })
         }
@@ -213,35 +233,85 @@ const ProductManage = (props) => {
                 </div>
 
             </div>
-            <div className="row">
+            {/* dien thoai */}
+            {type === 'PL1' &&
+                <>
+                    <div className="row">
+                        <div className="manage__content-form form-group col-6">
+                            <label className="manage__content-label">Ram</label>
+                            <select
+                                onChange={(e) => setRam(e.target.value)}
+                                value={ram}
+                                className="form-select">
+                                <option value="4GB">4GB</option>
+                                <option value="8GB">8GB</option>
+                                <option value="12GB">12GB</option>
+                            </select>
+                        </div>
+                        <div className="manage__content-form form-group col-6">
+                            <label className="manage__content-label">Bộ nhớ</label>
+                            <select
+                                onChange={(e) => setRom(e.target.value)}
+                                value={rom}
+                                className="form-select">
+                                <option value="16GB">16GB</option>
+                                <option value="32GB">32GB</option>
+                                <option value="64GB">64GB</option>
+                                <option value="128GB">128GB</option>
+                                <option value="256GB">256GB</option>
+                                <option value="512GB">512GB</option>
 
-                <div className="manage__content-form form-group col-6">
-                    <label className="manage__content-label">Ram</label>
-                    <select
-                        onChange={(e) => setRam(e.target.value)}
-                        value={ram}
-                        className="form-select">
-                        <option value="4GB">4GB</option>
-                        <option value="8GB">8GB</option>
-                        <option value="12GB">12GB</option>
-                    </select>
-                </div>
-                <div className="manage__content-form form-group col-6">
-                    <label className="manage__content-label">Bộ nhớ</label>
-                    <select
-                        onChange={(e) => setRom(e.target.value)}
-                        value={rom}
-                        className="form-select">
-                        <option value="16GB">16GB</option>
-                        <option value="32GB">32GB</option>
-                        <option value="64GB">64GB</option>
-                        <option value="128GB">128GB</option>
-                        <option value="256GB">256GB</option>
-                        <option value="512GB">512GB</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div className='row'>
 
-                    </select>
-                </div>
-            </div>
+                        <div className="manage__content-form form-group col-6">
+                            <label className="manage__content-label">Pin</label>
+                            <select
+                                onChange={(e) => setPin(e.target.value)}
+                                value={pin}
+                                className="form-select">
+                                {selectPin && selectPin.length > 0 && selectPin.map((item, index) => {
+                                    return (
+                                        <option key={index} value={item.keyMap}>{item.valueVi}</option>
+                                    )
+                                })}
+                            </select>
+                        </div>
+                        <div className="manage__content-form form-group col-6">
+                            <label className="manage__content-label">Màng hình</label>
+                            <select
+                                onChange={(e) => setDisplay(e.target.value)}
+                                value={display}
+                                className="form-select">
+                                {selectDisplay && selectDisplay.length > 0 && selectDisplay.map((item, index) => {
+                                    return (
+                                        <option key={index} value={item.keyMap}>{item.valueVi}</option>
+                                    )
+                                })}
+                            </select>
+                        </div>
+                    </div>
+                    <div className="manage__content-form form-group col-6">
+                        <label className="manage__content-label">Camera</label>
+                        <select
+                            onChange={(e) => setCamera(e.target.value)}
+                            value={camera}
+                            className="form-select">
+                            {selectCamera && selectCamera.length > 0 && selectCamera.map((item, index) => {
+                                return (
+                                    <option key={index} value={item.keyMap}>{item.valueVi}</option>
+                                )
+                            })}
+                        </select>
+                    </div>
+
+                </>
+
+
+            }
+            {/* dien thoai */}
             <div className="row">
                 <div className="manage__content-form manage__content-color form-group col-12">
                     <label className="manage__content-label">Màu sắc</label>
@@ -319,37 +389,6 @@ const ProductManage = (props) => {
 
                 </div>
             </div>
-
-
-            {/* 
-            <h4>Khuyến mãi</h4>
-            <hr />
-            <div className="row">
-
-            </div>
-            <div className="manage__content-form form-group">
-                <label>Khuyến mãi</label>
-                <input
-                    onChange={(e) => setQuantity(e.target.value)}
-                    type="text" className="form-control" />
-            </div>
-            <h4>Bài đăng sản phẩm</h4>
-            <hr />
-            <div className="manage__content-form form-group">
-                <label>Bài viết sản phẩm</label>
-                <input
-                    onChange={(e) => setQuantity(e.target.value)}
-                    type="text" className="form-control" />
-            </div>
- */}
-
-            {/* <div className="manage__content-form form-group">
-                <label>Thông số chi tiết</label>
-                <input
-                    onChange={(e) => setQuantity(e.target.value)}
-                    type="text" className="form-control" />
-            </div> */}
-
             <button
                 onClick={handleOnClickSubmit}
                 className="btn btn-primary">Tạo sản phẩm</button>

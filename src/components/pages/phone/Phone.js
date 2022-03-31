@@ -12,16 +12,18 @@ import { getAllProductHomeService } from '../../../services/userService';
 
 
 const Phone = () => {
-    const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState([1, 2, 3, 4, 5, 6]);
+    const [limit, setLimit] = useState(5);
+
     useEffect(() => {
         const fetch = async (e) => {
-            const res = await getAllProductHomeService(10, 'PL1');
+            const res = await getAllProductHomeService(limit, 'PL1');
             if (res && res.errCode === 0) {
                 setProducts(res.data)
             }
         };
         fetch()
-    }, []);
+    }, [limit]);
 
     const renderStar = (star) => {
         const length = star
@@ -33,11 +35,19 @@ const Phone = () => {
         }
         return result
     }
+    const handleSetLimit = (e) => {
+        if (limit <= products.length) {
+            console.log('tang')
+            setLimit((prev) => {
+                return prev + 10
+            })
+        }
+
+    };
     return (
         <div className="phone__container">
             <div className="phone__banner"></div>
             <div className="phone__filter"></div>
-
             <div className="container phone__product">
                 <div className="row phone__product-list">
                     {products && products.length > 0 && products.map((item, index) => {
@@ -86,7 +96,10 @@ const Phone = () => {
                     })}
                 </div>
                 <div className="product__add-more">
-                    <button className="btn__add-more">Xem thêm 30 Sản phẩm</button>
+                    <button
+                        onClick={handleSetLimit}
+                        className="btn__add-more"
+                    >{limit <= products.length ? 'Xem thêm 10 Sản phẩm' : 'Không còn sản phẩm nào nữa'}</button>
                 </div>
             </div>
 

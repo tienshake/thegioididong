@@ -100,6 +100,10 @@ const UserList = (props) => {
                             <td>{item.typeData && item.typeData.valueVi ? item.typeData.valueVi : ''}</td>
                             <td>{item.ram}</td>
                             <td>{item.rom}</td>
+                            <td>{item.cameraData && item.cameraData.valueVi ? item.cameraData.valueVi : ''}</td>
+                            <td>{item.displayData && item.displayData.valueVi ? item.displayData.valueVi : ''}</td>
+                            <td>{item.pinData && item.pinData.valueVi ? item.pinData.valueVi : ''}</td>
+                            <td>{item.quantity}</td>
                             <td>
                                 <a href="#" className="settings" title="Settings" data-toggle="tooltip"><i className="material-icons">&#xE8B8;</i></a>
                                 <a href="#" className="delete" title="Delete" data-toggle="tooltip"><i className="material-icons">&#xE5C9;</i></a>
@@ -136,7 +140,12 @@ const UserList = (props) => {
                     <th>Loại</th>
                     <th>Ram</th>
                     <th>Bộ nhớ</th>
+                    <th>Camera</th>
+                    <th>Màng hình</th>
+                    <th>Pin</th>
                     <th>Số lượng</th>
+                    <th>Action</th>
+
                 </>
             )
         }
