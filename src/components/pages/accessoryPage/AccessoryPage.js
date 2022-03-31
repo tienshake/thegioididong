@@ -5,6 +5,7 @@ import CategorySalienContext from '../../../store/accessory/CategorySalienContex
 import { useContext } from 'react';
 import Brands from './reuseComponents/Brands';
 import CardProductBody from './reuseComponents/CardProductBody';
+import SliderProduct from './reuseComponents/SliderProduct';
 import axios from 'axios';
 
 const tabsCategory = ['cardProductsOne', 'cardProductsTwo'];
@@ -131,7 +132,6 @@ export default function AccessoryPage() {
                                     price={data.price}
                                     imgCard={data.imgCard}
                                 />
-
                             ))}
 
                             <div className='wrap-loadMore'>
@@ -141,10 +141,17 @@ export default function AccessoryPage() {
                         </div>
 
                         <div style={{ display: 'flex', marginTop: '70px', justifyContent: 'center' }}>
-                            <img style={{ width: '92%' }} src='https://cdn.tgdd.vn/2022/02/banner/DESKTOPTagline2-1200x150-1.png'></img>
+                            <img style={{ width: '92%' }} src='https://cdn.tgdd.vn/2022/02/banner/DESKTOPTagline2-1200x150-1.png' alt=''></img>
+                        </div>
+
+
+                        {/*  */}
+                        <div className='container-fluid wrap__slider__product'>
+                            <SliderProduct />
                         </div>
                     </div>
                 </div>
+
 
 
             </div>
