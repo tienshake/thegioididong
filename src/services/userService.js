@@ -19,11 +19,15 @@ const createColorProductService = async (data) => {
 const createImgDetailProductService = async (data) => {
     return await axios.post('/api/create-imgDetail-product', data);
 };
+const getAllProductService = async (limit, page) => {
+    return await axios.get(`/api/get-all-product?limit=${limit}&page=${page}`);
+}
 export {
     createUserService,
     getAllUserService,
     getAllUCodeService,
     createProductService,
     createColorProductService,
-    createImgDetailProductService
+    createImgDetailProductService,
+    getAllProductService
 }

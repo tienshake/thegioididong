@@ -5,13 +5,28 @@
     }
 
     .preview-upload {
-        border: 1px solid #9b9c9c;
         margin: 30px 0;
+        border: 1px solid #9b9c9c;
+
+
+        .label-upload {
+            border: 1px solid #9b9c9c;
+
+        }
+
+        .manage__content-form {
+            height : 100px;
+            gap    : 10px;
+            display: flex;
+
+            .manage__content-label {}
+        }
+
     }
 
     .quantity {
         height: 50px;
-        width : 50px;
+        width : 70px;
     }
 
     .multiple-upload {
@@ -36,7 +51,7 @@
         button {
             border       : 1px solid rgb(41, 40, 40);
             width        : 100px;
-            font-size    : 13px;
+            font-size    : 15px;
             color        : #c2c0c0;
             outline      : none;
             border-radius: 5px;

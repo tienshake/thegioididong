@@ -4,11 +4,17 @@ import {
 } from 'react-router-dom';
 import {
     FaRegBell,
-    FaUsers
+    FaUsers,
+    FaRegListAlt
 } from "react-icons/fa";
+import {
+    BsFillFileEarmarkPostFill,
+    BsGift
+} from "react-icons/bs";
+
 import './Admin.scss';
 import { IoAppsOutline, IoPhonePortraitOutline, IoCreate } from "react-icons/io5";
-import { AiFillMail, AiOutlineUser, AiOutlineFileSync, AiOutlineUpload } from "react-icons/ai";
+import { AiFillMail, AiOutlineUser, AiOutlineFileSync } from "react-icons/ai";
 import React, { useState, useEffect } from 'react';
 import { createUserService, createColorProductService, createProductService, createImgDetailProductService } from '../../services/userService';
 import { alert } from 'react-bootstrap-confirmation';
@@ -22,10 +28,14 @@ const Admin = (props) => {
                 let res = '';
                 if (type === "CREATE-USER") {
                     res = await createUserService(data);
+                    if (res && res.errCode === 0) {
+                        alert("Bạn đã tạo người dùng thành công");
+                    } else {
+                        alert("Bạn đã tạo người dùng thất bại")
+                    }
                 }
                 if (type === "CREATE-PRODUCT") {
                     res = await createProductService(data);
-                    console.log('color', colors);
                     if (res && res.errCode === 0) {
                         if (colors && colors.length > 0) {
                             let result = []
@@ -35,10 +45,9 @@ const Admin = (props) => {
                                 object.color = item.keyMap
                                 result.push(object);
                             })
-                            const color = await createColorProductService(result);
-                            console.log('data result', result);
+                            await createColorProductService(result);
                         } else {
-                            alert("Invalid select time!")
+                            alert("Missing parameters colors!")
                         }
                         if (imageMultiple && imageMultiple.length > 0) {
                             let result = []
@@ -48,19 +57,18 @@ const Admin = (props) => {
                                 object.image = item.avatar
                                 result.push(object);
                             })
-                            const color = await createImgDetailProductService(result);
-                            console.log('data result', result);
+                            await createImgDetailProductService(result);
                         } else {
-                            alert("Invalid select time!")
+                            alert("Missing parameters imageMultiple!")
                         }
                     }
+                    if (res && res.errCode === 0) {
+                        alert("Bạn đã tạo sản phẩm thành công");
+                    } else {
+                        alert("Bạn đã tạo sản phẩm thất bại")
+                    }
                 }
-                if (res && res.errCode === 0) {
-                    alert("Bạn đã tạo thành công");
-                    console.log(res);
-                } else {
-                    alert("Bạn đã thất bại")
-                }
+
             }
         } catch (e) {
             console.log(e)
@@ -76,9 +84,9 @@ const Admin = (props) => {
                     <Link className="link" to="users"><li> <FaUsers /><span>Danh sách người dùng</span></li></Link>
                     <h4>Sản phẩm</h4>
                     <Link className="link" to="create-product"><li> <IoCreate /><span>Tạo sản phẩm</span></li></Link>
-                    <li><IoCreate /><span>Chi tiết sản phẩm</span></li>
-                    <li><IoPhonePortraitOutline /><span>Sản phẩm</span></li>
-                    <li><IoPhonePortraitOutline /><span>khuyến mãi tặng kèm</span></li>
+                    <Link className="link" to="products"><li> <FaRegListAlt /><span>Danh sách sản phẩm</span></li></Link>
+                    <li><BsFillFileEarmarkPostFill /><span>Tạo bài đăng sản phẩm</span></li>
+                    <li><BsGift /><span>khuyến mãi tặng kèm</span></li>
                     <li><AiOutlineFileSync /><span>Đơn hàng</span></li>
                 </ul>
             </div>

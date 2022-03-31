@@ -5,21 +5,21 @@ import { useOutletContext } from 'react-router-dom';
 import { alert } from 'react-bootstrap-confirmation';
 import './productManage.scss'
 import { getAllUCodeService } from "../../services/userService";
+import NumberFormat from 'react-number-format';
 const ProductManage = (props) => {
     const outletContext = useOutletContext()
     const [nameItem, setNameItem] = useState('');
     const [quantity, setQuantity] = useState('');
     const [price, setPrice] = useState('');
-    const [type, setType] = useState('');
-    const [manufacturer, setManufacturer] = useState('');
-    const [ram, setRam] = useState('');
-    const [rom, setRom] = useState('');
-    const [color, setColor] = useState('');
+    const [priceFormat, setPriceFormat] = useState('');
+
+    const [type, setType] = useState('PL1');
+    const [manufacturer, setManufacturer] = useState('TP1');
+    const [ram, setRam] = useState('4GB');
+    const [rom, setRom] = useState('16GB');
     const [image, setImage] = useState('');
     const [imageMultiple, setMultiple] = useState([]);
-
-
-
+    //================================================
     const [selectType, setSelectType] = useState([]);
     const [selectPloai, setSelectPloai] = useState([]);
     const [selectColor, setSelectColor] = useState([]);
@@ -47,27 +47,55 @@ const ProductManage = (props) => {
 
 
     const checkValiDateInput = () => {
-        // let isValid = true
-        // const object = { email, password, name, address, gender, phoneNumber, roleId, image };
-        // const arrInput = ['email', 'password', 'name', 'address', 'gender', 'phoneNumber', 'roleId', 'image']
-        // for (let i = 0; i < arrInput.length; i++) {
-        //     if (!object[arrInput[i]]) {
-        //         alert('Bạn đã nhập thiếu ' + arrInput[i]);
-        //         isValid = false
-        //         break;
-        //     }
-        // }
-        // return isValid;
+        let isValid = true
+        const object = {
+            nameItem,
+            quantity,
+            price,
+            type,
+            manufacturer,
+            ram,
+            rom,
+            selectColor,
+            image,
+            imageMultiple,
+        };
+        const arrInput = ['nameItem',
+            'quantity',
+            'price',
+            'type',
+            'manufacturer',
+            'ram',
+            'rom',
+            'selectColor',
+            'image',
+            'imageMultiple']
+        for (let i = 0; i < arrInput.length; i++) {
+            if (!object[arrInput[i]]) {
+                alert('Bạn đã nhập thiếu ' + arrInput[i]);
+                isValid = false
+                break;
+            }
+            if (object[arrInput[i]].length === 0) {
+                alert('Bạn đã nhập thiếu ' + arrInput[i]);
+                isValid = false
+                break;
+            }
+        }
+        return isValid;
     }
     const handleOnClickSubmit = async (e) => {
-        // const isValid = checkValiDateInput();
-        const typeData = 'CREATE-PRODUCT';
-        outletContext.createToAdmin({
-            nameItem, price, type, manufacturer,
-            ram, rom, color, quantity,
-            image: image.avatar
-        }, typeData, selectColor.filter(item => item.isSelected === true), imageMultiple)
-        console.log(nameItem, price, type, manufacturer, ram, rom, color, quantity, image)
+        const isValid = checkValiDateInput();
+        if (isValid) {
+            const typeData = 'CREATE-PRODUCT';
+            outletContext.createToAdmin({
+                nameItem, price, type, manufacturer,
+                ram, rom, quantity,
+                image: image.avatar
+            }, typeData, selectColor.filter(item => item.isSelected === true), imageMultiple)
+            console.log(nameItem, price, type, manufacturer, ram, rom, selectColor, quantity, image)
+        }
+
 
     };
     const handleOnchangeImg = async (e) => {
@@ -125,10 +153,12 @@ const ProductManage = (props) => {
         }
 
     }
+    const handleCovertPrice = (values) => {
+        setPrice(values.formattedValue)
+    };
 
     return (
         <div className="product-manage">
-            {console.log('imageMultiple', imageMultiple)}
             <h4 className="mt-3">Sản phẩm</h4>
             <hr />
             <div className="row">
@@ -138,11 +168,16 @@ const ProductManage = (props) => {
                         onChange={(e) => setNameItem(e.target.value)}
                         type="text" className="form-control" />
                 </div>
+
                 <div className="manage__content-form form-group col-6">
-                    <label>Giá</label>
-                    <input
-                        onChange={(e) => setPrice(e.target.value)}
-                        type="text" className="form-control" />
+                    <label>Giá (VNĐ)</label>
+                    <NumberFormat
+                        value={price}
+                        displayType="input"
+                        thousandSeparator={true}
+                        onValueChange={(values) => handleCovertPrice(values)}
+                        className="form-control"
+                    />
                 </div>
             </div>
             <div className="row ">
@@ -150,6 +185,7 @@ const ProductManage = (props) => {
                     <label className="manage__content-label">Hãng sản xuất</label>
                     <select
                         onChange={(e) => setManufacturer(e.target.value)}
+                        value={manufacturer}
                         className="form-select">
                         {selectType && selectType.length > 0 && selectType.map((item, index) => {
                             return (
@@ -166,6 +202,7 @@ const ProductManage = (props) => {
                     <label className="manage__content-label">Loại sản phẩm</label>
                     <select
                         onChange={(e) => setType(e.target.value)}
+                        value={type}
                         className="form-select">
                         {selectPloai && selectPloai.length > 0 && selectPloai.map((item, index) => {
                             return (
@@ -182,6 +219,7 @@ const ProductManage = (props) => {
                     <label className="manage__content-label">Ram</label>
                     <select
                         onChange={(e) => setRam(e.target.value)}
+                        value={ram}
                         className="form-select">
                         <option value="4GB">4GB</option>
                         <option value="8GB">8GB</option>
@@ -192,6 +230,7 @@ const ProductManage = (props) => {
                     <label className="manage__content-label">Bộ nhớ</label>
                     <select
                         onChange={(e) => setRom(e.target.value)}
+                        value={rom}
                         className="form-select">
                         <option value="16GB">16GB</option>
                         <option value="32GB">32GB</option>
@@ -232,7 +271,7 @@ const ProductManage = (props) => {
                 />
             </div>
             <div className='row preview-upload'>
-                <div className="manage__content-form col-6">
+                <div className="manage__content-form col-12">
                     <label className="manage__content-label">Ảnh sản phẩm (Preview)</label>
                     <input
                         id="preview" hidden className="form-control-file" type='file'
@@ -282,7 +321,7 @@ const ProductManage = (props) => {
             </div>
 
 
-
+            {/* 
             <h4>Khuyến mãi</h4>
             <hr />
             <div className="row">
@@ -302,14 +341,14 @@ const ProductManage = (props) => {
                     onChange={(e) => setQuantity(e.target.value)}
                     type="text" className="form-control" />
             </div>
+ */}
 
-
-            <div className="manage__content-form form-group">
+            {/* <div className="manage__content-form form-group">
                 <label>Thông số chi tiết</label>
                 <input
                     onChange={(e) => setQuantity(e.target.value)}
                     type="text" className="form-control" />
-            </div>
+            </div> */}
 
             <button
                 onClick={handleOnClickSubmit}
