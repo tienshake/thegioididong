@@ -183,7 +183,6 @@ const UserList = (props) => {
                                     renderOnZeroPageCount={null}
                                     activeClassName="active"
                                 />
-
                             </div>
                         </div>
 

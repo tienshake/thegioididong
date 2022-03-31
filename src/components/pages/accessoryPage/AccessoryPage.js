@@ -19,11 +19,15 @@ export default function AccessoryPage() {
 
 
     useEffect(() => {
-        axios(`http://localhost:3000/${typeCategoryProduct}`) //  ` ` template string
-            .then(res => {
-                setCardProducts(res.data)
-            })
+        try {
+            // axios(`http://localhost:3000/${typeCategoryProduct}`) //  ` ` template string
+            //     .then(res => {
+            //         setCardProducts(res.data)
+            //     })
 
+        } catch (e) {
+            console.log(e)
+        }
     }, [typeCategoryProduct])
 
     return (

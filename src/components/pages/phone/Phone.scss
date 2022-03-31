@@ -30,6 +30,10 @@
             &:hover {
                 box-shadow: 0 2px 12px rgba(0, 0, 0, 0.122);
 
+                .phone__img {
+                    position: relative;
+                    top: -10px;
+                }
             }
 
             .phone__installment {
@@ -47,11 +51,10 @@
                 transition: top ease 0.3s;
                 top: 0;
 
-                &:hover {
-
-                    position: relative;
-                    top: -5px;
-                }
+                // &:hover {
+                //     position: relative;
+                //     top: -5px;
+                // }
             }
 
             .item__content {
@@ -81,11 +84,12 @@
 
                 .phone__rom {
                     span {
-                        border: 1px solid #9b9c9c;
+                        border: 1px solid #288ad6;
                         padding: 5px;
                         display: inline-block;
                         font-size: 12px;
-
+                        border-radius: 3px;
+                        color: #288ad6;
                     }
                 }
 
@@ -141,6 +145,7 @@
 
                 &:hover {
                     background-color: #288ad6;
+                    color: #fff;
                 }
             }
         }
