@@ -28,8 +28,9 @@ const UserManage = (props) => {
     }
     const handleOnClickSubmit = (e) => {
         const isValid = checkValiDateInput();
+        const type = 'CREATE-USER';
         if (isValid) {
-            outletContext.createUser({
+            outletContext.createToAdmin({
                 email,
                 password,
                 name,
@@ -38,7 +39,7 @@ const UserManage = (props) => {
                 phoneNumber,
                 roleId,
                 image: image.avatar
-            })
+            }, type)
         }
 
     };
@@ -48,7 +49,6 @@ const UserManage = (props) => {
         if (file) {
             const b64 = await CommonUtils.getBase64(file);
             const objectUrl = URL.createObjectURL(file);
-            console.log('b64', b64);
             setImage({
                 previewImg: objectUrl,
                 avatar: b64

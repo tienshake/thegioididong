@@ -7,7 +7,7 @@ import Brands from './reuseComponents/Brands';
 import CardProductBody from './reuseComponents/CardProductBody';
 import SliderProduct from './reuseComponents/SliderProduct';
 import axios from 'axios';
-
+import { getAllProductHomeService } from '../../../services/userService';
 const tabsCategory = ['cardProductsOne', 'cardProductsTwo'];
 
 
@@ -20,11 +20,14 @@ export default function AccessoryPage() {
 
 
     useEffect(() => {
-        axios(`http://localhost:3000/${typeCategoryProduct}`) //  ` ` template string
-            .then(res => {
+        const fetch = async (e) => {
+            const limit = 5
+            const res = await getAllProductHomeService(limit, 'PL2');
+            if (res && res.errCode === 0) {
                 setCardProducts(res.data)
-            })
-
+            }
+        };
+        fetch()
     }, [typeCategoryProduct])
 
     return (
@@ -128,9 +131,9 @@ export default function AccessoryPage() {
                             {cardProducts.map((data, index) => (
                                 <CardProductBody
                                     key={index}
-                                    nameCard={data.nameCard}
+                                    nameCard={data.nameItem}
                                     price={data.price}
-                                    imgCard={data.imgCard}
+                                    imgCard={data.image}
                                 />
                             ))}
 

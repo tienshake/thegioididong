@@ -4,33 +4,72 @@ import {
 } from 'react-router-dom';
 import {
     FaRegBell,
-    FaUsers
+    FaUsers,
+    FaRegListAlt
 } from "react-icons/fa";
+import {
+    BsFillFileEarmarkPostFill,
+    BsGift
+} from "react-icons/bs";
+
 import './Admin.scss';
 import { IoAppsOutline, IoPhonePortraitOutline, IoCreate } from "react-icons/io5";
-import { AiFillMail, AiOutlineUser, AiOutlineFileSync, AiOutlineUpload } from "react-icons/ai";
-import UserManage from './UserMange';
+import { AiFillMail, AiOutlineUser, AiOutlineFileSync } from "react-icons/ai";
 import React, { useState, useEffect } from 'react';
-import { createUserService, getAllUCodeService, } from '../../services/userService';
+import { createUserService, createColorProductService, createProductService, createImgDetailProductService } from '../../services/userService';
 import { alert } from 'react-bootstrap-confirmation';
 import { confirm } from 'react-bootstrap-confirmation';
 
 const Admin = (props) => {
-
-    const createUser = async (data) => {
+    const createToAdmin = async (data, type, colors, imageMultiple) => {
         try {
-            const isValid = await confirm("Bạn có muốn tạo người dùng này không?")
-            if (isValid) {
-                const res = await createUserService(data);
-                console.log(res);
-                if (res && res.errCode === 0) {
-                    console.log(res);
-                    alert("Bạn đã tạo thành công")
-                } else {
-                    alert("Bạn đã thất bại")
+            const isConfirm = await confirm("Bạn có muốn tạo không?");
+            if (isConfirm) {
+                let res = '';
+                if (type === "CREATE-USER") {
+                    res = await createUserService(data);
+                    if (res && res.errCode === 0) {
+                        alert("Bạn đã tạo người dùng thành công");
+                    } else {
+                        alert("Bạn đã tạo người dùng thất bại")
+                    }
                 }
-            }
+                if (type === "CREATE-PRODUCT") {
+                    res = await createProductService(data);
+                    if (res && res.errCode === 0) {
+                        if (colors && colors.length > 0) {
+                            let result = []
+                            colors.forEach(item => {
+                                let object = {};
+                                object.productId = res.test
+                                object.color = item.keyMap
+                                result.push(object);
+                            })
+                            await createColorProductService(result);
+                        } else {
+                            alert("Missing parameters colors!")
+                        }
+                        if (imageMultiple && imageMultiple.length > 0) {
+                            let result = []
+                            imageMultiple.forEach(item => {
+                                let object = {};
+                                object.productId = res.test
+                                object.image = item.avatar
+                                result.push(object);
+                            })
+                            await createImgDetailProductService(result);
+                        } else {
+                            alert("Missing parameters imageMultiple!")
+                        }
+                    }
+                    if (res && res.errCode === 0) {
+                        alert("Bạn đã tạo sản phẩm thành công");
+                    } else {
+                        alert("Bạn đã tạo sản phẩm thất bại")
+                    }
+                }
 
+            }
         } catch (e) {
             console.log(e)
         }
@@ -45,9 +84,9 @@ const Admin = (props) => {
                     <Link className="link" to="users"><li> <FaUsers /><span>Danh sách người dùng</span></li></Link>
                     <h4>Sản phẩm</h4>
                     <Link className="link" to="create-product"><li> <IoCreate /><span>Tạo sản phẩm</span></li></Link>
-                    <li><IoCreate /><span>Chi tiết sản phẩm</span></li>
-                    <li><IoPhonePortraitOutline /><span>Sản phẩm</span></li>
-                    <li><IoPhonePortraitOutline /><span>khuyến mãi tặng kèm</span></li>
+                    <Link className="link" to="products"><li> <FaRegListAlt /><span>Danh sách sản phẩm</span></li></Link>
+                    <li><BsFillFileEarmarkPostFill /><span>Tạo bài đăng sản phẩm</span></li>
+                    <li><BsGift /><span>khuyến mãi tặng kèm</span></li>
                     <li><AiOutlineFileSync /><span>Đơn hàng</span></li>
                 </ul>
             </div>
@@ -81,7 +120,7 @@ const Admin = (props) => {
                 </div>
                 <div className="manage__content">
                     <div className="manage__content-center">
-                        <Outlet context={{ createUser }} />
+                        <Outlet context={{ createToAdmin }} />
                     </div>
                 </div>
             </div>

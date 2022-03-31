@@ -1,0 +1,161 @@
+.phone__container {
+    padding: 0 160px;
+
+    .phone__banner {
+        height: 200px;
+        border: 1px solid red;
+    }
+
+    .phone__filter {
+        height: 160px;
+        border: 1px solid red;
+    }
+
+    .phone__product {
+        display: flex;
+        flex-wrap: wrap;
+        width: 1200px;
+
+        .phone__item {
+            border-bottom: 1px solid #f1f1f1;
+            border-right: 1px solid #f1f1f1;
+            border-left: 1px solid #f1f1f1;
+
+            height: 450px;
+            width: 240px;
+            padding: 10px;
+            cursor: pointer;
+
+            &:hover {
+                box-shadow: 0 2px 12px rgba(0, 0, 0, 0.122);
+
+                .phone__img {
+                    position: relative;
+                    top: -8px;
+                }
+            }
+
+            .phone__installment {
+                text-align: center;
+                background-color: #f1f1eb;
+                width: 30%;
+                border-radius: 5px;
+                font-size: 12px;
+            }
+
+            .phone__img {
+                margin: 10px 0;
+                width: 90%;
+                height: 45%;
+                transition: top ease 0.3s;
+                top: 0;
+
+                // &:hover {
+                //     position: relative;
+                //     top: -5px;
+                // }
+            }
+
+            .item__content {
+                display: flex;
+                flex-direction: column;
+                gap: 3px;
+
+                .result-label {
+                    border-radius: 20px;
+                    display: inline-block;
+                    font-size: 15px;
+                    max-width: 100%;
+                    padding-right: 8px;
+                    width: 70%;
+                    margin: 0;
+
+                    &.temp2 {
+                        background: linear-gradient(to right, #0358d6, #054bab);
+
+                    }
+
+                    span {
+                        color: #fff;
+
+                    }
+                }
+
+                .phone__rom {
+                    span {
+                        border: 1px solid #288ad6;
+                        padding: 5px;
+                        display: inline-block;
+                        font-size: 12px;
+                        border-radius: 3px;
+                        color: #288ad6;
+                        &:hover {
+                            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.122);
+                        }
+                    }
+                  
+                }
+
+                .phone__price {
+                    font-weight: 700;
+                }
+
+                .phone__gif {
+                    font-size: 12px;
+                }
+
+                .phone__vote {
+                    display: flex;
+                    align-items: center;
+
+                    span {
+                        font-size: 12px;
+                    }
+
+                    .star {
+                        color: #fb6f30;
+
+                        &.disabled {
+                            color: #bdbdbd;
+                        }
+                    }
+                }
+
+
+                .phone__compare {
+                    display: flex;
+                    align-items: center;
+                    font-size: 14px;
+                    color: #80aef4;
+                    gap: 5px;
+                }
+            }
+
+        }
+
+        .product__add-more {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 20px;
+
+            .btn__add-more {
+                border: 1px solid #cecccc;
+                background-color: #fff;
+                border-radius: 3px;
+                padding: 10px 40px;
+
+                &:hover {
+                    background-color: #288ad6;
+                    color: #fff;
+                }
+            }
+        }
+    }
+
+
+    .footer {
+        min-height: 100vh;
+    }
+}

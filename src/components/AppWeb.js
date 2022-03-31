@@ -12,7 +12,7 @@ import Cookies from "js-cookie";
 import AccessoryPage from './pages/accessoryPage/AccessoryPage';
 import Admin from './admin/Admin'
 import Home from './pages/home/Home';
-import Phone from './pages/home/Phone';
+import Phone from './pages/phone/Phone';
 import NotFound from './not-found/NotFound'
 import UserManage from './admin/UserMange';
 import UserList from './admin/UserList';
@@ -32,8 +32,10 @@ export default function MyApp() {
           <Route path='/manage' element={<Admin />} >
             <Route index element={<UserManage />} />
             <Route path='create-user' element={<UserManage />} />
-            <Route path='users' element={<UserList />} />
+            <Route path='users' element={<UserList type={'users'} />} />
             <Route path='create-product' element={<ProductManage />} />
+            <Route path='products' element={<UserList type={'products'} />} />
+
           </Route>
           <Route path='/login' element={<Login />} >
 

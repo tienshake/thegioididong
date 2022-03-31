@@ -2,12 +2,13 @@
 header {}
 
 .toolbar__top {
-    height    : 39px;
-    width     : 100%;
-    background: #000;
-    position  : fixed;
-    z-index   : 100;
-    top       : 48.99px;
+    height       : 39px;
+    width        : 100%;
+    background   : #000;
+    /* position  : fixed; */
+    z-index      : 1000;
+    top          : 48.99px;
+
 }
 
 .toolbar__top {
@@ -16,10 +17,10 @@ header {}
 }
 
 .img__top__nav {
-    width   : 100%;
-    position: fixed;
-    z-index : 100;
-    top     : 0;
+    width      : 100%;
+    /* position: fixed; */
+    z-index    : 100;
+    top        : 0;
 }
 
 .wrap__search__nav {
@@ -83,7 +84,7 @@ header {}
 }
 
 .toolbar {
-    position        : fixed;
+    /* position        : fixed; */
     width           : 100%;
     background-color: #fed100;
     height          : 44px;
@@ -215,7 +216,7 @@ header {}
 }
 
 .item__count {
-    position        : fixed;
+    /* position        : fixed; */
     top             : 1px;
     right           : 85px;
     color           : rgb(7, 170, 80);
