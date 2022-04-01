@@ -3,11 +3,14 @@ import React, { useState, useEffect } from 'react';
 import { getAllUserService, getAllProductService, getAllUCodeService } from '../../services/userService';
 import ReactPaginate from 'react-paginate';
 const UserList = (props) => {
+
     const [users, setUsers] = useState([]);
     const [count, setCount] = useState('');
     const [page, setPage] = useState('');
 
+
     let arrCount = [];
+
 
     useEffect(() => {
         const fetch = async () => {
@@ -96,13 +99,13 @@ const UserList = (props) => {
                                 className="avatar"
                             ></div>{item.nameItem}</td>
                             <td>{item.price}</td>
-                            <td>{item.manufacturerData && item.manufacturerData.valueVi ? item.manufacturerData.valueVi : ''}</td>
-                            <td>{item.typeData && item.typeData.valueVi ? item.typeData.valueVi : ''}</td>
-                            <td>{item.ram}</td>
-                            <td>{item.rom}</td>
-                            <td>{item.cameraData && item.cameraData.valueVi ? item.cameraData.valueVi : ''}</td>
-                            <td>{item.displayData && item.displayData.valueVi ? item.displayData.valueVi : ''}</td>
-                            <td>{item.pinData && item.pinData.valueVi ? item.pinData.valueVi : ''}</td>
+                            <td>{item.manufacturerData && item.manufacturerData.valueVi ? item.manufacturerData.valueVi : 'null'}</td>
+                            <td>{item.typeData && item.typeData.valueVi ? item.typeData.valueVi : 'null'}</td>
+                            <td>{item.ram ? item.ram : 'null'}</td>
+                            <td>{item.rom ? item.rom : 'null'} </td>
+                            <td>{item.cameraData && item.cameraData.valueVi ? item.cameraData.valueVi : 'null'}</td>
+                            <td>{item.displayData && item.displayData.valueVi ? item.displayData.valueVi : 'null'}</td>
+                            <td>{item.pinData && item.pinData.valueVi ? item.pinData.valueVi : 'null'}</td>
                             <td>{item.quantity}</td>
                             <td>
                                 <a href="#" className="settings" title="Settings" data-toggle="tooltip"><i className="material-icons">&#xE8B8;</i></a>

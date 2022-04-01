@@ -14,6 +14,7 @@ import { IoIosHeadset } from "react-icons/io";
 import './NavBarApp.css';
 import { Carousel } from 'react-responsive-carousel';
 export default function NavBarApp(props) {
+
     return (
         <>
 
@@ -56,7 +57,9 @@ export default function NavBarApp(props) {
 
                     {/* search */}
                     <div className='wrap__search__nav'>
-                        <input placeholder='Bạn tìm gì...' />
+                        <input
+                            onChange={(e) => props.handleChangeTitleSearch(e.target.value)}
+                            placeholder='Bạn tìm gì...' />
                     </div>
 
                     {/* giỏ hàng */}

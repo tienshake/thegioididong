@@ -1,6 +1,7 @@
 
 
 import React, { useState, useEffect } from 'react';
+import { useOutletContext } from 'react-router-dom';
 import './Phone.scss';
 import {
     AiFillStar
@@ -10,13 +11,26 @@ import {
 } from "react-icons/io";
 import { getAllProductHomeService } from '../../../services/userService';
 import Banner from '../banner/Banner';
-
-import { Carousel } from 'react-responsive-carousel';
-
 const Phone = () => {
-    const [products, setProducts] = useState([1, 2, 3, 4, 5, 6]);
+    const outletContext = useOutletContext()
+    const [products, setProducts] = useState([]);
     const [limit, setLimit] = useState(10);
+    let dataRender = [...products]
+    if (outletContext.titleSearch) {
+        dataRender = products && products.length > 0 && products.filter((product) => {
+            if (product.nameItem.toLowerCase().includes(outletContext.titleSearch.toLowerCase())) {
+                return product
+            } else {
+                if (product.manufacturerData) {
+                    if (product.manufacturerData.valueVi.toLowerCase().includes(outletContext.titleSearch.toLowerCase())) {
+                        return product
+                    } else return null
+                }
 
+            }
+
+        })
+    }
     useEffect(() => {
         const fetch = async (e) => {
             const res = await getAllProductHomeService(limit, 'PL1');
@@ -54,7 +68,7 @@ const Phone = () => {
             <div className="phone__filter"> <img className='img__top__nav' style={{ top: '0' }} src='https://scontent.xx.fbcdn.net/v/t1.15752-9/275324637_374867867825981_2618128450721432063_n.png?_nc_cat=107&ccb=1-5&_nc_sid=aee45a&_nc_ohc=sNtVKKbGxpQAX9m9Mfh&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AVKhqBT2Xs96uxnx1YaR8Ebbk2wpjqRrrDdWXwExk8WfHw&oe=626CD6EB' alt='' /></div>
             <div className="container phone__product">
                 <div className="row phone__product-list">
-                    {products && products.length > 0 && products.map((item, index) => {
+                    {dataRender && dataRender.length > 0 && dataRender.map((item, index) => {
                         const star = 5
                         return (<div className="col-md-3 phone__item" key={index}>
                             <div className="phone__installment">Trả góp 0%</div>
