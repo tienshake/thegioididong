@@ -134,7 +134,7 @@
                         display        : flex;
                         align-items    : center;
                         justify-content: center;
-                        gap            : 20px;
+                        gap            : 10px;
                         font-size      : 14px;
                         flex           : 1;
 
@@ -187,10 +187,10 @@
                 button {
                     background-color: transparent;
                     border          : 1px solid #c9c7c7;
-                    padding         : 0 20px;
+                    padding         : 0 15px;
                     border-radius   : 3px;
                     font-size       : 14px;
-                    height          : 40px;
+                    height          : 35px;
 
                     &.active {
                         border: 1px solid #4a90ef;
@@ -207,6 +207,49 @@
                     gap    : 10px;
                     flex   : 1;
 
+                }
+
+            }
+
+            .price {
+                height        : 70px;
+                display       : flex;
+                flex-direction: column;
+
+                p {
+                    margin     : 0;
+                    flex       : 1;
+                    display    : flex;
+                    align-items: center;
+                    gap        : 5px;
+                    font-size  : 14px;
+
+                    p {
+                        color: #4a90ef;
+
+                    }
+                }
+
+                span {
+                    display    : flex;
+                    align-items: center;
+                    flex       : 1;
+                    gap        : 5px;
+
+                    span {
+                        text-align   : center;
+                        width        : 35%;
+                        border-radius: 5px;
+                        font-size    : 12px;
+                        width        : 50px;
+                    }
+
+                    h5 {
+                        margin     : 0;
+                        display    : inline-block;
+                        color      : #d0021c;
+                        font-weight: 700;
+                    }
                 }
 
             }
