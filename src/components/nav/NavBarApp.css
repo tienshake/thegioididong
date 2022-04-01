@@ -120,7 +120,7 @@ header {}
 
 .toolbar__navigation-items ul li {
     height     : 43px;
-    width      : 120px;
+    width      : 110px;
     text-align : center;
     font-weight: 500;
 }
