@@ -18,6 +18,7 @@ import UserManage from './admin/UserMange';
 import UserList from './admin/UserList';
 import Login from './login/Login';
 import ProductManage from './admin/productManage';
+import DetailItem from './pages/detailItem/DetailItem';
 export default function MyApp() {
   return (
     <>
@@ -26,6 +27,7 @@ export default function MyApp() {
           <Route path='/' element={<Home />}>
             <Route index element={<Phone />} />
             <Route path='phone' element={<Phone />} />
+            <Route path='/phone/:name/:id' element={<DetailItem />} />
             <Route path='accessory' element={<AccessoryPage />} />
             <Route path='*' element={<NotFound />} />
           </Route>
@@ -35,7 +37,6 @@ export default function MyApp() {
             <Route path='users' element={<UserList type={'users'} />} />
             <Route path='create-product' element={<ProductManage />} />
             <Route path='products' element={<UserList type={'products'} />} />
-
           </Route>
           <Route path='/login' element={<Login />} >
 

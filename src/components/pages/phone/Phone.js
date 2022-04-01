@@ -1,7 +1,7 @@
 
 
 import React, { useState, useEffect } from 'react';
-import { useOutletContext } from 'react-router-dom';
+import { useOutletContext, useNavigate } from 'react-router-dom';
 import './Phone.scss';
 import {
     AiFillStar
@@ -11,25 +11,17 @@ import {
 } from "react-icons/io";
 import { getAllProductHomeService } from '../../../services/userService';
 import Banner from '../banner/Banner';
+import Search from '../../../utils/Search';
 const Phone = () => {
+    let navigate = useNavigate();
     const outletContext = useOutletContext()
     const [products, setProducts] = useState([]);
     const [limit, setLimit] = useState(10);
+    console.log()
     let dataRender = [...products]
-    if (outletContext.titleSearch) {
-        dataRender = products && products.length > 0 && products.filter((product) => {
-            if (product.nameItem.toLowerCase().includes(outletContext.titleSearch.toLowerCase())) {
-                return product
-            } else {
-                if (product.manufacturerData) {
-                    if (product.manufacturerData.valueVi.toLowerCase().includes(outletContext.titleSearch.toLowerCase())) {
-                        return product
-                    } else return null
-                }
-
-            }
-
-        })
+    if (!outletContext.titleSearch) {
+    } else {
+        dataRender = Search(products, outletContext);
     }
     useEffect(() => {
         const fetch = async (e) => {
@@ -60,6 +52,9 @@ const Phone = () => {
         }
 
     };
+    const handleRedirect = (item) => {
+        navigate(`/phone/${item.nameItem}/${item.id}`)
+    };
     return (
         <div className="phone__container">
             <div className="phone__banner">
@@ -70,47 +65,53 @@ const Phone = () => {
                 <div className="row phone__product-list">
                     {dataRender && dataRender.length > 0 && dataRender.map((item, index) => {
                         const star = 5
-                        return (<div className="col-md-3 phone__item" key={index}>
-                            <div className="phone__installment">Trả góp 0%</div>
+                        return (
+                            <div
+                                onClick={() => handleRedirect(item)}
+                                className="col-md-3 phone__item"
+                                key={index}
+                            >
+                                <div className="phone__installment">Trả góp 0%</div>
 
-                            <div className="phone__img"
-                                style={{
-                                    backgroundImage: `url(${item.image})`,
-                                    backgroundPosition: 'center',
-                                    backgroundSize: 'cover',
-                                    backgroundRepeat: 'no-repeat',
-                                    borderRadius: '3px'
-                                }}
-                            ></div>
-                            <div className="item__content">
-                                <p className="result-label temp2">
-                                    <img
-                                        width="20"
-                                        height="20"
-                                        className=" ls-is-cached lazyloaded"
-                                        alt="Ưu đãi đến 4 Triệu"
-                                        data-src="https://cdn.tgdd.vn/2020/10/content/icon2-50x50.png"
-                                        src="https://cdn.tgdd.vn/2020/10/content/icon2-50x50.png" />
-                                    <span>Ưu đãi đến 4 Triệu</span>
-                                </p>
-                                <div className="phone__name">{item.nameItem}</div>
-                                <div className="phone__rom"><span>{item.ram}/{item.rom}</span></div>
-                                <div className="phone__price">{item.price}₫</div>
-                                <div className="phone__gif">Quà 2.000.000₫</div>
-                                <div className="phone__vote">
-                                    {item.vote ? renderStar(star) : <span>Chưa có đánh giá</span>}
-                                    {/* <AiFillStar className='star' />
+                                <div className="phone__img"
+                                    style={{
+                                        backgroundImage: `url(${item.image})`,
+                                        backgroundPosition: 'center',
+                                        backgroundSize: 'cover',
+                                        backgroundRepeat: 'no-repeat',
+                                        borderRadius: '3px'
+                                    }}
+                                ></div>
+                                <div className="item__content">
+                                    <p className="result-label temp2">
+                                        <img
+                                            width="20"
+                                            height="20"
+                                            className=" ls-is-cached lazyloaded"
+                                            alt="Ưu đãi đến 4 Triệu"
+                                            data-src="https://cdn.tgdd.vn/2020/10/content/icon2-50x50.png"
+                                            src="https://cdn.tgdd.vn/2020/10/content/icon2-50x50.png" />
+                                        <span>Ưu đãi đến 4 Triệu</span>
+                                    </p>
+                                    <div className="phone__name">{item.nameItem}</div>
+                                    <div className="phone__rom"><span>{item.ram}/{item.rom}</span></div>
+                                    <div className="phone__price">{item.price}₫</div>
+                                    <div className="phone__gif">Quà 2.000.000₫</div>
+                                    <div className="phone__vote">
+                                        {item.vote ? renderStar(star) : <span>Chưa có đánh giá</span>}
+                                        {/* <AiFillStar className='star' />
                                     <AiFillStar className='star' />
                                     <AiFillStar className='star' />
                                     <AiFillStar className='star' />
                                     <AiFillStar className='star disabled' /> */}
-                                    {/* <span>10</span> */}
-                                </div>
-                                <div className="phone__compare">
-                                    <span><IoIosAddCircleOutline />So sánh</span>
+                                        {/* <span>10</span> */}
+                                    </div>
+                                    <div className="phone__compare">
+                                        <span><IoIosAddCircleOutline />So sánh</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>)
+                        )
                     })}
                 </div>
                 <div className="product__add-more">

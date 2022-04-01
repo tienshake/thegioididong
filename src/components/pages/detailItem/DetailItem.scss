@@ -1,0 +1,162 @@
+.phone__detail-container {
+    padding: 0 160px;
+    height : 100%;
+
+    .phone__detail-header {
+        height: 90px;
+
+        .detail__header-top {
+            height: 45px;
+
+
+            .detail__header-link {
+                color      : #3085c5;
+                font-size  : 14px;
+                font-weight: 500;
+                display    : flex;
+                gap        : 10px;
+                align-items: center;
+                height     : 100%;
+            }
+        }
+
+        .detail__header-bottom {
+            display        : flex;
+            justify-content: space-between;
+            height         : calc(100% - 45px);
+
+            .left {
+                display        : flex;
+                gap            : 10px;
+                align-items    : center;
+                justify-content: center;
+
+                .ss {
+                    color: #3085c5;
+                }
+
+                .star {
+                    color: #fb6f30;
+                }
+
+                .vote {
+                    color : #3085c5;
+                    cursor: pointer;
+                }
+
+                span {
+                    font-size: 14px;
+                }
+
+                h5 {
+                    display    : inline-block;
+                    margin     : 0;
+                    font-weight: 700;
+                }
+            }
+
+            .right {
+                display    : flex;
+                align-items: center;
+                gap        : 5px;
+
+                span {
+                    display         : flex;
+                    align-items     : center;
+                    font-size       : 12px;
+                    font-weight     : 500;
+                    background-color: #1877f2;
+                    color           : #fff;
+                    padding         : 0 10px;
+                    border-radius   : 2px;
+                    cursor          : pointer;
+                }
+            }
+
+        }
+    }
+
+    .phone__detail-product {
+        display    : flex;
+        flex-wrap  : wrap;
+        width      : 1200px;
+        border     : 1px solid red;
+        height     : 100%;
+        padding-top: 10px;
+        gap        : 20px;
+
+        .phone__detail-product-left {
+            border: 1px solid green;
+            height: 100%;
+            flex  : 2.5;
+
+            .thumbs {
+                margin: 0;
+            }
+
+            .view__more {
+                display        : flex;
+                align-items    : center;
+                justify-content: center;
+                color          : #3085c5;
+                cursor         : pointer;
+                font-size      : 14px;
+                font-weight    : 500;
+                gap            : 10px;
+
+                span:last-child {
+                    color: black;
+                }
+            }
+
+        }
+
+        .phone__detail-product-right {
+            border: 1px solid green;
+            height: 100%;
+            flex  : 1.5;
+
+            .phone__detail-product-rom {
+                display       : flex;
+                height        : 100px;
+                flex-direction: column;
+                gap           : 15px;
+
+                .top {
+                    display: flex;
+                    gap    : 10px;
+                    flex   : 1;
+                }
+
+                button {
+                    background-color: transparent;
+                    border          : 1px solid #c9c7c7;
+                    padding         : 0 20px;
+                    border-radius   : 3px;
+                    font-size       : 14px;
+                    height          : 40px;
+
+                    &.active {
+                        border: 1px solid #3085c5;
+                        color : #3085c5;
+
+                    }
+
+                }
+
+
+
+                .bottom {
+                    display: flex;
+                    gap    : 10px;
+                    flex   : 1;
+
+                }
+
+            }
+        }
+    }
+
+
+
+}
