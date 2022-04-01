@@ -10,7 +10,7 @@
 
 
             .detail__header-link {
-                color      : #3085c5;
+                color      : #4a90ef;
                 font-size  : 14px;
                 font-weight: 500;
                 display    : flex;
@@ -32,7 +32,7 @@
                 justify-content: center;
 
                 .ss {
-                    color: #3085c5;
+                    color: #4a90ef;
                 }
 
                 .star {
@@ -40,7 +40,7 @@
                 }
 
                 .vote {
-                    color : #3085c5;
+                    color : #4a90ef;
                     cursor: pointer;
                 }
 
@@ -98,7 +98,7 @@
                 display        : flex;
                 align-items    : center;
                 justify-content: center;
-                color          : #3085c5;
+                color          : #4a90ef;
                 cursor         : pointer;
                 font-size      : 14px;
                 font-weight    : 500;
@@ -109,6 +109,62 @@
                 }
             }
 
+            .policy {
+                margin-top: 30px;
+
+                .policy__list {
+                    list-style: none;
+                    padding   : 0;
+
+                    .policy__top {
+                        border-bottom: 1px solid #fafafa;
+                        display      : flex;
+                        padding      : 10px 0;
+                        gap          : 30px;
+                    }
+
+
+                    .policy__bottom {
+                        display: flex;
+                        padding: 10px 0;
+                        gap    : 30px;
+                    }
+
+                    .policy__item {
+                        display        : flex;
+                        align-items    : center;
+                        justify-content: center;
+                        gap            : 20px;
+                        font-size      : 14px;
+                        flex           : 1;
+
+                        .icon {
+                            font-size: 40px;
+                            color    : #4a90ef;
+                        }
+
+                        a {
+                            color      : #4a90ef;
+                            font-weight: 500;
+                            cursor     : pointer;
+                        }
+
+                        p {
+                            margin: 0;
+
+                        }
+
+                        img {
+                            height : 30px;
+                            display: inline-block;
+                        }
+
+                        p {
+                            display: inline-block;
+                        }
+                    }
+                }
+            }
         }
 
         .phone__detail-product-right {
@@ -137,8 +193,8 @@
                     height          : 40px;
 
                     &.active {
-                        border: 1px solid #3085c5;
-                        color : #3085c5;
+                        border: 1px solid #4a90ef;
+                        color : #4a90ef;
 
                     }
 

@@ -1,7 +1,9 @@
 
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useOutletContext, useNavigate } from 'react-router-dom';
+import randomColor from 'randomcolor';
+
 import './Phone.scss';
 import {
     AiFillStar
@@ -14,15 +16,19 @@ import Banner from '../banner/Banner';
 import Search from '../../../utils/Search';
 const Phone = () => {
     let navigate = useNavigate();
-    const outletContext = useOutletContext()
-    const [products, setProducts] = useState([]);
+    const outletContext = useOutletContext();
+    const color = randomColor(); // a hex code for an attractive color
+    const myRef = useRef()
+    const [products, setProducts] = useState([1, 2, 3, 4, 5, 6, 7]);
     const [limit, setLimit] = useState(10);
-    console.log()
+
     let dataRender = [...products]
     if (!outletContext.titleSearch) {
     } else {
         dataRender = Search(products, outletContext);
     }
+
+
     useEffect(() => {
         const fetch = async (e) => {
             const res = await getAllProductHomeService(limit, 'PL1');
@@ -58,6 +64,7 @@ const Phone = () => {
     return (
         <div className="phone__container">
             <div className="phone__banner">
+                {console.log('r-render')}
                 <Banner />
             </div>
             <div className="phone__filter"> <img className='img__top__nav' style={{ top: '0' }} src='https://scontent.xx.fbcdn.net/v/t1.15752-9/275324637_374867867825981_2618128450721432063_n.png?_nc_cat=107&ccb=1-5&_nc_sid=aee45a&_nc_ohc=sNtVKKbGxpQAX9m9Mfh&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AVKhqBT2Xs96uxnx1YaR8Ebbk2wpjqRrrDdWXwExk8WfHw&oe=626CD6EB' alt='' /></div>
@@ -79,11 +86,14 @@ const Phone = () => {
                                         backgroundPosition: 'center',
                                         backgroundSize: 'cover',
                                         backgroundRepeat: 'no-repeat',
-                                        borderRadius: '3px'
                                     }}
                                 ></div>
                                 <div className="item__content">
-                                    <p className="result-label temp2">
+                                    <p className="result-label temp2"
+                                        style={{
+                                            backgroundColor: `${color}`
+                                        }}
+                                    >
                                         <img
                                             width="20"
                                             height="20"

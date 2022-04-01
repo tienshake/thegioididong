@@ -2,11 +2,20 @@ import { useParams } from 'react-router-dom';
 import './DetailItem.scss';
 import {
     AiFillStar,
-    AiFillLike
+    AiFillLike,
+    AiOutlineDropbox
 } from "react-icons/ai";
 import {
     IoIosAddCircleOutline
 } from "react-icons/io";
+import {
+    MdOutlinePublishedWithChanges
+} from "react-icons/md";
+import {
+    BsShieldFillCheck
+} from "react-icons/bs";
+
+
 import { Carousel } from 'react-responsive-carousel';
 const DetailItem = () => {
     const { id } = useParams()
@@ -75,6 +84,37 @@ const DetailItem = () => {
                         </Carousel>
                     </div>
                     <div className="view__more"><span>Xem tất cả điểm nổi bật</span><span>(7/9)</span></div>
+                    <div className="policy">
+                        <div className="policy__list">
+                            <div className="policy__top">
+                                <div className="policy__item">
+                                    <MdOutlinePublishedWithChanges className='icon' />
+                                    <p>Hư gì đổi nấy <b>12 tháng</b>  tại 3079 siêu thị toàn quốc (miễn phí tháng đầu) <a></a>
+                                        <a >Xem chi tiết</a>
+                                    </p>
+                                </div>
+                                <div className="policy__item">
+                                    <BsShieldFillCheck className='icon' />
+                                    <p>Hư gì đổi nấy <b>12 tháng</b>  tại 3079 siêu thị toàn quốc (miễn phí tháng đầu) <a></a>
+                                        <a >Xem chi tiết</a>
+                                    </p>
+                                </div>
+
+                            </div>
+                            <div className="policy__bottom">
+                                <div className="policy__item">
+                                    <AiOutlineDropbox className='icon' />
+                                    <p>Hư gì đổi nấy <b>12 tháng</b>  tại 3079 siêu thị toàn quốc (miễn phí tháng đầu) <a></a>
+                                        <a >Xem chi tiết</a>
+                                    </p>
+                                </div>
+                                <div className="policy__item">
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className="phone__detail-product-right">
                     <div className="phone__detail-product-rom">
