@@ -29,6 +29,11 @@
             .link {
                 text-decoration: none;
                 color          : #b1b7c1;
+
+                &.active {
+                    background-color: #4a5a75;
+                    color           : #fff;
+                }
             }
 
             h4 {
@@ -46,6 +51,15 @@
                 &:hover {
                     background-color: #4a5a75;
                     cursor          : pointer;
+                    color           : #fff;
+                }
+
+            }
+
+            .linkk {
+
+                &.active {
+                    background-color: #4a5a75;
                     color           : #fff;
                 }
             }
@@ -134,11 +148,11 @@
 
             .manage__content-center {
                 // min-height      : 100%;
-                width           : 100%;
-                background-color: #ebedef;
-                border-radius   : 5px;
+                width              : 100%;
+                background-color   : #ebedef;
+                border-radius      : 5px;
                 // border          : 20px solid #ebedef;
-                padding         : 0 50px;
+                padding            : 0 50px;
 
                 .user-manage {
                     margin-bottom: 20px;

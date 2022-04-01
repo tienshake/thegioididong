@@ -23,6 +23,16 @@ header {}
     top        : 0;
 }
 
+.img__top__nav .item-slidee {
+    height: 50px;
+    top   : 0;
+
+}
+
+.img__top__nav .item-slidee img {
+    height: 50px;
+}
+
 .wrap__search__nav {
     width  : 230px;
     display: flex;
@@ -213,6 +223,11 @@ header {}
     .note {
         display: flex;
     }
+}
+
+.item__bar.active {
+    background-color: #fff;
+    border          : 2px solid #fff;
 }
 
 .item__count {

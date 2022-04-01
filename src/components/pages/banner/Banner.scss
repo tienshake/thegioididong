@@ -1,0 +1,54 @@
+.banner__container {
+    height    : 100%;
+    width     : 100%;
+    display   : flex;
+    gap       : 10px;
+    margin-top: 10px;
+
+
+    .banner__left {
+        flex            : 2;
+        background-color: red;
+        border          : 1px solid #9b9c9c;
+
+        .home-slide {
+            width : 100%;
+            height: 100%;
+            cursor: pointer;
+
+            .slider-wrapper {
+                height: 100% !important;
+
+                img {
+                    height: 200px !important;
+
+                }
+
+            }
+
+            .carousel-slider {
+                height: 100% !important;
+            }
+        }
+
+    }
+
+    .banner__right {
+        flex          : 1;
+        display       : flex;
+        flex-direction: column;
+        gap           : 10px;
+
+        .banner__right-top {
+            flex  : 1;
+            cursor: pointer;
+
+        }
+
+        .banner__right-bottom {
+            flex  : 1;
+            cursor: pointer;
+
+        }
+    }
+}

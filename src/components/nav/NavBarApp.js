@@ -1,6 +1,6 @@
 // import library
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import {
     FaShoppingCart,
     FaNewspaper,
@@ -12,14 +12,30 @@ import {
 } from "react-icons/md";
 import { IoIosHeadset } from "react-icons/io";
 import './NavBarApp.css';
-
+import { Carousel } from 'react-responsive-carousel';
 export default function NavBarApp(props) {
     return (
         <>
 
             <header>
-                <img className='img__top__nav' style={{ top: '0' }} src='https://cdn.tgdd.vn/2022/02/banner/1200-44-1200x44-12.png' alt='' />
-
+                {/* <img className='img__top__nav' style={{ top: '0' }} src='https://cdn.tgdd.vn/2022/02/banner/1200-44-1200x44-12.png' alt='' /> */}
+                <Carousel className="img__top__nav"
+                    autoPlay={true}
+                    showArrows={true}
+                    infiniteLoop={true}
+                    interval={5000}
+                    stopOnHover={false}
+                    showThumbs={false}
+                    showStatus={false}
+                    showIndicators={false}
+                >
+                    <div className="item-slidee">
+                        <img src="https://cdn.tgdd.vn/2022/02/banner/1200-44-1200x44-12.png" />
+                    </div>
+                    <div className="item-slidee">
+                        <img src="https://cdn.tgdd.vn/2022/03/banner/Ca%CC%81-tha%CC%81ng-4-top-bar---1200x44-1200x44.gif" />
+                    </div>
+                </Carousel>
                 <div className='toolbar__top'>
                     <div style={{ width: "10%", height: '80px' }}></div>
 
@@ -106,23 +122,23 @@ export default function NavBarApp(props) {
                         <div className="toolbar__navigation-items">
                             <ul>
                                 <li>
-                                    <Link className="item__bar" to="/phone"><MdSmartphone style={{ fontSize: '20px', margin: 'auto' }} /><p>Điện Thoại</p></Link>
+                                    <NavLink className="item__bar " to="/phone"><MdSmartphone style={{ fontSize: '20px', margin: 'auto' }} /><p>Điện Thoại</p></NavLink>
                                 </li>
 
                                 <li>
-                                    <Link className="item__bar" to="/accessory"><IoIosHeadset style={{ fontSize: '20px', margin: 'auto' }} /> <p> Phụ kiện</p></Link>
+                                    <NavLink className="item__bar" to="/accessory"><IoIosHeadset style={{ fontSize: '20px', margin: 'auto' }} /> <p> Phụ kiện</p></NavLink>
                                 </li>
 
                                 <li>
-                                    <Link className="item__bar" to="/sua-chua"><MdBuild style={{ fontSize: '20px', margin: 'auto' }} /> <p>Sữa chữa</p></Link>
+                                    <NavLink className="item__bar" to="/sua-chua"><MdBuild style={{ fontSize: '20px', margin: 'auto' }} /> <p>Sữa chữa</p></NavLink>
                                 </li>
 
                                 <li>
-                                    <Link className="item__bar" to="/news"><FaNewspaper style={{ fontSize: '20px', margin: 'auto' }} /><p>tin tức</p></Link>
+                                    <NavLink className="item__bar" to="/news"><FaNewspaper style={{ fontSize: '20px', margin: 'auto' }} /><p>tin tức</p></NavLink>
                                 </li>
 
                                 <li>
-                                    <Link className="item__bar" to="/tra-cuu"><FaCalendarCheck style={{ fontSize: '20px', margin: 'auto' }} /> <p>tra cứu</p></Link>
+                                    <NavLink className="item__bar" to="/tra-cuu"><FaCalendarCheck style={{ fontSize: '20px', margin: 'auto' }} /> <p>tra cứu</p></NavLink>
                                 </li>
                             </ul>
                         </div>

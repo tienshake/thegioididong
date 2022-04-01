@@ -9,11 +9,13 @@ import {
     IoIosAddCircleOutline
 } from "react-icons/io";
 import { getAllProductHomeService } from '../../../services/userService';
+import Banner from '../banner/Banner';
 
+import { Carousel } from 'react-responsive-carousel';
 
 const Phone = () => {
     const [products, setProducts] = useState([1, 2, 3, 4, 5, 6]);
-    const [limit, setLimit] = useState(5);
+    const [limit, setLimit] = useState(10);
 
     useEffect(() => {
         const fetch = async (e) => {
@@ -46,8 +48,10 @@ const Phone = () => {
     };
     return (
         <div className="phone__container">
-            <div className="phone__banner"></div>
-            <div className="phone__filter"></div>
+            <div className="phone__banner">
+                <Banner />
+            </div>
+            <div className="phone__filter"> <img className='img__top__nav' style={{ top: '0' }} src='https://scontent.xx.fbcdn.net/v/t1.15752-9/275324637_374867867825981_2618128450721432063_n.png?_nc_cat=107&ccb=1-5&_nc_sid=aee45a&_nc_ohc=sNtVKKbGxpQAX9m9Mfh&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AVKhqBT2Xs96uxnx1YaR8Ebbk2wpjqRrrDdWXwExk8WfHw&oe=626CD6EB' alt='' /></div>
             <div className="container phone__product">
                 <div className="row phone__product-list">
                     {products && products.length > 0 && products.map((item, index) => {
@@ -103,7 +107,13 @@ const Phone = () => {
                 </div>
             </div>
 
-            <div className="phone__filter"></div>
+            <div className="phone__filter">
+
+
+            </div>
+
+
+
         </div>
     );
 }

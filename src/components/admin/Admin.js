@@ -1,6 +1,7 @@
 import {
     Link,
     Outlet,
+    NavLink
 } from 'react-router-dom';
 import {
     FaRegBell,
@@ -80,11 +81,11 @@ const Admin = (props) => {
                 <div className="dashboard__header">Dashboard</div>
                 <ul className='manage__nav-list'>
                     <h4>Người dùng</h4>
-                    <Link className="link" to="create-user"><li> <AiOutlineUser /><span>Tạo người dùng</span></li></Link>
-                    <Link className="link" to="users"><li> <FaUsers /><span>Danh sách người dùng</span></li></Link>
+                    <NavLink className="link" to="create-user"><li className="linkk"> <AiOutlineUser /><span>Tạo người dùng</span></li></NavLink>
+                    <NavLink className="link" to="users"><li className="linkk"> <FaUsers /><span>Danh sách người dùng</span></li></NavLink>
                     <h4>Sản phẩm</h4>
-                    <Link className="link" to="create-product"><li> <IoCreate /><span>Tạo sản phẩm</span></li></Link>
-                    <Link className="link" to="products"><li> <FaRegListAlt /><span>Danh sách sản phẩm</span></li></Link>
+                    <NavLink className="link" to="create-product"><li className="linkk"> <IoCreate /><span>Tạo sản phẩm</span></li></NavLink>
+                    <NavLink className="link" to="products"><li className="linkk"> <FaRegListAlt /><span>Danh sách sản phẩm</span></li></NavLink>
                     <li><BsFillFileEarmarkPostFill /><span>Tạo bài đăng sản phẩm</span></li>
                     <li><BsGift /><span>khuyến mãi tặng kèm</span></li>
                     <li><AiOutlineFileSync /><span>Đơn hàng</span></li>
