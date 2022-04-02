@@ -163,6 +163,7 @@ const DetailItem = () => {
                     <p className='boundary__line'></p>
 
                     {/* payment */}
+                    
                     <div className='wrap__payment'>
                         <div className='all__box__payment'>
                             <p>Ưu đãi khi thanh toán</p>
@@ -185,10 +186,12 @@ const DetailItem = () => {
                         </div>
                     </div>
 
+                    <div>
+
+                    </div>
                 </div>
-
-
             </div>
+            <div className='spacer'></div>
         </div>
     );
 }
