@@ -1,0 +1,178 @@
+.footer {
+    /* dùng để kế thừa thẻ chứa nó */
+    box-sizing : inherit;
+    font-size  : 62.5%;
+    font-family: 'Roboto', sans-serif;
+    box-sizing : border-box;
+    height     : 260px;
+    border-top : 1px solid #f1f1f1;
+    padding    : 30px 0;
+
+    .grid {
+        width    : 1200px;
+        max-width: 100%;
+        margin   : 0 auto;
+
+        .grid__full-width {
+            width: 100%;
+        }
+
+        .grid__row {
+            display     : flex;
+            flex-wrap   : wrap;
+            margin-left : -5px;
+            margin-right: -5px;
+        }
+
+        /* Test */
+
+        .grid__column-2 {
+            padding-left : 5px;
+            padding-right: 5px;
+            width        : 16.6667%;
+        }
+
+        .grid__column-2-4 {
+            padding-left : 5px;
+            padding-right: 5px;
+            width        : 25%;
+        }
+
+        .grid__column-10 {
+            padding-left : 5px;
+            padding-right: 5px;
+            width        : 83.3334%;
+        }
+
+        /* Footer */
+
+
+        .footer {
+            padding-top     : 16px;
+            border-top      : 4px solid #e2e2e2;
+            background-color: #fff;
+        }
+
+        .footer__heading {
+            font-size     : 14px;
+            text-transform: capitalize;
+            color         : #333;
+        }
+
+        .footer__heading--view {
+            text-decoration: none;
+            margin-right   : 8px;
+            font-size      : 12px;
+            color          : #8d80ed;
+        }
+
+        .footer__heading--icon {
+            font-size   : 12px;
+            font-size   : 15px;
+            margin-right: 8px;
+            font-weight : 600;
+            color       : #4267b2;
+            cursor      : pointer;
+        }
+
+        .footer__heading--icon-red {
+            color       : #EE4D2D;
+            font-size   : 15px;
+            margin-right: 8px;
+            cursor      : pointer;
+        }
+
+        .footer-list {
+            padding-left: 0;
+            list-style  : none;
+        }
+
+        .footer-item__link {
+            text-decoration: none;
+            font-size      : 14px;
+            color          : #333;
+            padding        : 2px 0;
+            line-height    : 25px;
+            display        : flex;
+            align-items    : center;
+        }
+
+        .footer-item__call--quickly {
+            color          : #8d80ed;
+            font-weight    : bold;
+            text-decoration: none;
+        }
+
+        .footer-item__call {
+            font-size: 14px;
+        }
+
+        .footer-item__link:hover {
+            color: #8d80ed;
+        }
+
+        .footer-item__icon {
+            font-size : 15px;
+            margin-top: -1px;
+            margin    : -1px 8px 0 0;
+        }
+
+        .footer__download {
+            display: flex;
+        }
+
+        .footer__download-qr {
+            width : 80px;
+            height: 80px;
+            border: 1px solid #dbdbdb;
+        }
+
+
+        .footer__download-apps {
+            flex           : 1;
+            margin-left    : 16px;
+            display        : flex;
+            flex-direction : column;
+            justify-content: center;
+        }
+
+        .footer__download-app {
+            padding: 5px 0;
+        }
+
+        .footer__download-app-img {
+            height: 25px;
+            width : 70px;
+            cursor: pointer;
+        }
+
+        .footer__download-app-link {
+            color          : transparent;
+            text-decoration: none;
+        }
+
+
+        .footer__text {
+            margin    : 0;
+            text-align: center;
+            font-size : 12px;
+            color     : #737373;
+        }
+
+        .footer__text a {
+            text-decoration: none;
+            color          : #8d80ed;
+        }
+    }
+
+    .footer__bottom {
+        padding         : 8px 0;
+        background-color: #F5F5F5;
+        margin-top      : 36px;
+    }
+
+
+}
+
+
+/* Responsive */
