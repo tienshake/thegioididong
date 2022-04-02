@@ -16,6 +16,7 @@ import {
 } from "react-icons/bs";
 import '../detailItem/Detailtem.css';
 import PromotionIfo from './PromotionIfo';
+import GroupButtonBuy from './GroupButtonBuy';
 
 import { Carousel } from 'react-responsive-carousel';
 const DetailItem = () => {
@@ -163,26 +164,71 @@ const DetailItem = () => {
                     <p className='boundary__line'></p>
 
                     {/* payment */}
-                    
+
                     <div className='wrap__payment'>
                         <div className='all__box__payment'>
-                            <p>Ưu đãi khi thanh toán</p>
+                            <p><b style={{ fontSize: '17px' }}>Ưu đãi khi thanh toán</b></p>
 
-                            <div style={{display:'flex'}}>
-                                <div style={{marginRight:'10px', background:'pink'}} className='col'>
-                                        <p>s</p>
-                                        <p>Giảm 500.000đ</p>
-                                        <p>Sản phẩm từ 5tr</p>
-                                        <p>Mua ngay</p>
+                            <div className='card__discount'>
+                                <div className='container' style={{ marginRight: '8px   ' }}>
+                                    <p>s</p>
+                                    <p>Giảm 500.000đ</p>
+                                    <p>Sản phẩm từ 5tr</p>
+                                    <p>Mua ngay</p>
                                 </div>
 
-                                <div className='col'>
-                                        <p>s</p>
-                                        <p>Giảm 500.000đ</p>
-                                        <p>Sản phẩm từ 5tr</p>
-                                        <p>Mua ngay</p>
+                                <div className='container'>
+                                    <p>s</p>
+                                    <p>Giảm 500.000đ</p>
+                                    <p>Sản phẩm từ 5tr</p>
+                                    <p>Mua ngay</p>
                                 </div>
                             </div>
+
+                            {/* buttton buy */}
+                            <div className='wrap__btn__buyProduct'>
+                                <GroupButtonBuy />
+                            </div>
+
+                            {/* extra offer */}
+                            <div className='wrap__extra__offer'>
+                                <div className='box__extra__offer'>
+                                    <div className='container header__extra__offer'>
+                                        <div style={{ display: 'flex' }}><p style={{ margin: 'auto', marginTop: '8px' }}>5 ưu đãi thêm Dự kiến áp dụng đến 23:00 30/04</p></div>
+                                    </div>
+
+                                    <div className='container body__extra__offer'>
+                                        <div className='row'>
+                                            <p className='col-xl-1'>1</p>
+                                            <div className='col content__extra__offer'>
+                                                <p className='item'>Tặng cho khách lần đầu mua hàng online tại web BachhoaXANH.com</p>
+                                                <p>Mã giảm 20% tối đa 100.000đ</p>
+                                                <p>Mã giảm 20% tối đa 100.000đ</p>
+                                                <p>Áp dụng tại Tp.HCM và 1 số khu vực, 1 SĐT nhận 1 lần (Xem chi tiết)</p>
+                                            </div>
+
+                                            <div className='row'>
+                                                <p className='col-xl-1'>1</p>
+                                                <div className='col content__extra__offer'>
+                                                    <p className='item'>
+                                                        Tặng suất mua xe đạp Giảm đến 30% (không kèm KM khác) (click xem chi tiết)
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className='load-more-offer'>
+                                            <p>
+                                                <Link style={{textDecoration:'none'}} to='load-more-offer'>
+                                                    Xem thêm 3 ưu đãi khác
+                                                </Link>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
 
