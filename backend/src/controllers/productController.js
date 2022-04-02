@@ -12,30 +12,7 @@ const handleCreateProduct = async (req, res) => {
         })
     }
 }
-const handleGetProductByOwner = async (req, res) => {
-    try {
-        const keyId = req.query.keyId;
-        if (!keyId) {
-            return res.status(500).json({
-                errCode: 1,
-                errMessage: 'missing require parameter',
-                data: {}
-            })
-        }
-        const data = await productServices.handleGetProductByOwnerService(keyId);
-        return res.status(200).json({
-            errCode: 0,
-            errMessage: 'oke',
-            data: data ? data : []
-        })
-    } catch (e) {
-        console.log('create error:', e)
-        return res.status(200).json({
-            errCode: -1,
-            errMessage: 'Error from server'
-        })
-    }
-};
+
 const handleGetAllProduct = async (req, res) => {
     const limit = req.query.limit;
     const page = req.query.page;
@@ -194,9 +171,33 @@ const handleGetAllProductHome = async (req, res) => {
         })
     }
 };
+const handleGetProductById = async (req, res) => {
+    try {
+        const id = req.query.id;
+        if (!id) {
+            return res.status(500).json({
+                errCode: 1,
+                errMessage: 'missing require parameter',
+                data: {}
+            })
+        }
+        const data = await productServices.handleGetProductById(id);
+        return res.status(200).json({
+            errCode: 0,
+            errMessage: 'oke',
+            data: data ? data : {}
+        })
+    } catch (e) {
+        console.log('create error:', e)
+        return res.status(200).json({
+            errCode: -1,
+            errMessage: 'Error from server'
+        })
+    }
+};
 module.exports = {
     handleCreateProduct,
-    handleGetProductByOwner,
+    handleGetProductById,
     handleGetAllProduct,
     handleDeleteProduct,
     handleCreateColorProduct,
