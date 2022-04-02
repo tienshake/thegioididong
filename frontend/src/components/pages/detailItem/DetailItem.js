@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 import { useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 
+=======
+import { Link, useParams } from 'react-router-dom';
+>>>>>>> c6524ca65f88954ed08c9ffbea9d690d0373b35f
 import './DetailItem.scss';
 import {
     AiFillStar,
@@ -156,7 +160,48 @@ const DetailItem = () => {
                         <PromotionIfo />
                     </div>
 
+                    <div className='container more__information'>
+                        <div style={{ display: 'flex', height: '20px' }}>
+                            <Link to='/ss'>
+                                <p>Chọn địa chỉ gioa hàng</p>
+                            </Link>
+                            <p style={{ marginLeft: '8px' }}>để biết thời gian nào</p>
+                        </div>
+
+                        <div style={{ marginTop: '5px' }}>
+                            <Link to='/ss'>
+                                <p>Xem siêu thị có hàng</p>
+                            </Link>
+                        </div>
+
+
+                    </div>
+                    <p className='boundary__line'></p>
+
                     {/* payment */}
+                    
+                    <div className='wrap__payment'>
+                        <div className='all__box__payment'>
+                            <p>Ưu đãi khi thanh toán</p>
+
+                            <div style={{display:'flex'}}>
+                                <div style={{marginRight:'10px', background:'pink'}} className='col'>
+                                        <p>s</p>
+                                        <p>Giảm 500.000đ</p>
+                                        <p>Sản phẩm từ 5tr</p>
+                                        <p>Mua ngay</p>
+                                </div>
+
+                                <div className='col'>
+                                        <p>s</p>
+                                        <p>Giảm 500.000đ</p>
+                                        <p>Sản phẩm từ 5tr</p>
+                                        <p>Mua ngay</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div>
 
                     </div>
