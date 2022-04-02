@@ -141,18 +141,16 @@ const DetailItem = () => {
 
                     {/* promotion ifomation */}
                     <div className='wrap__promotion__info'>
-                        <PromotionIfo/>
+                        <PromotionIfo />
                     </div>
 
                     {/* payment */}
                     <div>
-                        
+
                     </div>
-                    <div className='spacer'></div>
                 </div>
-
-
             </div>
+            <div className='spacer'></div>
         </div>
     );
 }
