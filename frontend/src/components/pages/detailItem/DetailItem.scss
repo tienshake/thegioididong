@@ -90,15 +90,16 @@
 
         .phone__detail-product-left {
 
-            .carousel {
-                .home-slide {
-                    .item-slide {
-                        iframe {
-                            height: 420px;
-                        }
-                    }
-                }
-            }
+            // .carousel {
+            //     .home-slide {
+            //         .item-slide {
+            //             iframe {
+            //                 height: 420px;
+            //             }
+            //         }
+            //     }
+
+            // }
 
             flex: 2.5;
 
@@ -235,7 +236,7 @@
                     gap        : 5px;
                     font-size  : 14px;
 
-                    p {
+                    span {
                         color: #4a90ef;
 
                     }

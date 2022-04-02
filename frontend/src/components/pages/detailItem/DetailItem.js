@@ -74,7 +74,15 @@ const DetailItem = () => {
                             showIndicators={true}
                         >
                             <div className="item-slide">
-                                <iframe width="1102" height="390" src="https://www.youtube.com/embed/XQMh9vPKTpg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <iframe
+                                    width="1102"
+                                    height="420"
+                                    src="https://www.youtube.com/embed/XQMh9vPKTpg"
+                                    title="YouTube video player"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                >
+
+                                </iframe>
                             </div>
                             <div className="item-slide">
                                 <img src="https://cdn.tgdd.vn/Products/Images/42/235838/Slider/2.ButSpen-1020x570.jpg" alt='' />
@@ -143,7 +151,7 @@ const DetailItem = () => {
                         </div>
                     </div>
                     <div className="price">
-                        <p>Giá tại <p> Đà Nẵng</p></p>
+                        <p>Giá tại <span>Đà Nẵng</span></p>
                         <span><h5>{product.price}₫</h5><span>trả góp 0%</span></span>
                     </div>
 
