@@ -89,8 +89,17 @@
         gap        : 20px;
 
         .phone__detail-product-left {
-            // border: 1px solid green;
-            // height: 100%;
+
+            .carousel {
+                .home-slide {
+                    .item-slide {
+                        iframe {
+                            height: 420px;
+                        }
+                    }
+                }
+            }
+
             flex: 2.5;
 
             .thumbs {

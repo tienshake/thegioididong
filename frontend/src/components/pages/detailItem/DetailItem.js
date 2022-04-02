@@ -24,11 +24,14 @@ const DetailItem = () => {
     return (
         <div className="phone__detail-container">
             <div className="phone__detail-header">
+
                 <div className="detail__header-top">
                     <div className="detail__header-link">
                         <span>{product && product.typeData && product.typeData.valueVi}</span>
                         /
-                        <span>{product && product.typeData && product.typeData.valueVi} {product.nameItem}</span>
+                        <span>
+                            {product && product.typeData && product.typeData.valueVi} {product && product.manufacturerData && product.manufacturerData.valueVi}
+                        </span>
                     </div>
                 </div>
 
@@ -64,14 +67,14 @@ const DetailItem = () => {
                             autoPlay={true}
                             showArrows={true}
                             infiniteLoop={true}
-                            interval={2000}
+                            interval={100000000}
                             stopOnHover={false}
                             showThumbs={true}
                             showStatus={false}
                             showIndicators={true}
                         >
                             <div className="item-slide">
-                                <img src="https://cdn.tgdd.vn/Products/Images/42/235838/Slider/SamsungGalaxyS22ultraRAM8GBfixhz-1020x570.jpg" alt='' />
+                                <iframe width="1102" height="390" src="https://www.youtube.com/embed/XQMh9vPKTpg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             </div>
                             <div className="item-slide">
                                 <img src="https://cdn.tgdd.vn/Products/Images/42/235838/Slider/2.ButSpen-1020x570.jpg" alt='' />
