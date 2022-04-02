@@ -12,7 +12,7 @@ const initWebRoutes = (app) => {
     router.post("/api/login", userController.handleLogin);
     //Product API======================================================
     router.post("/api/create-product", productController.handleCreateProduct);
-    router.get("/api/get-product-by-owner", productController.handleGetProductByOwner);
+    router.get("/api/get-product-by-id", productController.handleGetProductById);
     router.get("/api/get-all-product", productController.handleGetAllProduct);
     router.get("/api/get-all-product-home", productController.handleGetAllProductHome);
 

@@ -87,33 +87,7 @@ const handleCreateProductService = (data) => {
     })
 }
 
-const handleGetProductByOwnerService = (keyId) => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            let product = '';
-            if (!keyId) {
-                resolve({
-                    erCode: 1,
-                    message: 'Missing parameter!'
-                })
-            } else {
-                product = await db.Product.findAll({
-                    where: { keyId: keyId }
-                })
 
-            }
-            if (product && product.image) {
-                product.image = new Buffer(product.image, 'base64').toString('binary');
-            }
-            product.errCode = 0;
-            resolve(product)
-        } catch (e) {
-            reject(e)
-        }
-    })
-
-
-};
 const handleGetAllProductService = (limit, page) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -360,10 +334,48 @@ const handleCreateImgDetailProduct = (data) => {
         }
     })
 };
+const handleGetProductById = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let product = '';
+            if (!id) {
+                resolve({
+                    erCode: 1,
+                    message: 'Missing parameter!'
+                })
+            } else {
+                product = await db.Product.findOne({
+                    where: { id: id },
+                    attributes: {
+                        exclude: ['image'],
+                    },
+                    include: [
+                        { model: db.Allcode, as: 'typeData', attributes: ['valueVi', 'valueEn'] },
+                        { model: db.Allcode, as: 'manufacturerData', attributes: ['valueVi', 'valueEn'] },
+                        { model: db.Allcode, as: 'pinData', attributes: ['valueVi', 'valueEn'] },
+                        { model: db.Allcode, as: 'cameraData', attributes: ['valueVi', 'valueEn'] },
+                        { model: db.Allcode, as: 'displayData', attributes: ['valueVi', 'valueEn'] },
+                    ],
+                    raw: true,
+                    nest: true
+                })
 
+            }
+            if (product && product.image) {
+                product.image = new Buffer(product.image, 'base64').toString('binary');
+            }
+            product.errCode = 0;
+            resolve(product)
+        } catch (e) {
+            reject(e)
+        }
+    })
+
+
+};
 module.exports = {
     handleCreateProductService,
-    handleGetProductByOwnerService,
+    handleGetProductById,
     handleGetAllProductService,
     handleDeleteAllProductService,
     handleBuyWithStateProductService,

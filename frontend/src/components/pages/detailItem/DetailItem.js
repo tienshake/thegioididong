@@ -148,6 +148,7 @@ const DetailItem = () => {
                     <div>
                         
                     </div>
+                    <div className='spacer'></div>
                 </div>
 
 
