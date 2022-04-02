@@ -1,6 +1,10 @@
 .phone__detail-container {
     padding: 0 160px;
-    height : 100%;
+
+    .spacer {
+        height: 1000px;
+        width : 100%;
+    }
 
     .phone__detail-header {
         height: 90px;
@@ -80,7 +84,6 @@
         display    : flex;
         flex-wrap  : wrap;
         width      : 100%;
-        border     : 1px solid red;
         height     : 100%;
         padding-top: 10px;
         gap        : 20px;

@@ -133,6 +133,7 @@ const DetailItem = () => {
                         <span><h5>16.290.000₫</h5><span>trả góp 0%</span></span>
                     </div>
 
+                    <div className='spacer'></div>
 
                 </div>
 
