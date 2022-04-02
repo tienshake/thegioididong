@@ -131,14 +131,6 @@ const Phone = () => {
                     >{limit <= products.length ? 'Xem thêm 10 Sản phẩm' : 'Không còn sản phẩm nào nữa'}</button>
                 </div>
             </div>
-
-            <div className="phone__filter">
-
-
-            </div>
-
-
-
         </div>
     );
 }

@@ -50,7 +50,7 @@ const Footer = () => {
                         </ul>
                     </div>
                     <div className="grid__column-2-4">
-                        <h3 className="footer__heading">Tổng đài hỗ trợ (Miễn phí gọi)</h3>
+                        <h3 className="footer__heading"><b>Tổng đài hỗ trợ</b> (Miễn phí gọi)</h3>
                         <ul className="footer-list">
                             <li class="footer-item">
                                 <p class="footer-item__call">Gọi mua: <a class="footer-item__call--quickly" href="">1800.1060</a>(7:30 - 22:00)</p>
