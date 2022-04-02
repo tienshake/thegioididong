@@ -14,7 +14,8 @@ import {
 import {
     BsShieldFillCheck
 } from "react-icons/bs";
-
+import '../detailItem/Detailtem.css';
+import PromotionIfo from './PromotionIfo';
 
 import { Carousel } from 'react-responsive-carousel';
 const DetailItem = () => {
@@ -28,6 +29,7 @@ const DetailItem = () => {
                         <span>Điện thoại</span>/<span>Điện thoại Samsung</span>
                     </div>
                 </div>
+
                 <div className="detail__header-bottom">
                     <div className="left">
                         <h5>Điện thoại Samsung Galaxy S22 Ultra 5G 128GB </h5>
@@ -41,14 +43,18 @@ const DetailItem = () => {
                         <span className='vote'>10 Đánh giá</span>
                         <span className="ss"><IoIosAddCircleOutline />So sánh</span>
                     </div>
+
+
                     <div className="right">
                         <span><AiFillLike />Thích 1.5k</span>
                         <span>Chia sẻ</span>
 
                     </div>
                 </div>
-
             </div>
+
+            <p className='boundary__line'></p>
+
             <div className="phone__detail-product">
                 <div className="phone__detail-product-left">
                     <div className="carousel">
@@ -63,22 +69,22 @@ const DetailItem = () => {
                             showIndicators={true}
                         >
                             <div className="item-slide">
-                                <img src="https://cdn.tgdd.vn/Products/Images/42/235838/Slider/SamsungGalaxyS22ultraRAM8GBfixhz-1020x570.jpg" />
+                                <img src="https://cdn.tgdd.vn/Products/Images/42/235838/Slider/SamsungGalaxyS22ultraRAM8GBfixhz-1020x570.jpg" alt='' />
                             </div>
                             <div className="item-slide">
-                                <img src="https://cdn.tgdd.vn/Products/Images/42/235838/Slider/2.ButSpen-1020x570.jpg" />
+                                <img src="https://cdn.tgdd.vn/Products/Images/42/235838/Slider/2.ButSpen-1020x570.jpg" alt='' />
                             </div>
                             <div className="item-slide">
-                                <img src="https://cdn.tgdd.vn/Products/Images/42/235838/Slider/3.Trainghiemthigiac-1020x570.jpg" />
+                                <img src="https://cdn.tgdd.vn/Products/Images/42/235838/Slider/3.Trainghiemthigiac-1020x570.jpg" alt='' />
                             </div>
                             <div className="item-slide">
-                                <img src="https://cdn.tgdd.vn/Products/Images/42/235838/Slider/4.Vixulimanhme-1020x570.jpg" />
+                                <img src="https://cdn.tgdd.vn/Products/Images/42/235838/Slider/4.Vixulimanhme-1020x570.jpg" alt='' />
                             </div>
                             <div className="item-slide">
-                                <img src="https://cdn.tgdd.vn/Products/Images/42/235838/Slider/5.Thietkebenbi-1020x570.jpg" />
+                                <img src="https://cdn.tgdd.vn/Products/Images/42/235838/Slider/5.Thietkebenbi-1020x570.jpg" alt='' />
                             </div>
                             <div className="item-slide">
-                                <img src="https://cdn.tgdd.vn/Products/Images/42/235838/Slider/8.Matthanbongdem-1020x570.jpg" />
+                                <img src="https://cdn.tgdd.vn/Products/Images/42/235838/Slider/8.Matthanbongdem-1020x570.jpg" alt='' />
                             </div>
 
                         </Carousel>
@@ -131,6 +137,16 @@ const DetailItem = () => {
                     <div className="price">
                         <p>Giá tại <p> Đà Nẵng</p></p>
                         <span><h5>16.290.000₫</h5><span>trả góp 0%</span></span>
+                    </div>
+
+                    {/* promotion ifomation */}
+                    <div className='wrap__promotion__info'>
+                        <PromotionIfo/>
+                    </div>
+
+                    {/* payment */}
+                    <div>
+                        
                     </div>
                 </div>
 

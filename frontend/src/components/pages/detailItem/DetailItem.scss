@@ -1,5 +1,5 @@
 .phone__detail-container {
-    padding: 0 160px;
+    padding: 0 80px;
     height : 100%;
 
     .phone__detail-header {
@@ -79,14 +79,13 @@
     .phone__detail-product {
         display    : flex;
         flex-wrap  : wrap;
-        width      : 1200px;
-        border     : 1px solid red;
+        width      : 100%;
         height     : 100%;
         padding-top: 10px;
         gap        : 20px;
 
         .phone__detail-product-left {
-            border: 1px solid green;
+            // border: 1px solid green;
             height: 100%;
             flex  : 2.5;
 
@@ -168,7 +167,7 @@
         }
 
         .phone__detail-product-right {
-            border: 1px solid green;
+            // border: 1px solid green;
             height: 100%;
             flex  : 1.5;
 
