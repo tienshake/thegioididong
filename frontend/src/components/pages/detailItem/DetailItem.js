@@ -1,4 +1,6 @@
 import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+
 import './DetailItem.scss';
 import {
     AiFillStar,
@@ -18,8 +20,18 @@ import '../detailItem/Detailtem.css';
 import PromotionIfo from './PromotionIfo';
 
 import { Carousel } from 'react-responsive-carousel';
+import { getProductByIdService } from '../../../services/userService';
 const DetailItem = () => {
-    const { id } = useParams()
+    const { id } = useParams();
+    useEffect(() => {
+        const fetch = async () => {
+            const res = await getProductByIdService(id);
+            if (res && res.errCode === 0) {
+                console.log(res)
+            }
+        }
+        fetch()
+    }, []);
     console.log(id);
     return (
         <div className="phone__detail-container">
