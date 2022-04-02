@@ -217,9 +217,9 @@ const DetailItem = () => {
                                             </div>
                                         </div>
 
-                                        <div className='load-more-offer'>
-                                            <p>
-                                                <Link style={{textDecoration:'none'}} to='load-more-offer'>
+                                        <div style={{ display: 'flex' }}>
+                                            <p style={{margin:'auto'}}>
+                                                <Link to='load-more-offer' style={{textDecoration:'none'}}>
                                                     Xem thêm 3 ưu đãi khác
                                                 </Link>
                                             </p>

@@ -2,10 +2,9 @@ import {
     Outlet
 } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-import NavBarApp from "../../nav/NavBarApp";
+import NavBarApp from "../partial/nav/NavBarApp";
 import './Home.scss';
-import Footer from '../../footer/Footer';
-import Sticked from '../../sticked/Sticked';
+import Footer from '../partial/footer/Footer';
 const Home = () => {
     const [titleSearch, setTitleSearch] = useState("");
     const pathName = window.location.pathname

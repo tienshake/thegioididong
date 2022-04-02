@@ -12,9 +12,9 @@ import {
     IoIosAddCircleOutline
 } from "react-icons/io";
 import { getAllProductHomeService } from '../../../services/userService';
-import Banner from '../banner/Banner';
+import Banner from '../partial/banner/Banner';
 import Search from '../../../utils/Search';
-import Sticked from '../../sticked/Sticked';
+import Sticked from '../partial/sticked/Sticked';
 const Phone = () => {
     let navigate = useNavigate();
     const outletContext = useOutletContext();
