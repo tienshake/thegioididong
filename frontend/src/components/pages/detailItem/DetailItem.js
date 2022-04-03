@@ -17,6 +17,7 @@ import {
 import '../detailItem/Detailtem.css';
 import PromotionIfo from './PromotionIfo';
 import GroupButtonBuy from './GroupButtonBuy';
+import CardDiscount from './CardDiscount';
 
 import { Carousel } from 'react-responsive-carousel';
 const DetailItem = () => {
@@ -169,21 +170,8 @@ const DetailItem = () => {
                         <div className='all__box__payment'>
                             <p><b style={{ fontSize: '17px' }}>Ưu đãi khi thanh toán</b></p>
 
-                            <div className='card__discount'>
-                                <div className='container' style={{ marginRight: '8px   ' }}>
-                                    <p>s</p>
-                                    <p>Giảm 500.000đ</p>
-                                    <p>Sản phẩm từ 5tr</p>
-                                    <p>Mua ngay</p>
-                                </div>
-
-                                <div className='container'>
-                                    <p>s</p>
-                                    <p>Giảm 500.000đ</p>
-                                    <p>Sản phẩm từ 5tr</p>
-                                    <p>Mua ngay</p>
-                                </div>
-                            </div>
+                            {/* card discount */}
+                            <CardDiscount />
 
                             {/* buttton buy */}
                             <div className='wrap__btn__buyProduct'>
@@ -217,9 +205,9 @@ const DetailItem = () => {
                                             </div>
                                         </div>
 
-                                        <div style={{ display: 'flex' }}>
-                                            <p style={{margin:'auto'}}>
-                                                <Link to='load-more-offer' style={{textDecoration:'none'}}>
+                                        <div style={{ display: 'flex', marginBottom: '18px' }}>
+                                            <p style={{ margin: 'auto' }}>
+                                                <Link to='load-more-offer' style={{ textDecoration: 'none' }}>
                                                     Xem thêm 3 ưu đãi khác
                                                 </Link>
                                             </p>
@@ -228,6 +216,59 @@ const DetailItem = () => {
                                 </div>
                             </div>
 
+                            {/* Cấu hình phone */}
+                            <div className='wrap__configuration'>
+                                <div className='title__configuration'><p><h5>Cấu hình điện thoại iPhone 13 Pro Max 128GB</h5></p></div>
+
+                                <div className='body__configuration'>
+                                    <div className='row item__configuration'>
+                                        <div style={{background:'#F5F5F5'}} className='col-xl-5'><p>Màn hình:</p></div>
+                                        <div style={{background:'#F5F5F5'}} className='col-xl-7'><p>OLED6.7"Super Retina XDR</p></div>
+                                    </div>
+
+                                    <div className='row item__configuration'>
+                                        <div className='col-xl-5'><p>Hệ điều hành:</p></div>
+                                        <div className='col-xl-7'><p>iOS 15</p></div>
+                                    </div>
+
+                                    <div className='row item__configuration'>
+                                        <div style={{background:'#F5F5F5'}} className='col-xl-5'><p>Camera sau:</p></div>
+                                        <div style={{background:'#F5F5F5'}} className='col-xl-7'><p>3 camera 12 MP</p></div>
+                                    </div>
+
+                                    <div className='row item__configuration'>
+                                        <div className='col-xl-5'><p>Camera trước:</p></div>
+                                        <div className='col-xl-7'><p>2 MP</p></div>
+                                    </div>
+
+                                    <div className='row item__configuration'>
+                                        <div style={{background:'#F5F5F5'}} className='col-xl-5'><p>Chip:</p></div>
+                                        <div style={{background:'#F5F5F5'}} className='col-xl-7'><p>Apple A15 Bionic</p></div>
+                                    </div>
+
+                                    <div className='row item__configuration'>
+                                        <div className='col-xl-5'><p>RAM:</p></div>
+                                        <div className='col-xl-7'><p>6 GB</p></div>
+                                    </div>
+
+                                    <div className='row item__configuration'>
+                                        <div style={{background:'#F5F5F5'}} className='col-xl-5'><p>Bộ nhớ trong:</p></div>
+                                        <div style={{background:'#F5F5F5'}} className='col-xl-7'><p>128 GB</p></div>
+                                    </div>
+
+                                    <div className='row item__configuration'>
+                                        <div className='col-xl-5'><p>SIM:</p></div>
+                                        <div className='col-xl-7'><p>1 Nano SIM & 1 eSIMHỗ trợ 5G</p></div>
+                                    </div>
+
+                                    <div className='row item__configuration'>
+                                        <div style={{background:'#F5F5F5'}} className='col-xl-5'><p>Pin, Sạc:</p></div>
+                                        <div style={{background:'#F5F5F5'}} className='col-xl-7'><p>4352 mAh20 W</p></div>
+                                    </div>
+                                </div>
+                                
+                                <div style={{marginTop:'10px'}}>Hướng dãn sử dụng tiếng anh [PDF, 0.2MB]</div>
+                            </div>
 
                         </div>
                     </div>
