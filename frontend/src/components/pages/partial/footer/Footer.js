@@ -52,20 +52,20 @@ const Footer = () => {
                     <div className="grid__column-2-4">
                         <h3 className="footer__heading"><b>Tổng đài hỗ trợ</b> (Miễn phí gọi)</h3>
                         <ul className="footer-list">
-                            <li class="footer-item">
-                                <p class="footer-item__call">Gọi mua: <a class="footer-item__call--quickly" href="">1800.1060</a>(7:30 - 22:00)</p>
+                            <li className="footer-item">
+                                <p className="footer-item__call">Gọi mua: <a className="footer-item__call--quickly" href="">1800.1060</a>(7:30 - 22:00)</p>
 
                             </li>
-                            <li class="footer-item">
-                                <p class="footer-item__call">Kỹ thuật:<a class="footer-item__call--quickly" href="">1800.1763</a>(7:30 - 22:00)</p>
+                            <li className="footer-item">
+                                <p className="footer-item__call">Kỹ thuật:<a className="footer-item__call--quickly" href="">1800.1763</a>(7:30 - 22:00)</p>
 
                             </li>
-                            <li class="footer-item">
-                                <p class="footer-item__call">Khiếu nại:<a class="footer-item__call--quickly" href="">1800.1763</a>(8:00 - 21:30)</p>
+                            <li className="footer-item">
+                                <p className="footer-item__call">Khiếu nại:<a className="footer-item__call--quickly" href="">1800.1763</a>(8:00 - 21:30)</p>
 
                             </li>
-                            <li class="footer-item">
-                                <p class="footer-item__call">Bảo hành: <a class="footer-item__call--quickly" href="">1800.1064</a>(8:00 - 21:00)</p>
+                            <li className="footer-item">
+                                <p className="footer-item__call">Bảo hành: <a className="footer-item__call--quickly" href="">1800.1064</a>(8:00 - 21:00)</p>
                             </li>
                         </ul>
                     </div>

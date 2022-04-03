@@ -1,22 +1,21 @@
 .boundary__line {
     width: 100%;
-    ;
-    height    : 1px;
-    background: #E0E0E0;
+    height: 1px;
+    background: #e0e0e0;
 }
 
 .wrap__promotion__info {
-    border       : 1px solid #E0E0E0;
-    width        : 100%;
+    border: 1px solid #e0e0e0;
+    width: 100%;
     border-radius: 5px;
-    margin-top   : 5px;
+    margin-top: 5px;
 }
 
 .wrap__promotion__info .header__promotion__info {
-    background   : #F6F6F6;
-    width        : 100%;
-    height       : 54px;
-    border-bottom: 1px solid #E0E0E0;
+    background: #f6f6f6;
+    width: 100%;
+    height: 54px;
+    border-bottom: 1px solid #e0e0e0;
 }
 
 .header__promotion__info .titile__promotion {
@@ -24,9 +23,9 @@
 }
 
 .header__promotion__info .note__promotion {
-    font-size  : 13px;
+    font-size: 13px;
     font-weight: 500;
-    color      : #666666;
+    color: #666666;
 }
 
 .option__item div {
@@ -34,22 +33,22 @@
 }
 
 .number__option {
-    margin-right    : 10px;
-    min-width       : 16px;
-    margin-top      : 5px;
-    text-align      : center;
-    height          : 16px;
-    border-radius   : 50%;
-    background-color: #4A90E2;
-    font-size       : 14px;
-    color           : #F6F6F6;
-    position        : relative;
+    margin-right: 10px;
+    min-width: 16px;
+    margin-top: 5px;
+    text-align: center;
+    height: 16px;
+    border-radius: 50%;
+    background-color: #4a90e2;
+    font-size: 14px;
+    color: #f6f6f6;
+    position: relative;
 }
 
 .tick__option__item {
     margin-bottom: 25px;
-    margin-top   : 8px;
-    margin-left  : 30px;
+    margin-top: 8px;
+    margin-left: 30px;
 }
 
 .tick__option__item p {
@@ -57,34 +56,33 @@
 }
 
 .footer__promotion {
-    height    : 50px;
-    border-top: 1px dashed #E0E0E0;
+    height: 50px;
+    border-top: 1px dashed #e0e0e0;
 }
 
 .footer__promotion p {
     font-size: 14px;
-
 }
 .more__information {
     margin-top: 10px;
 }
-.card__discount  {
+.card__discount {
     display: flex;
     flex-wrap: wrap;
 }
-.card__discount  div{
-    border: 1px solid #E0E0E0;
+.card__discount div {
+    border: 1px solid #e0e0e0;
     flex: 1;
 }
-.card__discount  div p{
-    height: 9px;
+.card__discount div p {
+    height: 7px;
     font-size: 14px;
 }
 .btn__buyNow {
     margin-top: 10px;
     width: 100%;
     height: 46px;
-    background: #FB6E2E;
+    background: #fb6e2e;
     border-radius: 4px;
     text-align: center;
     cursor: pointer;
@@ -103,7 +101,7 @@
 .btn__buy__installment div {
     flex: 1;
     text-align: center;
-    background: #2F80ED;
+    background: #2f80ed;
     height: 45px;
     color: #fff;
     font-size: 14px;
@@ -118,10 +116,10 @@
 .box__extra__offer {
     margin-top: 10px;
     border-radius: 4px;
-    border: 1px solid #E0E0E0;
+    border: 1px solid #e0e0e0;
 }
 .header__extra__offer {
-    border-bottom: 1px solid #E0E0E0;
+    border-bottom: 1px solid #e0e0e0;
     height: 43px;
 }
 .content__extra__offer p {
@@ -129,8 +127,24 @@
 }
 .load-more-offer {
     display: flex;
-    margin-bottom: 20px;
 }
 .load-more-offer p {
     margin: auto;
+}
+/*  */
+.wrap__configuration {
+    margin-top: 12px;
+}
+.title__configuration {
+
+}
+.body__configuration .item__configuration{
+    height: 40px;
+}
+.item__configuration div {
+    position: relative;
+}
+.item__configuration div p {
+    position: absolute;
+    margin-top: 6px;
 }

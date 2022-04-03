@@ -354,12 +354,13 @@ const handleGetProductById = (id) => {
                         { model: db.Allcode, as: 'manufacturerData', attributes: ['valueVi', 'valueEn'] },
                         { model: db.Allcode, as: 'pinData', attributes: ['valueVi', 'valueEn'] },
                         { model: db.Allcode, as: 'cameraData', attributes: ['valueVi', 'valueEn'] },
-                        { model: db.Allcode, as: 'displayData', attributes: ['valueVi', 'valueEn'] },
+                        { model: db.Allcode, as: 'displayData', attributes: ['valueVi', 'valueEn'] }
                     ],
                     raw: true,
                     nest: true
                 })
                 if (product) {
+<<<<<<< HEAD
                     const object = await db.Color.findAll({
                         where: { id: id },
                         attributes: ['color'],
@@ -369,6 +370,14 @@ const handleGetProductById = (id) => {
                     product.color = object
                 }
 
+=======
+                    const color = await db.Color.findAll({
+                        where: { productId: id },
+                        attributes: ['color']
+                    })
+                    product.colorData = color
+                }
+>>>>>>> abbb7ec93bc69f7d4acefa37ea64d362ab8afafd
 
             }
             if (product && product.image) {
