@@ -360,12 +360,24 @@ const handleGetProductById = (id) => {
                     nest: true
                 })
                 if (product) {
+<<<<<<< HEAD
+                    const object = await db.Color.findAll({
+                        where: { id: id },
+                        attributes: ['color'],
+                        raw: true,
+                        nest: true
+                    })
+                    product.color = object
+                }
+
+=======
                     const color = await db.Color.findAll({
                         where: { productId: id },
                         attributes: ['color']
                     })
                     product.colorData = color
                 }
+>>>>>>> abbb7ec93bc69f7d4acefa37ea64d362ab8afafd
 
             }
             if (product && product.image) {
