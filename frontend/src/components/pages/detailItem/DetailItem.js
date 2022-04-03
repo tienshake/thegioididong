@@ -9,12 +9,10 @@ import { BsShieldFillCheck } from "react-icons/bs";
 import '../detailItem/Detailtem.css';
 import PromotionIfo from './PromotionIfo';
 import GroupButtonBuy from './GroupButtonBuy';
-<<<<<<< HEAD
+
 import { getProductByIdService } from '../../../services/userService';
-=======
 import CardDiscount from './CardDiscount';
 
->>>>>>> abbb7ec93bc69f7d4acefa37ea64d362ab8afafd
 import { Carousel } from 'react-responsive-carousel';
 const DetailItem = () => {
     const { id } = useParams();
@@ -214,15 +212,9 @@ const DetailItem = () => {
                                             </div>
                                         </div>
 
-<<<<<<< HEAD
-                                        <div className='load-more-offer'>
-                                            <p>
-                                                <Link style={{ textDecoration: 'none' }} to='load-more-offer'>
-=======
                                         <div style={{ display: 'flex', marginBottom: '18px' }}>
                                             <p style={{ margin: 'auto' }}>
                                                 <Link to='load-more-offer' style={{ textDecoration: 'none' }}>
->>>>>>> abbb7ec93bc69f7d4acefa37ea64d362ab8afafd
                                                     Xem thêm 3 ưu đãi khác
                                                 </Link>
                                             </p>
@@ -237,8 +229,8 @@ const DetailItem = () => {
 
                                 <div className='body__configuration'>
                                     <div className='row item__configuration'>
-                                        <div style={{background:'#F5F5F5'}} className='col-xl-5'><p>Màn hình:</p></div>
-                                        <div style={{background:'#F5F5F5'}} className='col-xl-7'><p>OLED6.7"Super Retina XDR</p></div>
+                                        <div style={{ background: '#F5F5F5' }} className='col-xl-5'><p>Màn hình:</p></div>
+                                        <div style={{ background: '#F5F5F5' }} className='col-xl-7'><p>OLED6.7"Super Retina XDR</p></div>
                                     </div>
 
                                     <div className='row item__configuration'>
@@ -247,8 +239,8 @@ const DetailItem = () => {
                                     </div>
 
                                     <div className='row item__configuration'>
-                                        <div style={{background:'#F5F5F5'}} className='col-xl-5'><p>Camera sau:</p></div>
-                                        <div style={{background:'#F5F5F5'}} className='col-xl-7'><p>3 camera 12 MP</p></div>
+                                        <div style={{ background: '#F5F5F5' }} className='col-xl-5'><p>Camera sau:</p></div>
+                                        <div style={{ background: '#F5F5F5' }} className='col-xl-7'><p>3 camera 12 MP</p></div>
                                     </div>
 
                                     <div className='row item__configuration'>
@@ -257,8 +249,8 @@ const DetailItem = () => {
                                     </div>
 
                                     <div className='row item__configuration'>
-                                        <div style={{background:'#F5F5F5'}} className='col-xl-5'><p>Chip:</p></div>
-                                        <div style={{background:'#F5F5F5'}} className='col-xl-7'><p>Apple A15 Bionic</p></div>
+                                        <div style={{ background: '#F5F5F5' }} className='col-xl-5'><p>Chip:</p></div>
+                                        <div style={{ background: '#F5F5F5' }} className='col-xl-7'><p>Apple A15 Bionic</p></div>
                                     </div>
 
                                     <div className='row item__configuration'>
@@ -267,8 +259,8 @@ const DetailItem = () => {
                                     </div>
 
                                     <div className='row item__configuration'>
-                                        <div style={{background:'#F5F5F5'}} className='col-xl-5'><p>Bộ nhớ trong:</p></div>
-                                        <div style={{background:'#F5F5F5'}} className='col-xl-7'><p>128 GB</p></div>
+                                        <div style={{ background: '#F5F5F5' }} className='col-xl-5'><p>Bộ nhớ trong:</p></div>
+                                        <div style={{ background: '#F5F5F5' }} className='col-xl-7'><p>128 GB</p></div>
                                     </div>
 
                                     <div className='row item__configuration'>
@@ -277,12 +269,12 @@ const DetailItem = () => {
                                     </div>
 
                                     <div className='row item__configuration'>
-                                        <div style={{background:'#F5F5F5'}} className='col-xl-5'><p>Pin, Sạc:</p></div>
-                                        <div style={{background:'#F5F5F5'}} className='col-xl-7'><p>4352 mAh20 W</p></div>
+                                        <div style={{ background: '#F5F5F5' }} className='col-xl-5'><p>Pin, Sạc:</p></div>
+                                        <div style={{ background: '#F5F5F5' }} className='col-xl-7'><p>4352 mAh20 W</p></div>
                                     </div>
                                 </div>
-                                
-                                <div style={{marginTop:'10px'}}>Hướng dãn sử dụng tiếng anh [PDF, 0.2MB]</div>
+
+                                <div style={{ marginTop: '10px' }}>Hướng dãn sử dụng tiếng anh [PDF, 0.2MB]</div>
                             </div>
 
                         </div>

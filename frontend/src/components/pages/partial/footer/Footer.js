@@ -80,10 +80,10 @@ const Footer = () => {
                         </div>
                         <h3 className="footer__heading">Website cùng tập đoàn</h3>
                         <div className="footer__download">
-                            <img src="http://127.0.0.1:5500/img/dienmayxanh.png" className="footer__download-app-img" />
-                            <img src="http://127.0.0.1:5500/img/bachhoaxanh.png" className="footer__download-app-img" />
-                            <img src="http://127.0.0.1:5500/img/topzone.png" className="footer__download-app-img" />
-                            <img src="http://127.0.0.1:5500/img/ava.png" className="footer__download-app-img" />
+                            <img src="https://dienlanhdienmayxanh.com/wp-content/uploads/2018/01/foody-logo-dienmay-final-635947786757262452.jpg" className="footer__download-app-img" />
+                            <img src="https://inkythuatso.com/uploads/images/2021/12/bach-hoa-xanh-logo-inkythuatso-03-17-22-34.jpg" className="footer__download-app-img" />
+                            <img src="https://img.gotit.vn/compress/brand/1638770765_uoDez.png" className="footer__download-app-img" />
+                            <img src="https://cdncloudcart.com/6520/products/images/310/image_58f5d62f75daf_800x800.jpeg?1564781295" className="footer__download-app-img" />
                         </div>
                     </div>
                 </div>
