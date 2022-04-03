@@ -1,39 +1,42 @@
 import { Link, useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+
 import './DetailItem.scss';
-import {
-    AiFillStar,
-    AiFillLike,
-    AiOutlineDropbox
-} from "react-icons/ai";
-import {
-    IoIosAddCircleOutline
-} from "react-icons/io";
-import {
-    MdOutlinePublishedWithChanges
-} from "react-icons/md";
-import {
-    BsShieldFillCheck
-} from "react-icons/bs";
+import { AiFillStar, AiFillLike, AiOutlineDropbox } from "react-icons/ai";
+import { IoIosAddCircleOutline } from "react-icons/io";
+import { MdOutlinePublishedWithChanges } from "react-icons/md";
+import { BsShieldFillCheck } from "react-icons/bs";
 import '../detailItem/Detailtem.css';
 import PromotionIfo from './PromotionIfo';
 import GroupButtonBuy from './GroupButtonBuy';
-
+import { getProductByIdService } from '../../../services/userService';
 import { Carousel } from 'react-responsive-carousel';
 const DetailItem = () => {
-    const { id } = useParams()
-    console.log(id);
+    const { id } = useParams();
+    const [product, setProduct] = useState({});
+    useEffect(() => {
+        const fetch = async () => {
+            const res = await getProductByIdService(id);
+            if (res && res.errCode === 0) {
+                setProduct(res.data)
+            }
+        }
+        fetch()
+    }, []);
     return (
         <div className="phone__detail-container">
             <div className="phone__detail-header">
                 <div className="detail__header-top">
                     <div className="detail__header-link">
-                        <span>Điện thoại</span>/<span>Điện thoại Samsung</span>
+                        <span>{product && product.typeData && product.typeData.valueVi}</span>
+                        /
+                        <span>{product && product.typeData && product.typeData.valueVi} {product.nameItem}</span>
                     </div>
                 </div>
 
                 <div className="detail__header-bottom">
                     <div className="left">
-                        <h5>Điện thoại Samsung Galaxy S22 Ultra 5G 128GB </h5>
+                        <h5>{product && product.typeData && product.typeData.valueVi} {product.nameItem} {product.rom}</h5>
                         <span>
                             <AiFillStar className="star" />
                             <AiFillStar className="star" />
@@ -126,18 +129,20 @@ const DetailItem = () => {
                 <div className="phone__detail-product-right">
                     <div className="phone__detail-product-rom">
                         <div className="top">
-                            <button className="btn active">8GB/128GB</button>
+                            <button className="btn active">{product.ram}/{product.rom}</button>
                         </div>
                         <div className="bottom">
-                            <button className='active'>Đỏ</button>
-                            <button>Xanh lá</button>
-                            <button>Trắng</button>
-                            <button>Đen</button>
+                            {product && product.colorData && product.colorData.length > 0 && product.colorData.map((item, index) => {
+                                return (
+                                    <button key={index} className='btn active'>{item.color}</button>
+                                )
+                            })}
+
                         </div>
                     </div>
                     <div className="price">
                         <p>Giá tại <p> Đà Nẵng</p></p>
-                        <span><h5>16.290.000₫</h5><span>trả góp 0%</span></span>
+                        <span><h5>{product.price}₫</h5><span>trả góp 0%</span></span>
                     </div>
 
                     {/* promotion ifomation */}
@@ -219,7 +224,7 @@ const DetailItem = () => {
 
                                         <div className='load-more-offer'>
                                             <p>
-                                                <Link style={{textDecoration:'none'}} to='load-more-offer'>
+                                                <Link style={{ textDecoration: 'none' }} to='load-more-offer'>
                                                     Xem thêm 3 ưu đãi khác
                                                 </Link>
                                             </p>

@@ -25,6 +25,9 @@ const getAllProductService = async (limit, page) => {
 const getAllProductHomeService = async (limit, option) => {
     return await axios.get(`/api/get-all-product-home?limit=${limit}&option=${option}`);
 }
+const getProductByIdService = async (id) => {
+    return await axios.get(`/api/get-product-by-id?id=${id}`);
+}
 export {
     createUserService,
     getAllUserService,
@@ -33,5 +36,6 @@ export {
     createColorProductService,
     createImgDetailProductService,
     getAllProductService,
-    getAllProductHomeService
+    getAllProductHomeService,
+    getProductByIdService
 }
