@@ -18,6 +18,7 @@ import '../detailItem/Detailtem.css';
 import PromotionIfo from './PromotionIfo';
 import GroupButtonBuy from './GroupButtonBuy';
 import CardDiscount from './CardDiscount';
+import ExtraOffer from './ExtraOffer';
 
 import { Carousel } from 'react-responsive-carousel';
 const DetailItem = () => {
@@ -180,40 +181,7 @@ const DetailItem = () => {
 
                             {/* extra offer */}
                             <div className='wrap__extra__offer'>
-                                <div className='box__extra__offer'>
-                                    <div className='container header__extra__offer'>
-                                        <div style={{ display: 'flex' }}><p style={{ margin: 'auto', marginTop: '8px' }}>5 ưu đãi thêm Dự kiến áp dụng đến 23:00 30/04</p></div>
-                                    </div>
-
-                                    <div className='container body__extra__offer'>
-                                        <div className='row'>
-                                            <p className='col-xl-1'>1</p>
-                                            <div className='col content__extra__offer'>
-                                                <p className='item'>Tặng cho khách lần đầu mua hàng online tại web BachhoaXANH.com</p>
-                                                <p>Mã giảm 20% tối đa 100.000đ</p>
-                                                <p>Mã giảm 20% tối đa 100.000đ</p>
-                                                <p>Áp dụng tại Tp.HCM và 1 số khu vực, 1 SĐT nhận 1 lần (Xem chi tiết)</p>
-                                            </div>
-
-                                            <div className='row'>
-                                                <p className='col-xl-1'>1</p>
-                                                <div className='col content__extra__offer'>
-                                                    <p className='item'>
-                                                        Tặng suất mua xe đạp Giảm đến 30% (không kèm KM khác) (click xem chi tiết)
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div style={{ display: 'flex', marginBottom: '18px' }}>
-                                            <p style={{ margin: 'auto' }}>
-                                                <Link to='load-more-offer' style={{ textDecoration: 'none' }}>
-                                                    Xem thêm 3 ưu đãi khác
-                                                </Link>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
+                                <ExtraOffer />
                             </div>
 
                             {/* Cấu hình phone */}
@@ -222,8 +190,8 @@ const DetailItem = () => {
 
                                 <div className='body__configuration'>
                                     <div className='row item__configuration'>
-                                        <div style={{background:'#F5F5F5'}} className='col-xl-5'><p>Màn hình:</p></div>
-                                        <div style={{background:'#F5F5F5'}} className='col-xl-7'><p>OLED6.7"Super Retina XDR</p></div>
+                                        <div style={{ background: '#F5F5F5' }} className='col-xl-5'><p>Màn hình:</p></div>
+                                        <div style={{ background: '#F5F5F5' }} className='col-xl-7'><p>OLED6.7"Super Retina XDR</p></div>
                                     </div>
 
                                     <div className='row item__configuration'>
@@ -232,8 +200,8 @@ const DetailItem = () => {
                                     </div>
 
                                     <div className='row item__configuration'>
-                                        <div style={{background:'#F5F5F5'}} className='col-xl-5'><p>Camera sau:</p></div>
-                                        <div style={{background:'#F5F5F5'}} className='col-xl-7'><p>3 camera 12 MP</p></div>
+                                        <div style={{ background: '#F5F5F5' }} className='col-xl-5'><p>Camera sau:</p></div>
+                                        <div style={{ background: '#F5F5F5' }} className='col-xl-7'><p>3 camera 12 MP</p></div>
                                     </div>
 
                                     <div className='row item__configuration'>
@@ -242,8 +210,8 @@ const DetailItem = () => {
                                     </div>
 
                                     <div className='row item__configuration'>
-                                        <div style={{background:'#F5F5F5'}} className='col-xl-5'><p>Chip:</p></div>
-                                        <div style={{background:'#F5F5F5'}} className='col-xl-7'><p>Apple A15 Bionic</p></div>
+                                        <div style={{ background: '#F5F5F5' }} className='col-xl-5'><p>Chip:</p></div>
+                                        <div style={{ background: '#F5F5F5' }} className='col-xl-7'><p>Apple A15 Bionic</p></div>
                                     </div>
 
                                     <div className='row item__configuration'>
@@ -252,8 +220,8 @@ const DetailItem = () => {
                                     </div>
 
                                     <div className='row item__configuration'>
-                                        <div style={{background:'#F5F5F5'}} className='col-xl-5'><p>Bộ nhớ trong:</p></div>
-                                        <div style={{background:'#F5F5F5'}} className='col-xl-7'><p>128 GB</p></div>
+                                        <div style={{ background: '#F5F5F5' }} className='col-xl-5'><p>Bộ nhớ trong:</p></div>
+                                        <div style={{ background: '#F5F5F5' }} className='col-xl-7'><p>128 GB</p></div>
                                     </div>
 
                                     <div className='row item__configuration'>
@@ -262,12 +230,19 @@ const DetailItem = () => {
                                     </div>
 
                                     <div className='row item__configuration'>
-                                        <div style={{background:'#F5F5F5'}} className='col-xl-5'><p>Pin, Sạc:</p></div>
-                                        <div style={{background:'#F5F5F5'}} className='col-xl-7'><p>4352 mAh20 W</p></div>
+                                        <div style={{ background: '#F5F5F5' }} className='col-xl-5'><p>Pin, Sạc:</p></div>
+                                        <div style={{ background: '#F5F5F5' }} className='col-xl-7'><p>4352 mAh20 W</p></div>
                                     </div>
                                 </div>
-                                
-                                <div style={{marginTop:'10px'}}>Hướng dãn sử dụng tiếng anh [PDF, 0.2MB]</div>
+
+                                <div style={{ marginTop: '10px' }}>Hướng dãn sử dụng tiếng anh [PDF, 0.2MB]</div>
+
+
+                                <div className='container wrap-loadMore-configuration'>
+                                    <div className='button-loadMore-configuration'>
+                                        <p>Xem thêm cấu hình chi tiết</p>
+                                    </div>
+                                </div>
                             </div>
 
                         </div>
