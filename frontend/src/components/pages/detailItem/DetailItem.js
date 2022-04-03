@@ -9,11 +9,18 @@ import { BsShieldFillCheck } from "react-icons/bs";
 import '../detailItem/Detailtem.css';
 import PromotionIfo from './PromotionIfo';
 import GroupButtonBuy from './GroupButtonBuy';
+<<<<<<< HEAD
 
 import { getProductByIdService } from '../../../services/userService';
 import CardDiscount from './CardDiscount';
 
+=======
+import { getProductByIdService } from '../../../services/userService';
+import CardDiscount from './CardDiscount';
+import ExtraOffer from './ExtraOffer';
+>>>>>>> 4e51bcaebb3de958b7e408e34090eab24549dac3
 import { Carousel } from 'react-responsive-carousel';
+
 const DetailItem = () => {
     const { id } = useParams();
     const [product, setProduct] = useState({});
@@ -187,41 +194,81 @@ const DetailItem = () => {
 
                             {/* extra offer */}
                             <div className='wrap__extra__offer'>
-                                <div className='box__extra__offer'>
-                                    <div className='container header__extra__offer'>
-                                        <div style={{ display: 'flex' }}><p style={{ margin: 'auto', marginTop: '8px' }}>5 ưu đãi thêm Dự kiến áp dụng đến 23:00 30/04</p></div>
-                                    </div>
+                                <ExtraOffer />
+                            </div>
 
-                                    <div className='container body__extra__offer'>
-                                        <div className='row'>
-                                            <p className='col-xl-1'>1</p>
-                                            <div className='col content__extra__offer'>
-                                                <p className='item'>Tặng cho khách lần đầu mua hàng online tại web BachhoaXANH.com</p>
-                                                <p>Mã giảm 20% tối đa 100.000đ</p>
-                                                <p>Mã giảm 20% tối đa 100.000đ</p>
-                                                <p>Áp dụng tại Tp.HCM và 1 số khu vực, 1 SĐT nhận 1 lần (Xem chi tiết)</p>
+                            <div>
+                                 {/* Cấu hình phone */}
+                                 <div className='wrap__configuration'>
+                                        <div className='title__configuration'><p><h5>Cấu hình điện thoại iPhone 13 Pro Max 128GB</h5></p></div>
+
+                                        <div className='body__configuration'>
+                                            <div className='row item__configuration'>
+                                                <div style={{ background: '#F5F5F5' }} className='col-xl-5'><p>Màn hình:</p></div>
+                                                <div style={{ background: '#F5F5F5' }} className='col-xl-7'><p>OLED6.7"Super Retina XDR</p></div>
                                             </div>
 
-                                            <div className='row'>
-                                                <p className='col-xl-1'>1</p>
-                                                <div className='col content__extra__offer'>
-                                                    <p className='item'>
-                                                        Tặng suất mua xe đạp Giảm đến 30% (không kèm KM khác) (click xem chi tiết)
-                                                    </p>
-                                                </div>
+                                            <div className='row item__configuration'>
+                                                <div className='col-xl-5'><p>Hệ điều hành:</p></div>
+                                                <div className='col-xl-7'><p>iOS 15</p></div>
+                                            </div>
+
+                                            <div className='row item__configuration'>
+                                                <div style={{ background: '#F5F5F5' }} className='col-xl-5'><p>Camera sau:</p></div>
+                                                <div style={{ background: '#F5F5F5' }} className='col-xl-7'><p>3 camera 12 MP</p></div>
+                                            </div>
+
+                                            <div className='row item__configuration'>
+                                                <div className='col-xl-5'><p>Camera trước:</p></div>
+                                                <div className='col-xl-7'><p>2 MP</p></div>
+                                            </div>
+
+                                            <div className='row item__configuration'>
+                                                <div style={{ background: '#F5F5F5' }} className='col-xl-5'><p>Chip:</p></div>
+                                                <div style={{ background: '#F5F5F5' }} className='col-xl-7'><p>Apple A15 Bionic</p></div>
+                                            </div>
+
+                                            <div className='row item__configuration'>
+                                                <div className='col-xl-5'><p>RAM:</p></div>
+                                                <div className='col-xl-7'><p>6 GB</p></div>
+                                            </div>
+
+                                            <div className='row item__configuration'>
+                                                <div style={{ background: '#F5F5F5' }} className='col-xl-5'><p>Bộ nhớ trong:</p></div>
+                                                <div style={{ background: '#F5F5F5' }} className='col-xl-7'><p>128 GB</p></div>
+                                            </div>
+
+                                            <div className='row item__configuration'>
+                                                <div className='col-xl-5'><p>SIM:</p></div>
+                                                <div className='col-xl-7'><p>1 Nano SIM & 1 eSIMHỗ trợ 5G</p></div>
+                                            </div>
+
+                                            <div className='row item__configuration'>
+                                                <div style={{ background: '#F5F5F5' }} className='col-xl-5'><p>Pin, Sạc:</p></div>
+                                                <div style={{ background: '#F5F5F5' }} className='col-xl-7'><p>4352 mAh20 W</p></div>
                                             </div>
                                         </div>
 
+<<<<<<< HEAD
                                         <div style={{ display: 'flex', marginBottom: '18px' }}>
                                             <p style={{ margin: 'auto' }}>
                                                 <Link to='load-more-offer' style={{ textDecoration: 'none' }}>
                                                     Xem thêm 3 ưu đãi khác
                                                 </Link>
                                             </p>
+=======
+                                        <div style={{ marginTop: '10px' }}>Hướng dãn sử dụng tiếng anh [PDF, 0.2MB]</div>
+
+
+                                        <div className='container wrap-loadMore-configuration'>
+                                            <div className='button-loadMore-configuration'>
+                                                <p>Xem thêm cấu hình chi tiết</p>
+                                            </div>
+>>>>>>> 4e51bcaebb3de958b7e408e34090eab24549dac3
                                         </div>
                                     </div>
-                                </div>
                             </div>
+<<<<<<< HEAD
 
                             {/* Cấu hình phone */}
                             <div className='wrap__configuration'>
@@ -277,15 +324,13 @@ const DetailItem = () => {
                                 <div style={{ marginTop: '10px' }}>Hướng dãn sử dụng tiếng anh [PDF, 0.2MB]</div>
                             </div>
 
+=======
+>>>>>>> 4e51bcaebb3de958b7e408e34090eab24549dac3
                         </div>
                     </div>
-
-                    <div>
-
-                    </div>
+                    <div className='spacer'></div>
                 </div>
             </div>
-            <div className='spacer'></div>
         </div>
     );
 }
