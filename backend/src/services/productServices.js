@@ -359,6 +359,16 @@ const handleGetProductById = (id) => {
                     raw: true,
                     nest: true
                 })
+                if (product) {
+                    const object = await db.Color.findAll({
+                        where: { id: id },
+                        attributes: ['color'],
+                        raw: true,
+                        nest: true
+                    })
+                    product.color = object
+                }
+
 
             }
             if (product && product.image) {
