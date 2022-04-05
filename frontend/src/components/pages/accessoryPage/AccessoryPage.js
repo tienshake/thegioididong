@@ -6,9 +6,9 @@ import { useContext } from 'react';
 import Brands from './reuseComponents/Brands';
 import CardProductBody from './reuseComponents/CardProductBody';
 import SliderProduct from './reuseComponents/SliderProduct';
-import axios from 'axios';
+// import axios from 'axios';
 import { getAllProductHomeService } from '../../../services/userService';
-const tabsCategory = ['cardProductsOne', 'cardProductsTwo'];
+// const tabsCategory = ['cardProductsOne', 'cardProductsTwo'];
 
 
 export default function AccessoryPage() {
