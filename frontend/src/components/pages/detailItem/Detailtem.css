@@ -121,7 +121,6 @@
 .header__extra__offer {
     border-bottom: 1px solid #e0e0e0;
     height: 43px;
-    background: #f6f6f6;
 }
 .content__extra__offer p {
     /* height: 26px; */
@@ -148,22 +147,4 @@
 .item__configuration div p {
     position: absolute;
     margin-top: 6px;
-}
-.wrap-loadMore-configuration {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-}
-.button-loadMore-configuration {
-    justify-content: center;
-    position: absolute;
-    margin: auto;
-    margin-top: 6px;
-    border: 1px solid #2f80ed;
-    border-radius: 5px;
-    height: 40px;
-    width: 340px;
-    text-align: center;
-    line-height: 35px;
-    cursor: pointer;
 }

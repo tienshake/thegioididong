@@ -20,11 +20,14 @@ const ProductManage = (props) => {
     const [camera, setCamera] = useState('CAM8');
     const [image, setImage] = useState('');
     const [imageMultiple, setMultiple] = useState([]);
+    const [chip, setChip] = useState([]);
+    const [operatingSystem, setOperatingSystem] = useState([]);
+
     //================================================
     const [selectType, setSelectType] = useState([]);
     const [selectPloai, setSelectPloai] = useState([]);
     const [selectColor, setSelectColor] = useState([]);
-
+    const [selectOperatingSystem, setSelectOperatingSystem] = useState([]);
     const [selectPin, setSelectPin] = useState([]);
     const [selectDisplay, setSelectDisplay] = useState([]);
     const [selectCamera, setSelectCamera] = useState([]);
@@ -37,12 +40,16 @@ const ProductManage = (props) => {
             const resPin = await getAllUCodeService('PIN');
             const resDisplay = await getAllUCodeService('DISPLAY');
             const resCamera = await getAllUCodeService('CAMERA');
+
+            const resOperatingSystem = await getAllUCodeService('HDH');
+
             if (resType && resType.errCode === 0 &&
                 resPloai && resPloai.errCode === 0 &&
                 resColor && resColor.errCode === 0 &&
                 resPin && resPin.errCode === 0 &&
                 resDisplay && resDisplay.errCode === 0 &&
-                resCamera && resCamera.errCode === 0
+                resCamera && resCamera.errCode === 0 &&
+                resOperatingSystem && resOperatingSystem.errCode === 0
             ) {
                 setSelectType(resType.data)
                 setSelectPloai(resPloai.data)
@@ -50,6 +57,7 @@ const ProductManage = (props) => {
                 setSelectPin(resPin.data)
                 setSelectDisplay(resDisplay.data)
                 setSelectCamera(resCamera.data)
+                setSelectOperatingSystem(resOperatingSystem.data)
             } else {
             }
 
@@ -75,6 +83,8 @@ const ProductManage = (props) => {
             pin,
             display,
             camera,
+            chip,
+            selectOperatingSystem
         };
         const arrInput = [
             'nameItem',
@@ -89,18 +99,16 @@ const ProductManage = (props) => {
             'imageMultiple',
             'pin',
             'display',
-            'camera']
+            'camera',
+            'chip',
+            'selectOperatingSystem'
+        ]
         for (let i = 0; i < arrInput.length; i++) {
             if (!object[arrInput[i]] || object[arrInput[i]].length === 0) {
                 alert('Bạn đã nhập thiếu ' + arrInput[i]);
                 isValid = false
                 break;
             }
-            // if () {
-            //     alert('Bạn đã nhập thiếu ' + arrInput[i]);
-            //     isValid = false
-            //     break;
-            // }
         }
         return isValid;
     }
@@ -112,7 +120,7 @@ const ProductManage = (props) => {
                 nameItem, price, type, manufacturer,
                 ram, rom, quantity,
                 image: image.avatar,
-                pin, display, camera
+                pin, display, camera, chip, operatingSystem
             }, typeData, selectColor.filter(item => item.isSelected === true), imageMultiple)
             console.log(pin, display, camera)
         }
@@ -225,6 +233,29 @@ const ProductManage = (props) => {
                         value={type}
                         className="form-select">
                         {selectPloai && selectPloai.length > 0 && selectPloai.map((item, index) => {
+                            return (
+                                <option key={index} value={item.keyMap}>{item.valueVi}</option>
+                            )
+                        })}
+                    </select>
+                </div>
+
+            </div>
+            <div className="row ">
+                <div className="manage__content-form form-group col-6">
+                    <label className="manage__content-label">Chip xử lý</label>
+                    <input
+                        onChange={(e) => setChip(e.target.value)}
+                        type="text" className="form-control" />
+                </div>
+
+                <div className="manage__content-form form-group col-6">
+                    <label className="manage__content-label">Hệ điều hành</label>
+                    <select
+                        onChange={(e) => setOperatingSystem(e.target.value)}
+                        value={operatingSystem}
+                        className="form-select">
+                        {selectOperatingSystem && selectOperatingSystem.length > 0 && selectOperatingSystem.map((item, index) => {
                             return (
                                 <option key={index} value={item.keyMap}>{item.valueVi}</option>
                             )
