@@ -28,6 +28,8 @@ const handleCreateProductService = (data) => {
                         pin: data.pin,
                         display: data.display,
                         camera: data.camera,
+                        chip: data.chip,
+                        hdh: data.operatingSystem
                     }
                     if (data.type === 'PL2') {
                         delete sendData.ram
@@ -360,26 +362,30 @@ const handleGetProductById = (id) => {
                     nest: true
                 })
                 if (product) {
-<<<<<<< HEAD
-                    const object = await db.Color.findAll({
-                        where: { id: id },
+                    const ColorArr = await db.Color.findAll({
+                        where: { productId: id },
                         attributes: ['color'],
                         raw: true,
                         nest: true
                     })
-                    product.color = object
-                }
+                    product.colorData = ColorArr
 
-=======
-                    const color = await db.Color.findAll({
+                    const photoDetailArr = await db.DetailPhotos.findAll({
                         where: { productId: id },
-                        attributes: ['color']
+                        attributes: ['image'],
+                        raw: true,
+                        nest: true
                     })
-                    product.colorData = color
+                    photoDetailArr.map(item => {
+                        if (item && item.image) {
+                            item.image = new Buffer(item.image, 'base64').toString('binary');
+                        }
+                        return item
+                    })
+                    product.photoDetail = photoDetailArr
                 }
->>>>>>> abbb7ec93bc69f7d4acefa37ea64d362ab8afafd
-
             }
+
             if (product && product.image) {
                 product.image = new Buffer(product.image, 'base64').toString('binary');
             }
@@ -389,7 +395,6 @@ const handleGetProductById = (id) => {
             reject(e)
         }
     })
-
 
 };
 module.exports = {

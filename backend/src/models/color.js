@@ -12,9 +12,14 @@ module.exports = (sequelize, DataTypes) => {
         static associate(models) {
             // define association here
             Color.belongsTo(models.Product, { foreignKey: 'productId', as: 'colorData' });
+
+
             // Color.belongsTo(models.Allcode, { foreignKey: 'positionId', targetKey: 'keyMap', as: 'positionData' });
             // Color.hasOne(models.Markdown, { foreignKey: 'doctorId' });
             // Color.hasOne(models.Doctor_Infor, { foreignKey: 'doctorId' });
+
+
+
 
         }
     };

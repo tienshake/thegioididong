@@ -9,8 +9,6 @@ import { BsShieldFillCheck } from "react-icons/bs";
 import '../detailItem/Detailtem.css';
 import PromotionIfo from './PromotionIfo';
 import GroupButtonBuy from './GroupButtonBuy';
-<<<<<<< HEAD
-
 import { getProductByIdService } from '../../../services/userService';
 import CardDiscount from './CardDiscount';
 

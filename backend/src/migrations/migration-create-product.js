@@ -53,6 +53,13 @@ module.exports = {
             camera: {
                 type: Sequelize.STRING
             },
+
+            hdh: {
+                type: Sequelize.STRING
+            },
+            chip: {
+                type: Sequelize.STRING
+            },
             createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE
