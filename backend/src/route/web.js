@@ -19,6 +19,9 @@ const initWebRoutes = (app) => {
     router.post("/api/create-color-product", productController.handleCreateColorProduct);
     router.post("/api/create-imgDetail-product", productController.handleCreateImgDetailProduct);
     router.get("/api/get-all-product-only-name-and-id", productController.handleAllProductOnlyNameAndId);
+    router.post("/api/post-markdown", productController.handlePostMarkDown);
+
+
 
     router.delete("/api/delete-all-product", productController.handleDeleteProduct);
     router.post("/api/buy-with-state-product", productController.handleBuyWithStateProduct);

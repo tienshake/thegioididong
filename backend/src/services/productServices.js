@@ -406,7 +406,7 @@ const handleAllProductOnlyNameAndId = () => {
     return new Promise(async (resolve, reject) => {
         try {
             const product = await db.Product.findAll({
-                attributes: ['image', 'nameItem', 'id'],
+                attributes: ['nameItem', 'id'],
             });
             if (!product) {
                 resolve({
@@ -415,6 +415,36 @@ const handleAllProductOnlyNameAndId = () => {
                 })
             }
             resolve(product)
+        } catch (e) {
+            reject(e)
+        }
+    })
+};
+const handlePostMarkDown = (markdown) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+
+
+
+            if (!markdown.contentHTML || !markdown.contentMarkdown) {
+                resolve({
+                    errCode: 2,
+                    message: `Missing parameter!`
+                })
+            } else {
+                const post = await db.MarkDown.create({
+                    productId: markdown.productId,
+                    contentHTML: markdown.contentHTML,
+                    contentMarkdown: markdown.contentMarkdown,
+                })
+                if (post) {
+                    resolve({
+                        errCode: 0,
+                        message: `create markdown success`,
+                        errMessage: post
+                    })
+                }
+            }
         } catch (e) {
             reject(e)
         }
@@ -432,5 +462,6 @@ module.exports = {
     handleCreateColorProduct,
     handleCreateImgDetailProduct,
     handleGetAllProductHome,
-    handleAllProductOnlyNameAndId
+    handleAllProductOnlyNameAndId,
+    handlePostMarkDown
 }

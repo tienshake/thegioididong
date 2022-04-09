@@ -211,7 +211,28 @@ const handleAllProductOnlyNameAndId = async (req, res) => {
         })
     }
 };
+const handlePostMarkDown = async (req, res) => {
+    const markdown = req.body
+    try {
+        if (!markdown) {
+            return res.status(500).json({
+                errCode: 1,
+                errMessage: 'missing require parameter',
+                data: {}
+            })
+        } else {
+            const message = await productServices.handlePostMarkDown(markdown);
+            return res.status(200).json(message)
+        }
 
+    } catch (e) {
+        console.log('create error:', e)
+        return res.status(200).json({
+            errCode: -1,
+            errMessage: 'Error from server'
+        })
+    }
+};
 
 module.exports = {
     handleCreateProduct,
@@ -224,5 +245,6 @@ module.exports = {
     handleDeleteProductById,
     handleCreateImgDetailProduct,
     handleGetAllProductHome,
-    handleAllProductOnlyNameAndId
+    handleAllProductOnlyNameAndId,
+    handlePostMarkDown
 }
