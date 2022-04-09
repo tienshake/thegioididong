@@ -2,7 +2,6 @@ import { getMarkDownById } from "../../../services/userService";
 import React, { useState, useEffect } from 'react';
 
 const Post = (props) => {
-    console.log(props);
     return (
         <div className="post__container">
             <div className="post__image"
@@ -21,7 +20,7 @@ const Post = (props) => {
                     && <div className='post__markdown' dangerouslySetInnerHTML={{ __html: props.markdown.contentHTML }}></div>
                 }
                 <div className="bg-article">
-                    <button className="btn"
+                    <button className=""
                         onClick={props.openModal}
                     >Xem Thêm</button>
                 </div>

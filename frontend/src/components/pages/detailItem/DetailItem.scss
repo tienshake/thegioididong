@@ -205,13 +205,15 @@
                         justify-content: center;
                         background     : linear-gradient(to bottom, hsla(0, 0%, 100%, 0), hsl(0, 0%, 100%), hsl(0, 0%, 100%));
 
-                        .btn {
-                            margin-top: 30px;
-                            border    : 1px solid #4a90ef;
-                            outline   : none;
-                            height    : 40px;
-                            width     : 400px;
-                            color     : #4a90ef;
+                        button {
+                            margin-top      : 55px;
+                            border          : 1px solid #4a90ef;
+                            outline         : none;
+                            height          : 40px;
+                            width           : 400px;
+                            color           : #4a90ef;
+                            background-color: white;
+                            border-radius   : 5px;
                         }
                     }
 

@@ -38,7 +38,6 @@ const DetailItem = () => {
 
 
     const openModal = () => {
-        console.log('opem');
         setIsOpen(true);
     }
 
@@ -129,7 +128,7 @@ const DetailItem = () => {
                         </div>
                     </div>
                     <div className="price">
-                        <p>Giá tại <p> Đà Nẵng</p></p>
+                        <p>Giá tại <span>Đà Nẵng</span></p>
                         <span><h5>{product.price}₫</h5><span>trả góp 0%</span></span>
                     </div>
 

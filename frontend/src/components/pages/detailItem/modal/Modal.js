@@ -13,6 +13,9 @@ const Modal = (props) => {
     const [nav, setNav] = useState(navArr);
     const [navLink, setNavLink] = useState(3);
 
+    useEffect(() => {
+        nav[2].selected = true
+    }, []);
     const handleNav = (index) => {
         if (!nav[index].selected) {
             setNav(navArr)
@@ -68,12 +71,11 @@ const Modal = (props) => {
     return (
 
         <div>
-            {console.log(navLink)}
             <ModalReact
                 isOpen={props.modalIsOpen}
-                // modalIsOpen
                 onRequestClose={props.closeModal}
                 className={`modal__detail`}
+                ariaHideApp={false}
             >
                 <button className='close__btn' onClick={props.closeModal}><AiOutlineClose />Đóng</button>
                 <div className='modal__container'>

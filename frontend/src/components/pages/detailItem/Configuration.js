@@ -1,7 +1,7 @@
 const Configuration = (props) => {
     return (
         <div className='wrap__configuration'>
-            <div className='title__configuration'><p><h5>Cấu hình điện thoại {props.product.nameItem} {props.product.rom}</h5></p></div>
+            <div className='title__configuration'><h5>Cấu hình điện thoại {props.product.nameItem} {props.product.rom}</h5></div>
 
             <div className='body__configuration'>
                 <div className='row item__configuration'>

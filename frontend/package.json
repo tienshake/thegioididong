@@ -32,6 +32,7 @@
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.2.2",
     "react-scripts": "5.0.0",
+    "react-scroll": "^1.8.6",
     "react-select": "^5.2.2",
     "react-slick": "^0.28.1",
     "react-trap": "^1.1.0",

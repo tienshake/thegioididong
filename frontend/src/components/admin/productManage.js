@@ -245,6 +245,20 @@ const ProductManage = (props) => {
             </div>
             <div className="row ">
                 <div className="manage__content-form form-group col-6">
+                    <label className="manage__content-label">Loại sản phẩm</label>
+                    <select
+                        onChange={(e) => setType(e.target.value)}
+                        value={type}
+                        className="form-select">
+                        {selectPloai && selectPloai.length > 0 && selectPloai.map((item, index) => {
+                            return (
+                                <option key={index} value={item.keyMap}>{item.valueVi}</option>
+                            )
+                        })}
+                    </select>
+                </div>
+
+                <div className="manage__content-form form-group col-6">
                     <label className="manage__content-label">Hãng sản xuất</label>
                     <select
                         onChange={(e) => setManufacturer(e.target.value)}
@@ -261,47 +275,35 @@ const ProductManage = (props) => {
 
                 </div>
 
-                <div className="manage__content-form form-group col-6">
-                    <label className="manage__content-label">Loại sản phẩm</label>
-                    <select
-                        onChange={(e) => setType(e.target.value)}
-                        value={type}
-                        className="form-select">
-                        {selectPloai && selectPloai.length > 0 && selectPloai.map((item, index) => {
-                            return (
-                                <option key={index} value={item.keyMap}>{item.valueVi}</option>
-                            )
-                        })}
-                    </select>
-                </div>
 
             </div>
-            <div className="row ">
-                <div className="manage__content-form form-group col-6">
-                    <label className="manage__content-label">Chip xử lý</label>
-                    <input
-                        onChange={(e) => setChip(e.target.value)}
-                        type="text" className="form-control" />
-                </div>
 
-                <div className="manage__content-form form-group col-6">
-                    <label className="manage__content-label">Hệ điều hành</label>
-                    <select
-                        onChange={(e) => setOperatingSystem(e.target.value)}
-                        value={operatingSystem}
-                        className="form-select">
-                        {selectOperatingSystem && selectOperatingSystem.length > 0 && selectOperatingSystem.map((item, index) => {
-                            return (
-                                <option key={index} value={item.keyMap}>{item.valueVi}</option>
-                            )
-                        })}
-                    </select>
-                </div>
-
-            </div>
             {/* dien thoai */}
             {type === 'PL1' &&
                 <>
+                    <div className="row ">
+                        <div className="manage__content-form form-group col-6">
+                            <label className="manage__content-label">Chip xử lý</label>
+                            <input
+                                onChange={(e) => setChip(e.target.value)}
+                                type="text" className="form-control" />
+                        </div>
+
+                        <div className="manage__content-form form-group col-6">
+                            <label className="manage__content-label">Hệ điều hành</label>
+                            <select
+                                onChange={(e) => setOperatingSystem(e.target.value)}
+                                value={operatingSystem}
+                                className="form-select">
+                                {selectOperatingSystem && selectOperatingSystem.length > 0 && selectOperatingSystem.map((item, index) => {
+                                    return (
+                                        <option key={index} value={item.keyMap}>{item.valueVi}</option>
+                                    )
+                                })}
+                            </select>
+                        </div>
+
+                    </div>
                     <div className="row">
                         <div className="manage__content-form form-group col-6">
                             <label className="manage__content-label">Ram</label>
