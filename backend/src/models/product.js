@@ -44,6 +44,7 @@ module.exports = (sequelize, DataTypes) => {
         camera: DataTypes.STRING,
         hdh: DataTypes.STRING,
         chip: DataTypes.STRING,
+        imgAngle: DataTypes.STRING,
         vote: DataTypes.STRING,
     }, {
         sequelize,

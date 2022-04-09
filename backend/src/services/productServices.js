@@ -29,7 +29,8 @@ const handleCreateProductService = (data) => {
                         display: data.display,
                         camera: data.camera,
                         chip: data.chip,
-                        hdh: data.operatingSystem
+                        hdh: data.operatingSystem,
+                        imgAngle: data.imgAngle
                     }
                     if (data.type === 'PL2') {
                         delete sendData.ram
@@ -348,9 +349,9 @@ const handleGetProductById = (id) => {
             } else {
                 product = await db.Product.findOne({
                     where: { id: id },
-                    attributes: {
-                        exclude: ['image'],
-                    },
+                    // attributes: {
+                    //     exclude: ['image'],
+                    // },
                     include: [
                         { model: db.Allcode, as: 'typeData', attributes: ['valueVi', 'valueEn'] },
                         { model: db.Allcode, as: 'manufacturerData', attributes: ['valueVi', 'valueEn'] },
@@ -389,6 +390,10 @@ const handleGetProductById = (id) => {
             if (product && product.image) {
                 product.image = new Buffer(product.image, 'base64').toString('binary');
             }
+            if (product && product.imgAngle) {
+                product.imgAngle = new Buffer(product.imgAngle, 'base64').toString('binary');
+            }
+
             product.errCode = 0;
             resolve(product)
         } catch (e) {
@@ -397,6 +402,25 @@ const handleGetProductById = (id) => {
     })
 
 };
+const handleAllProductOnlyNameAndId = () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const product = await db.Product.findAll({
+                attributes: ['image', 'nameItem', 'id'],
+            });
+            if (!product) {
+                resolve({
+                    errCode: 2,
+                    message: `not find all product!`
+                })
+            }
+            resolve(product)
+        } catch (e) {
+            reject(e)
+        }
+    })
+};
+
 module.exports = {
     handleCreateProductService,
     handleGetProductById,
@@ -407,5 +431,6 @@ module.exports = {
     handleDeleteProductByIdService,
     handleCreateColorProduct,
     handleCreateImgDetailProduct,
-    handleGetAllProductHome
+    handleGetAllProductHome,
+    handleAllProductOnlyNameAndId
 }
