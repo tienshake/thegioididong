@@ -29,7 +29,9 @@ const CarouselPhoneDetail = (props) => {
                     }
                 </Carousel>
             </div>
-            <div className="view__more"><span>Xem tất cả điểm nổi bật</span><span>({props.photoDetail && props.photoDetail.length})</span></div>
+            {props.isNb &&
+                <div className="view__more"><span>Xem tất cả điểm nổi bật</span><span>({props.photoDetail && props.photoDetail.length})</span></div>
+            }
 
         </>
     );

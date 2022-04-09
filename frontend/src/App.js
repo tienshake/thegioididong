@@ -1,5 +1,5 @@
 
-import './App.css';
+import './App.scss';
 import AppWeb from './components/AppWeb';
 import CategorySalienState from './store/accessory/CategorySalienState';
 function App() {

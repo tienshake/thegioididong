@@ -13,10 +13,12 @@ import CarouselPhoneDetail from './CarouselPhoneDetail';
 import Policy from './Policy';
 import Configuration from './Configuration';
 import Post from './Post';
+import Modal from './modal/Modal';
 const DetailItem = () => {
     const { id } = useParams();
     const [product, setProduct] = useState({});
     const [markdown, setMarkdown] = useState({});
+    const [modalIsOpen, setIsOpen] = useState(false);
     useEffect(() => {
         if (id) {
             const fetch = async () => {
@@ -32,8 +34,28 @@ const DetailItem = () => {
             fetch()
         }
     }, []);
+
+
+
+    const openModal = () => {
+        console.log('opem');
+        setIsOpen(true);
+    }
+
+
+    const closeModal = () => {
+        setIsOpen(false);
+    }
     return (
         <div className="phone__detail-container">
+            <Modal
+                photoDetail={product && product.photoDetail ? product.photoDetail : []}
+                modalIsOpen={modalIsOpen}
+                closeModal={closeModal}
+                imgAngle={product && product.imgAngle ? product.imgAngle : ''}
+                markdown={markdown}
+                product={product ? product : ''}
+            />
             <div className="phone__detail-header">
                 <div className="detail__header-top">
                     <div className="detail__header-link">
@@ -80,6 +102,7 @@ const DetailItem = () => {
                     {/* CarouselPhoneDetail */}
                     <CarouselPhoneDetail
                         photoDetail={product && product.photoDetail ? product.photoDetail : []}
+                        isNb={true}
                     />
                     {/* Policy */}
                     <Policy />
@@ -87,7 +110,9 @@ const DetailItem = () => {
                     <Post
                         imgAngle={product && product.imgAngle ? product.imgAngle : ''}
                         markdown={markdown}
+                        openModal={openModal}
                     />
+
                 </div>
                 <div className="phone__detail-product-right">
                     <div className="phone__detail-product-rom">
@@ -185,7 +210,7 @@ const DetailItem = () => {
 
                             {/* Cấu hình phone */}
                             <Configuration
-                                product={product ? product : {}}
+                                product={product ? product : ''}
                             />
                         </div>
 
@@ -197,7 +222,7 @@ const DetailItem = () => {
                     </div>
                 </div>
             </div>
-            <div className='spacer'></div>
+
         </div>
     );
 }

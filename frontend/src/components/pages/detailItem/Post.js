@@ -21,7 +21,9 @@ const Post = (props) => {
                     && <div className='post__markdown' dangerouslySetInnerHTML={{ __html: props.markdown.contentHTML }}></div>
                 }
                 <div className="bg-article">
-                    <button className="btn">Xem Thêm</button>
+                    <button className="btn"
+                        onClick={props.openModal}
+                    >Xem Thêm</button>
                 </div>
             </div>
 
