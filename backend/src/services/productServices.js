@@ -423,20 +423,13 @@ const handleAllProductOnlyNameAndId = () => {
 const handlePostMarkDown = (markdown) => {
     return new Promise(async (resolve, reject) => {
         try {
-
-
-
             if (!markdown.contentHTML || !markdown.contentMarkdown) {
                 resolve({
                     errCode: 2,
                     message: `Missing parameter!`
                 })
             } else {
-                const post = await db.MarkDown.create({
-                    productId: markdown.productId,
-                    contentHTML: markdown.contentHTML,
-                    contentMarkdown: markdown.contentMarkdown,
-                })
+                const post = await db.MarkDown.create(markdown)
                 if (post) {
                     resolve({
                         errCode: 0,
@@ -450,7 +443,23 @@ const handlePostMarkDown = (markdown) => {
         }
     })
 };
-
+const handleMarkDownById = async (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const markdown = await db.MarkDown.findOne({ where: { productId: id } });
+            if (!markdown) {
+                resolve({
+                    errCode: 2,
+                    message: `The product isn't exist`
+                })
+            } else {
+                resolve(markdown)
+            }
+        } catch (e) {
+            reject(e)
+        }
+    })
+};
 module.exports = {
     handleCreateProductService,
     handleGetProductById,
@@ -463,5 +472,6 @@ module.exports = {
     handleCreateImgDetailProduct,
     handleGetAllProductHome,
     handleAllProductOnlyNameAndId,
-    handlePostMarkDown
+    handlePostMarkDown,
+    handleMarkDownById
 }

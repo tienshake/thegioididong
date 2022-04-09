@@ -233,7 +233,32 @@ const handlePostMarkDown = async (req, res) => {
         })
     }
 };
+const handleMarkDownById = async (req, res) => {
+    const id = req.query.id
+    try {
+        if (!id) {
+            return res.status(500).json({
+                errCode: 1,
+                errMessage: 'missing require parameter',
+                data: {}
+            })
+        } else {
+            const data = await productServices.handleMarkDownById(id);
+            return res.status(200).json({
+                errCode: 0,
+                errMessage: 'oke',
+                data: data ? data : {}
+            })
+        }
 
+    } catch (e) {
+        console.log('create error:', e)
+        return res.status(200).json({
+            errCode: -1,
+            errMessage: 'Error from server'
+        })
+    }
+};
 module.exports = {
     handleCreateProduct,
     handleGetProductById,
@@ -246,5 +271,6 @@ module.exports = {
     handleCreateImgDetailProduct,
     handleGetAllProductHome,
     handleAllProductOnlyNameAndId,
-    handlePostMarkDown
+    handlePostMarkDown,
+    handleMarkDownById
 }
