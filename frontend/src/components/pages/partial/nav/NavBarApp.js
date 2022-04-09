@@ -17,7 +17,6 @@ export default function NavBarApp(props) {
 
     return (
         <>
-
             <header>
                 {/* <img className='img__top__nav' style={{ top: '0' }} src='https://cdn.tgdd.vn/2022/02/banner/1200-44-1200x44-12.png' alt='' /> */}
                 <Carousel className="img__top__nav"
@@ -31,10 +30,10 @@ export default function NavBarApp(props) {
                     showIndicators={false}
                 >
                     <div className="item-slidee">
-                        <img src="https://cdn.tgdd.vn/2022/02/banner/1200-44-1200x44-12.png" />
+                        <img src="https://cdn.tgdd.vn/2022/02/banner/1200-44-1200x44-12.png" alt='' />
                     </div>
                     <div className="item-slidee">
-                        <img src="https://cdn.tgdd.vn/2022/03/banner/Ca%CC%81-tha%CC%81ng-4-top-bar---1200x44-1200x44.gif" />
+                        <img src="https://cdn.tgdd.vn/2022/03/banner/Ca%CC%81-tha%CC%81ng-4-top-bar---1200x44-1200x44.gif" alt='' />
                     </div>
                 </Carousel>
                 <div className='toolbar__top'>
@@ -53,7 +52,7 @@ export default function NavBarApp(props) {
                         Xem giá, khuyễn mãi tại<br />
                         <span style={{ color: "yellow" }}>Hồ Chí Minh</span>
                     </p>
-                    <a href='' className='note'>chưa responsive</a>
+                    <a href='http://localhost:3001/' className='note'>chưa responsive</a>
 
                     {/* search */}
                     <div className='wrap__search__nav'>

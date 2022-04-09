@@ -184,8 +184,9 @@
     width: 94.3%;
 }
 .btn-arrow-slider {
-    background: red;
     font-weight: 400;
+    height: 50px;
+    width: 100%;
     font-size: 20px;
     position: absolute;
     top: 200px;
@@ -193,7 +194,7 @@
     cursor: pointer;
 }
 .btn-next-slider{
-    left: 1199px;
+    right: 0;
     background: #E4DB98;
     position: absolute;
     height: 48px;

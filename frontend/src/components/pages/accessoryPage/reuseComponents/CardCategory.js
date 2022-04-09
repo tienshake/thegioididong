@@ -15,7 +15,6 @@ export default function CardCategory() {
         showCatetoryLapTopPC,
         showCatetoryEquipmentSound,
         handleShowCatetoryEquipmentSound,
-        handleHideCategorySalienAll,
     } = useContext(CategorySalienContext);
 
 
