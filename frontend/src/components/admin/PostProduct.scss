@@ -1,0 +1,11 @@
+.manage__post-container {
+    display    : flex;
+    height     : 100%;
+    padding-top: 20px;
+
+    .markdown {
+        flex   : 1;
+        outline: none;
+        height : 80vh !important;
+    }
+}

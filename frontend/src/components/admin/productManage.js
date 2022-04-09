@@ -121,6 +121,7 @@ const ProductManage = (props) => {
                 nameItem, price, type, manufacturer,
                 ram, rom, quantity,
                 image: image.avatar,
+                imgAngle: imageDetail.avatar,
                 pin, display, camera, chip, operatingSystem
             }, typeData, selectColor.filter(item => item.isSelected === true), imageMultiple)
             console.log(pin, display, camera)

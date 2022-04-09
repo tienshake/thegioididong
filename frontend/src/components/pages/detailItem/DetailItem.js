@@ -32,7 +32,14 @@ const DetailItem = () => {
                     <div className="detail__header-link">
                         <span>{product && product.typeData && product.typeData.valueVi}</span>
                         /
-                        <span>{product && product.typeData && product.typeData.valueVi} {product.nameItem}</span>
+                        <span>
+                            {product &&
+                                product.typeData &&
+                                product.typeData.valueVi}  {product &&
+                                    product.manufacturerData &&
+                                    product.manufacturerData.valueVi}
+
+                        </span>
                     </div>
                 </div>
 
@@ -70,7 +77,9 @@ const DetailItem = () => {
                     {/* Policy */}
                     <Policy />
                     {/* Post */}
-                    <Post />
+                    <Post
+                        imgAngle={product && product.imgAngle ? product.imgAngle : ''}
+                    />
                 </div>
                 <div className="phone__detail-product-right">
                     <div className="phone__detail-product-rom">

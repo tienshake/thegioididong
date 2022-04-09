@@ -19,6 +19,7 @@ import UserList from './admin/UserList';
 import Login from './login/Login';
 import ProductManage from './admin/productManage';
 import DetailItem from './pages/detailItem/DetailItem';
+import PostProduct from './admin/PostProduct';
 export default function MyApp() {
   return (
     <>
@@ -37,6 +38,7 @@ export default function MyApp() {
             <Route path='users' element={<UserList type={'users'} />} />
             <Route path='create-product' element={<ProductManage />} />
             <Route path='products' element={<UserList type={'products'} />} />
+            <Route path='creat-post-product' element={<PostProduct />} />
           </Route>
           <Route path='/login' element={<Login />} >
 
