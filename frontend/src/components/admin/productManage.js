@@ -1,4 +1,4 @@
-import { AiOutlineUpload } from "react-icons/ai";
+import { AiOutlineUpload, AiFillDelete } from "react-icons/ai";
 import React, { useEffect, useState } from 'react';
 import CommonUtils from '../../utils/CommonUtils';
 import { useOutletContext } from 'react-router-dom';
@@ -19,6 +19,7 @@ const ProductManage = (props) => {
     const [display, setDisplay] = useState('DIS5');
     const [camera, setCamera] = useState('CAM8');
     const [image, setImage] = useState('');
+    const [imageDetail, setImageDetail] = useState('');
     const [imageMultiple, setMultiple] = useState([]);
     const [chip, setChip] = useState([]);
     const [operatingSystem, setOperatingSystem] = useState([]);
@@ -140,6 +141,19 @@ const ProductManage = (props) => {
 
         }
     }
+    const handleOnchangeImgDetail = async (e) => {
+        const data = e.target.files;
+        const file = data[0];
+        if (file) {
+            const b64 = await CommonUtils.getBase64(file);
+            const objectUrl = URL.createObjectURL(file);
+            setImageDetail({
+                previewImg: objectUrl,
+                avatar: b64
+            })
+
+        }
+    };
     const handleOnchangeImgMultiple = async (e) => {
         console.log('muti')
         const data = e.target.files;
@@ -184,7 +198,27 @@ const ProductManage = (props) => {
     const handleCovertPrice = (values) => {
         setPrice(values.formattedValue)
     };
-
+    const handleDeletePreviewImage = (type, indexItem) => {
+        switch (type) {
+            case 'image':
+                setImage('')
+                break;
+            case 'imageMulti':
+                setMultiple((prev) => {
+                    var filtered = prev.filter((item, index) => {
+                        console.log(index);
+                        return index !== indexItem;
+                    });
+                    return [...filtered]
+                })
+                break;
+            case 'imageDetail':
+                setImageDetail('')
+                break;
+            default:
+                break;
+        }
+    };
     return (
         <div className="product-manage">
             <h4 className="mt-3">Sản phẩm</h4>
@@ -371,6 +405,8 @@ const ProductManage = (props) => {
                     type="number" id="quantity" name="quantity" min="1" max="1000"
                 />
             </div>
+            <h4>Ảnh sản phẩm</h4>
+            <hr />
             <div className='row preview-upload'>
                 <div className="manage__content-form col-12">
                     <label className="manage__content-label">Ảnh sản phẩm (Preview)</label>
@@ -386,8 +422,40 @@ const ProductManage = (props) => {
                             backgroundSize: 'cover',
                             backgroundRepeat: 'no-repeat'
                         }}
-                        onClick={() => this.isOpenPreviewImage()}
                     ></div>
+                    {image.previewImg &&
+                        <AiFillDelete
+                            onClick={() => handleDeletePreviewImage('image')}
+                            className='deleteImage' />
+                    }
+
+                </div>
+
+            </div>
+            <h4>Ảnh góc cạnh</h4>
+            <hr />
+            <div className='row preview-upload'>
+                <div className="manage__content-form col-12">
+                    <label className="manage__content-label">Ảnh từng góc cạnh</label>
+                    <input
+                        id="previewDetail" hidden className="form-control-file" type='file'
+                        onChange={(e) => handleOnchangeImgDetail(e)}
+                    />
+                    <label className="label-upload" htmlFor="previewDetail"><AiOutlineUpload className="form-control-icon" /></label>
+                    <div className="preview"
+                        style={{
+                            backgroundImage: `url(${imageDetail.previewImg})`,
+                            backgroundPosition: 'center',
+                            backgroundSize: 'cover',
+                            backgroundRepeat: 'no-repeat'
+                        }}
+                    ></div>
+                    {imageDetail.previewImg &&
+                        <AiFillDelete
+                            onClick={() => handleDeletePreviewImage('imageDetail')}
+                            className='deleteImage' />
+                    }
+
                 </div>
 
             </div>
@@ -404,22 +472,29 @@ const ProductManage = (props) => {
                     <label className="label-upload" htmlFor="previewMultiple"><AiOutlineUpload className="form-control-icon" /></label>
                     {imageMultiple && imageMultiple.length > 0 && imageMultiple.map((item, index) => {
                         return (
-                            <div
-                                key={index}
-                                className="previewMultiple"
-                                style={{
-                                    backgroundImage: `url(${item.previewImg})`,
-                                    backgroundPosition: 'center',
-                                    backgroundSize: 'cover',
-                                    backgroundRepeat: 'no-repeat'
-                                }}
-                                onClick={() => this.isOpenPreviewImage()}
-                            ></div>
+                            <>
+                                <div
+                                    key={index}
+                                    className="previewMultiple"
+                                    style={{
+                                        backgroundImage: `url(${item.previewImg})`,
+                                        backgroundPosition: 'center',
+                                        backgroundSize: 'cover',
+                                        backgroundRepeat: 'no-repeat'
+                                    }}
+                                ></div>
+                                {item.previewImg &&
+                                    <AiFillDelete
+                                        onClick={() => handleDeletePreviewImage('imageMulti', index)}
+                                        className='deleteImage' />
+                                }
+                            </>
                         )
                     })}
 
                 </div>
             </div>
+
             <button
                 onClick={handleOnClickSubmit}
                 className="btn btn-primary">Tạo sản phẩm</button>

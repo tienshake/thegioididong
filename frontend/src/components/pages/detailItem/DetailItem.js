@@ -7,18 +7,12 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 import '../detailItem/Detailtem.css';
 import PromotionIfo from './PromotionIfo';
 import GroupButtonBuy from './GroupButtonBuy';
-<<<<<<< HEAD
 import { getProductByIdService } from '../../../services/userService';
 import CardDiscount from './CardDiscount';
 import CarouselPhoneDetail from './CarouselPhoneDetail';
 import Policy from './Policy';
-=======
-import CardDiscount from './CardDiscount';
-import { getProductByIdService } from '../../../services/userService';
-import ExtraOffer from './ExtraOffer';
-import { Carousel } from 'react-responsive-carousel';
-
->>>>>>> 88e1b95848ab729fd35539e3ba5e94b51c253d92
+import Configuration from './Configuration';
+import Post from './Post';
 const DetailItem = () => {
     const { id } = useParams();
     const [product, setProduct] = useState({});
@@ -75,6 +69,8 @@ const DetailItem = () => {
                     />
                     {/* Policy */}
                     <Policy />
+                    {/* Post */}
+                    <Post />
                 </div>
                 <div className="phone__detail-product-right">
                     <div className="phone__detail-product-rom">
@@ -139,7 +135,6 @@ const DetailItem = () => {
                                         <div style={{ display: 'flex' }}><p style={{ margin: 'auto', marginTop: '8px' }}>5 ưu đãi thêm Dự kiến áp dụng đến 23:00 30/04</p></div>
                                     </div>
 
-<<<<<<< HEAD
                                     <div className='container body__extra__offer'>
                                         <div className='row'>
                                             <p className='col-xl-1'>1</p>
@@ -172,134 +167,17 @@ const DetailItem = () => {
                             </div>
 
                             {/* Cấu hình phone */}
-                            <div className='wrap__configuration'>
-                                <div className='title__configuration'><p><h5>Cấu hình điện thoại iPhone 13 Pro Max 128GB</h5></p></div>
-
-                                <div className='body__configuration'>
-                                    <div className='row item__configuration'>
-                                        <div style={{ background: '#F5F5F5' }} className='col-xl-5'><p>Màn hình:</p></div>
-                                        <div style={{ background: '#F5F5F5' }} className='col-xl-7'><p>OLED6.7"Super Retina XDR</p></div>
-                                    </div>
-
-                                    <div className='row item__configuration'>
-                                        <div className='col-xl-5'><p>Hệ điều hành:</p></div>
-                                        <div className='col-xl-7'><p>iOS 15</p></div>
-                                    </div>
-
-                                    <div className='row item__configuration'>
-                                        <div style={{ background: '#F5F5F5' }} className='col-xl-5'><p>Camera sau:</p></div>
-                                        <div style={{ background: '#F5F5F5' }} className='col-xl-7'><p>3 camera 12 MP</p></div>
-                                    </div>
-
-                                    <div className='row item__configuration'>
-                                        <div className='col-xl-5'><p>Camera trước:</p></div>
-                                        <div className='col-xl-7'><p>2 MP</p></div>
-                                    </div>
-
-                                    <div className='row item__configuration'>
-                                        <div style={{ background: '#F5F5F5' }} className='col-xl-5'><p>Chip:</p></div>
-                                        <div style={{ background: '#F5F5F5' }} className='col-xl-7'><p>Apple A15 Bionic</p></div>
-                                    </div>
-
-                                    <div className='row item__configuration'>
-                                        <div className='col-xl-5'><p>RAM:</p></div>
-                                        <div className='col-xl-7'><p>6 GB</p></div>
-                                    </div>
-
-                                    <div className='row item__configuration'>
-                                        <div style={{ background: '#F5F5F5' }} className='col-xl-5'><p>Bộ nhớ trong:</p></div>
-                                        <div style={{ background: '#F5F5F5' }} className='col-xl-7'><p>128 GB</p></div>
-                                    </div>
-
-                                    <div className='row item__configuration'>
-                                        <div className='col-xl-5'><p>SIM:</p></div>
-                                        <div className='col-xl-7'><p>1 Nano SIM & 1 eSIMHỗ trợ 5G</p></div>
-                                    </div>
-
-                                    <div className='row item__configuration'>
-                                        <div style={{ background: '#F5F5F5' }} className='col-xl-5'><p>Pin, Sạc:</p></div>
-                                        <div style={{ background: '#F5F5F5' }} className='col-xl-7'><p>4352 mAh20 W</p></div>
-                                    </div>
-=======
-                            <div>
-                                {/* Cấu hình phone */}
-                                <div className='wrap__configuration'>
-                                    <div className='title__configuration'><p><h5>Cấu hình điện thoại iPhone 13 Pro Max 128GB</h5></p></div>
-
-                                    <div className='body__configuration'>
-                                        <div className='row item__configuration'>
-                                            <div style={{ background: '#F5F5F5' }} className='col-xl-5'><p>Màn hình:</p></div>
-                                            <div style={{ background: '#F5F5F5' }} className='col-xl-7'><p>OLED6.7"Super Retina XDR</p></div>
-                                        </div>
-
-                                        <div className='row item__configuration'>
-                                            <div className='col-xl-5'><p>Hệ điều hành:</p></div>
-                                            <div className='col-xl-7'><p>iOS 15</p></div>
-                                        </div>
-
-                                        <div className='row item__configuration'>
-                                            <div style={{ background: '#F5F5F5' }} className='col-xl-5'><p>Camera sau:</p></div>
-                                            <div style={{ background: '#F5F5F5' }} className='col-xl-7'><p>3 camera 12 MP</p></div>
-                                        </div>
-
-                                        <div className='row item__configuration'>
-                                            <div className='col-xl-5'><p>Camera trước:</p></div>
-                                            <div className='col-xl-7'><p>2 MP</p></div>
-                                        </div>
-
-                                        <div className='row item__configuration'>
-                                            <div style={{ background: '#F5F5F5' }} className='col-xl-5'><p>Chip:</p></div>
-                                            <div style={{ background: '#F5F5F5' }} className='col-xl-7'><p>Apple A15 Bionic</p></div>
-                                        </div>
-
-                                        <div className='row item__configuration'>
-                                            <div className='col-xl-5'><p>RAM:</p></div>
-                                            <div className='col-xl-7'><p>6 GB</p></div>
-                                        </div>
-
-                                        <div className='row item__configuration'>
-                                            <div style={{ background: '#F5F5F5' }} className='col-xl-5'><p>Bộ nhớ trong:</p></div>
-                                            <div style={{ background: '#F5F5F5' }} className='col-xl-7'><p>128 GB</p></div>
-                                        </div>
-
-                                        <div className='row item__configuration'>
-                                            <div className='col-xl-5'><p>SIM:</p></div>
-                                            <div className='col-xl-7'><p>1 Nano SIM & 1 eSIMHỗ trợ 5G</p></div>
-                                        </div>
-
-                                        <div className='row item__configuration'>
-                                            <div style={{ background: '#F5F5F5' }} className='col-xl-5'><p>Pin, Sạc:</p></div>
-                                            <div style={{ background: '#F5F5F5' }} className='col-xl-7'><p>4352 mAh20 W</p></div>
-                                        </div>
-                                    </div>
-
-                                    <div style={{ display: 'flex', marginBottom: '18px' }}>
-                                        <div style={{ marginTop: '10px' }}>Hướng dãn sử dụng tiếng anh [PDF, 0.2MB]</div>
-                                    </div>
-
-                                    <div className='container wrap-loadMore-configuration'>
-                                        <div className='button-loadMore-configuration'>
-                                            <p>Xem thêm cấu hình chi tiết</p>
-                                        </div>
-                                    </div>
->>>>>>> 88e1b95848ab729fd35539e3ba5e94b51c253d92
-                                </div>
-
-                            </div>
-<<<<<<< HEAD
-
-=======
->>>>>>> 88e1b95848ab729fd35539e3ba5e94b51c253d92
+                            <Configuration
+                                product={product ? product : {}}
+                            />
                         </div>
+
                         <div className='spacer'></div>
                     </div>
-<<<<<<< HEAD
 
                     <div>
 
                     </div>
-=======
->>>>>>> 88e1b95848ab729fd35539e3ba5e94b51c253d92
                 </div>
             </div>
             <div className='spacer'></div>

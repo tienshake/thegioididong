@@ -88,18 +88,6 @@
         gap        : 20px;
 
         .phone__detail-product-left {
-
-            // .carousel {
-            //     .home-slide {
-            //         .item-slide {
-            //             iframe {
-            //                 height: 420px;
-            //             }
-            //         }
-            //     }
-
-            // }
-
             flex: 2.5;
 
             .thumbs {
@@ -175,6 +163,14 @@
                             display: inline-block;
                         }
                     }
+                }
+            }
+
+            .post__container {
+                border: 1px solid #4a90ef;
+
+                .post__image {
+                    height: 540px;
                 }
             }
         }
