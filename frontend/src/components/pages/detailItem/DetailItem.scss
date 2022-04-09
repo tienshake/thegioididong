@@ -167,12 +167,56 @@
             }
 
             .post__container {
-                border: 1px solid #4a90ef;
+                h4 {
+                    margin: 20px 0;
+                }
 
                 .post__image {
                     height: 540px;
-                    width : 100%;
                 }
+
+                .post__content {
+                    width   : 100%;
+                    position: relative;
+
+                    .post__markdown {
+                        width   : 100%;
+                        overflow: hidden;
+                        height  : 520px;
+
+                        img {
+                            height: 100%;
+                            width : 100%;
+                        }
+
+
+
+                    }
+
+                    .bg-article {
+                        bottom         : 0;
+                        height         : 105px;
+                        left           : 0;
+                        position       : absolute;
+                        width          : 100%;
+                        display        : flex;
+                        align-items    : center;
+                        justify-content: center;
+                        background     : linear-gradient(to bottom, hsla(0, 0%, 100%, 0), hsl(0, 0%, 100%), hsl(0, 0%, 100%));
+
+                        .btn {
+                            margin-top: 30px;
+                            border    : 1px solid #4a90ef;
+                            outline   : none;
+                            height    : 40px;
+                            width     : 400px;
+                            color     : #4a90ef;
+                        }
+                    }
+
+                }
+
+
             }
         }
 

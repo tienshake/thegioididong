@@ -28,6 +28,16 @@ const getAllProductHomeService = async (limit, option) => {
 const getProductByIdService = async (id) => {
     return await axios.get(`/api/get-product-by-id?id=${id}`);
 }
+const getAllProductSelected = async (id) => {
+    return await axios.get(`/api/get-all-product-only-name-and-id`);
+}
+const createMarkDown = async (data) => {
+    return await axios.post('/api/post-markdown', data);
+};
+const getMarkDownById = async (id) => {
+    return await axios.get(`/api/get-markDown-by-id?id=${id}`);
+}
+
 export {
     createUserService,
     getAllUserService,
@@ -37,5 +47,8 @@ export {
     createImgDetailProductService,
     getAllProductService,
     getAllProductHomeService,
-    getProductByIdService
+    getProductByIdService,
+    getAllProductSelected,
+    createMarkDown,
+    getMarkDownById
 }

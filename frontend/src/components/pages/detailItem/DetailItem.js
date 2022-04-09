@@ -7,7 +7,7 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 import '../detailItem/Detailtem.css';
 import PromotionIfo from './PromotionIfo';
 import GroupButtonBuy from './GroupButtonBuy';
-import { getProductByIdService } from '../../../services/userService';
+import { getProductByIdService, getMarkDownById } from '../../../services/userService';
 import CardDiscount from './CardDiscount';
 import CarouselPhoneDetail from './CarouselPhoneDetail';
 import Policy from './Policy';
@@ -16,14 +16,21 @@ import Post from './Post';
 const DetailItem = () => {
     const { id } = useParams();
     const [product, setProduct] = useState({});
+    const [markdown, setMarkdown] = useState({});
     useEffect(() => {
-        const fetch = async () => {
-            const res = await getProductByIdService(id);
-            if (res && res.errCode === 0) {
-                setProduct(res.data)
+        if (id) {
+            const fetch = async () => {
+                const res = await getProductByIdService(id);
+                if (res && res.errCode === 0) {
+                    setProduct(res.data)
+                }
+                const resMarkDown = await getMarkDownById(id)
+                if (resMarkDown && resMarkDown.errCode === 0) {
+                    setMarkdown(resMarkDown.data)
+                }
             }
+            fetch()
         }
-        fetch()
     }, []);
     return (
         <div className="phone__detail-container">
@@ -79,6 +86,7 @@ const DetailItem = () => {
                     {/* Post */}
                     <Post
                         imgAngle={product && product.imgAngle ? product.imgAngle : ''}
+                        markdown={markdown}
                     />
                 </div>
                 <div className="phone__detail-product-right">

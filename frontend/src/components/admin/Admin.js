@@ -18,8 +18,7 @@ import { IoAppsOutline, IoPhonePortraitOutline, IoCreate } from "react-icons/io5
 import { AiFillMail, AiOutlineUser, AiOutlineFileSync } from "react-icons/ai";
 import React, { useState, useEffect } from 'react';
 import { createUserService, createColorProductService, createProductService, createImgDetailProductService } from '../../services/userService';
-import { alert } from 'react-bootstrap-confirmation';
-import { confirm } from 'react-bootstrap-confirmation';
+import { alert, confirm } from 'react-bootstrap-confirmation';
 
 const Admin = (props) => {
     const createToAdmin = async (data, type, colors, imageMultiple) => {

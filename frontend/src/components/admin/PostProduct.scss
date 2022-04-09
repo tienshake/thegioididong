@@ -1,11 +1,22 @@
 .manage__post-container {
-    display    : flex;
-    height     : 100%;
-    padding-top: 20px;
+    display       : flex;
+    height        : 90vh;
+    padding-top   : 20px;
+    flex-direction: column;
 
     .markdown {
-        flex   : 1;
         outline: none;
-        height : 80vh !important;
+        height : 100% !important;
+    }
+
+    .select {
+        width : 400px;
+        margin: 10px 0;
+
+    }
+
+    button {
+        width : 200px;
+        margin: 10px 0;
     }
 }
