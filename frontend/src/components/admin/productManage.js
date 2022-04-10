@@ -6,6 +6,9 @@ import { alert } from 'react-bootstrap-confirmation';
 import './productManage.scss'
 import { getAllUCodeService } from "../../services/userService";
 import NumberFormat from 'react-number-format';
+import Input from "./com/Input";
+import Select from "./com/Select";
+import ImagePreview from "./com/ImagePreview";
 const ProductManage = (props) => {
     const outletContext = useOutletContext()
     const [nameItem, setNameItem] = useState('');
@@ -225,12 +228,10 @@ const ProductManage = (props) => {
             <h4 className="mt-3">Sản phẩm</h4>
             <hr />
             <div className="row">
-                <div className="manage__content-form form-group col-6">
-                    <label>Tên sản phẩm</label>
-                    <input
-                        onChange={(e) => setNameItem(e.target.value)}
-                        type="text" className="form-control" />
-                </div>
+                <Input
+                    setUseState={setNameItem}
+                    name={'Tên sản phẩm'}
+                />
 
                 <div className="manage__content-form form-group col-6">
                     <label>Giá (VNĐ)</label>
@@ -244,65 +245,34 @@ const ProductManage = (props) => {
                 </div>
             </div>
             <div className="row ">
-                <div className="manage__content-form form-group col-6">
-                    <label className="manage__content-label">Loại sản phẩm</label>
-                    <select
-                        onChange={(e) => setType(e.target.value)}
-                        value={type}
-                        className="form-select">
-                        {selectPloai && selectPloai.length > 0 && selectPloai.map((item, index) => {
-                            return (
-                                <option key={index} value={item.keyMap}>{item.valueVi}</option>
-                            )
-                        })}
-                    </select>
-                </div>
-
-                <div className="manage__content-form form-group col-6">
-                    <label className="manage__content-label">Hãng sản xuất</label>
-                    <select
-                        onChange={(e) => setManufacturer(e.target.value)}
-                        value={manufacturer}
-                        className="form-select">
-                        {selectType && selectType.length > 0 && selectType.map((item, index) => {
-                            return (
-                                <option key={index} value={item.keyMap}>{item.valueVi}</option>
-
-                            )
-                        })}
-                    </select>
-
-
-                </div>
-
-
+                <Select
+                    name={'Loại sản phẩm'}
+                    setUseState={setType}
+                    value={type}
+                    selectArr={selectPloai && selectPloai}
+                />
+                <Select
+                    name={'Hãng sản xuất'}
+                    setUseState={setManufacturer}
+                    value={manufacturer}
+                    selectArr={selectType && selectType}
+                />
             </div>
 
             {/* dien thoai */}
             {type === 'PL1' &&
                 <>
                     <div className="row ">
-                        <div className="manage__content-form form-group col-6">
-                            <label className="manage__content-label">Chip xử lý</label>
-                            <input
-                                onChange={(e) => setChip(e.target.value)}
-                                type="text" className="form-control" />
-                        </div>
-
-                        <div className="manage__content-form form-group col-6">
-                            <label className="manage__content-label">Hệ điều hành</label>
-                            <select
-                                onChange={(e) => setOperatingSystem(e.target.value)}
-                                value={operatingSystem}
-                                className="form-select">
-                                {selectOperatingSystem && selectOperatingSystem.length > 0 && selectOperatingSystem.map((item, index) => {
-                                    return (
-                                        <option key={index} value={item.keyMap}>{item.valueVi}</option>
-                                    )
-                                })}
-                            </select>
-                        </div>
-
+                        <Input
+                            setUseState={setChip}
+                            name={'Chip xử lý'}
+                        />
+                        <Select
+                            name={'Hệ điều hành'}
+                            setUseState={setOperatingSystem}
+                            value={operatingSystem}
+                            selectArr={selectOperatingSystem && selectOperatingSystem}
+                        />
                     </div>
                     <div className="row">
                         <div className="manage__content-form form-group col-6">
@@ -316,6 +286,7 @@ const ProductManage = (props) => {
                                 <option value="12GB">12GB</option>
                             </select>
                         </div>
+
                         <div className="manage__content-form form-group col-6">
                             <label className="manage__content-label">Bộ nhớ</label>
                             <select
@@ -333,48 +304,25 @@ const ProductManage = (props) => {
                         </div>
                     </div>
                     <div className='row'>
-
-                        <div className="manage__content-form form-group col-6">
-                            <label className="manage__content-label">Pin</label>
-                            <select
-                                onChange={(e) => setPin(e.target.value)}
-                                value={pin}
-                                className="form-select">
-                                {selectPin && selectPin.length > 0 && selectPin.map((item, index) => {
-                                    return (
-                                        <option key={index} value={item.keyMap}>{item.valueVi}</option>
-                                    )
-                                })}
-                            </select>
-                        </div>
-                        <div className="manage__content-form form-group col-6">
-                            <label className="manage__content-label">Màng hình</label>
-                            <select
-                                onChange={(e) => setDisplay(e.target.value)}
-                                value={display}
-                                className="form-select">
-                                {selectDisplay && selectDisplay.length > 0 && selectDisplay.map((item, index) => {
-                                    return (
-                                        <option key={index} value={item.keyMap}>{item.valueVi}</option>
-                                    )
-                                })}
-                            </select>
-                        </div>
+                        <Select
+                            name={'Pin'}
+                            setUseState={setPin}
+                            value={pin}
+                            selectArr={selectPin && selectPin}
+                        />
+                        <Select
+                            name={'Màng hình'}
+                            setUseState={setDisplay}
+                            value={display}
+                            selectArr={selectDisplay && selectDisplay}
+                        />
                     </div>
-                    <div className="manage__content-form form-group col-6">
-                        <label className="manage__content-label">Camera</label>
-                        <select
-                            onChange={(e) => setCamera(e.target.value)}
-                            value={camera}
-                            className="form-select">
-                            {selectCamera && selectCamera.length > 0 && selectCamera.map((item, index) => {
-                                return (
-                                    <option key={index} value={item.keyMap}>{item.valueVi}</option>
-                                )
-                            })}
-                        </select>
-                    </div>
-
+                    <Select
+                        name={'Camera'}
+                        setUseState={setCamera}
+                        value={camera}
+                        selectArr={selectCamera && selectCamera}
+                    />
                 </>
 
 
@@ -400,7 +348,6 @@ const ProductManage = (props) => {
                 </div>
             </div>
             <div className="manage__content-form form-group col-6">
-
                 <label className="manage__content-label">Số lượng sản phẩm</label>
                 <input
                     className="quantity form-control"
@@ -410,58 +357,24 @@ const ProductManage = (props) => {
             </div>
             <h4>Ảnh sản phẩm</h4>
             <hr />
-            <div className='row preview-upload'>
-                <div className="manage__content-form col-12">
-                    <label className="manage__content-label">Ảnh sản phẩm (Preview)</label>
-                    <input
-                        id="preview" hidden className="form-control-file" type='file'
-                        onChange={(e) => handleOnchangeImg(e)}
-                    />
-                    <label className="label-upload" htmlFor="preview"><AiOutlineUpload className="form-control-icon" /></label>
-                    <div className="preview"
-                        style={{
-                            backgroundImage: `url(${image.previewImg})`,
-                            backgroundPosition: 'center',
-                            backgroundSize: 'cover',
-                            backgroundRepeat: 'no-repeat'
-                        }}
-                    ></div>
-                    {image.previewImg &&
-                        <AiFillDelete
-                            onClick={() => handleDeletePreviewImage('image')}
-                            className='deleteImage' />
-                    }
-
-                </div>
-
-            </div>
+            <ImagePreview
+                id={`preview`}
+                name={`Ảnh sản phẩm (Preview)`}
+                setUseState={handleOnchangeImg}
+                icon={<><AiOutlineUpload className="form-control-icon" /></>}
+                image={image}
+                handleDeletePreviewImage={() => handleDeletePreviewImage('image')}
+            />
             <h4>Ảnh góc cạnh</h4>
             <hr />
-            <div className='row preview-upload'>
-                <div className="manage__content-form col-12">
-                    <label className="manage__content-label">Ảnh từng góc cạnh</label>
-                    <input
-                        id="previewDetail" hidden className="form-control-file" type='file'
-                        onChange={(e) => handleOnchangeImgDetail(e)}
-                    />
-                    <label className="label-upload" htmlFor="previewDetail"><AiOutlineUpload className="form-control-icon" /></label>
-                    <div className="preview"
-                        style={{
-                            backgroundImage: `url(${imageDetail.previewImg})`,
-                            backgroundPosition: 'center',
-                            backgroundSize: 'cover',
-                            backgroundRepeat: 'no-repeat'
-                        }}
-                    ></div>
-                    {imageDetail.previewImg &&
-                        <AiFillDelete
-                            onClick={() => handleDeletePreviewImage('imageDetail')}
-                            className='deleteImage' />
-                    }
-
-                </div>
-
-            </div>
+            <ImagePreview
+                id={`previewDetail`}
+                name={`Ảnh từng góc cạnh`}
+                setUseState={handleOnchangeImgDetail}
+                icon={<><AiOutlineUpload className="form-control-icon" /></>}
+                image={imageDetail}
+                handleDeletePreviewImage={() => handleDeletePreviewImage('imageDetail')}
+            />
             <h4>Ảnh chi tiết</h4>
             <hr />
             <div className='row preview-upload'>
