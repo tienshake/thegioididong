@@ -2,11 +2,14 @@ import './UserList.scss'
 import React, { useState, useEffect } from 'react';
 import { getAllUserService, getAllProductService, getAllUCodeService } from '../../services/userService';
 import ReactPaginate from 'react-paginate';
+import EditInput from './com/EditInput';
 const UserList = (props) => {
 
     const [users, setUsers] = useState([]);
     const [count, setCount] = useState('');
     const [page, setPage] = useState('');
+    const [stateInput, setStateInput] = useState('');
+    const [indexOf, setIndexOf] = useState('');
 
 
     let arrCount = [];
@@ -21,7 +24,6 @@ const UserList = (props) => {
             }
             if (props.type === 'products') {
                 res = await getAllProductService(limit, page ? page : 1);
-                console.log(res)
             }
             if (res && res.errCode === 0) {
                 setUsers(res.data)
@@ -52,6 +54,64 @@ const UserList = (props) => {
         }
         return content
     }
+    const handleClick = (e, type, index) => {
+        switch (e.detail) {
+            case 2:
+                setStateInput(type)
+                setIndexOf(index)
+                break;
+            default:
+                return;
+        }
+    };
+    const handleClickOutInput = () => {
+        setStateInput('')
+    };
+    const renderAddDetailProduct = (item, index) => {
+        return (
+            <>
+                <tr>
+                    <th></th>
+                    <th>Ram</th>
+                    <th>Bộ nhớ</th>
+                    <th>Camera</th>
+                    <th>Màng hình</th>
+                    <th>Pin</th>
+                </tr>
+                <tr style={{ marginBottom: '20px' }}>
+                    <td></td>
+                    <EditInput
+                        item={item.ram ? item.ram : 'null'}
+                        type={'ram'}
+                        indexOf={indexOf}
+                        index={index}
+                        handleClick={handleClick}
+                        handleClickOutInput={handleClickOutInput}
+                        stateInput={stateInput}
+                    />
+                    <td>{item.rom ? item.rom : 'null'} </td>
+                    <td>{item.cameraData && item.cameraData.valueVi ? item.cameraData.valueVi : 'null'}</td>
+                    <td>{item.displayData && item.displayData.valueVi ? item.displayData.valueVi : 'null'}</td>
+                    <td>{item.pinData && item.pinData.valueVi ? item.pinData.valueVi : 'null'}</td>
+                </tr>
+            </>
+        )
+    };
+    const handleClickAddDetailProduct = (index) => {
+        console.log(index)
+        if (!users[index].isSelected) {
+            setUsers((prev) => {
+                prev[index].isSelected = true
+
+                return [...prev]
+            })
+        } else {
+            setUsers((prev) => {
+                prev[index].isSelected = false;
+                return [...prev]
+            })
+        }
+    };
     const renderListItem = (e) => {
         let result = '';
         if (props.type === 'users') {
@@ -86,32 +146,57 @@ const UserList = (props) => {
             if (users && users.length > 0) {
                 result = users.map((item, index) => {
                     return (
-                        <tr key={index}>
-                            <td>{item.id}</td>
-                            <td><div
-                                style={{
-                                    backgroundImage: `url(${item.image})`,
-                                    backgroundPosition: 'center',
-                                    backgroundSize: 'cover',
-                                    backgroundRepeat: 'no-repeat',
-                                    borderRadius: '3px'
-                                }}
-                                className="avatar"
-                            ></div>{item.nameItem}</td>
-                            <td>{item.price}</td>
-                            <td>{item.manufacturerData && item.manufacturerData.valueVi ? item.manufacturerData.valueVi : 'null'}</td>
-                            <td>{item.typeData && item.typeData.valueVi ? item.typeData.valueVi : 'null'}</td>
-                            <td>{item.ram ? item.ram : 'null'}</td>
+                        <tbody key={index}>
+                            <tr >
+                                <td>{item.id}</td>
+                                <td>
+                                    <div
+                                        style={{
+                                            backgroundImage: `url(${item.image})`,
+                                            backgroundPosition: 'center',
+                                            backgroundSize: 'cover',
+                                            backgroundRepeat: 'no-repeat',
+                                            borderRadius: '3px'
+                                        }}
+                                        className="avatar"
+                                    ></div>{item.nameItem}</td>
+                                <EditInput
+                                    item={item.price}
+                                    type={'price'}
+                                    indexOf={indexOf}
+                                    index={index}
+                                    handleClick={handleClick}
+                                    handleClickOutInput={handleClickOutInput}
+                                    stateInput={stateInput}
+                                />
+
+                                <td>{item.manufacturerData && item.manufacturerData.valueVi ? item.manufacturerData.valueVi : 'null'}</td>
+                                <td>{item.typeData && item.typeData.valueVi ? item.typeData.valueVi : 'null'}</td>
+                                {/* <td>{item.ram ? item.ram : 'null'}</td>
                             <td>{item.rom ? item.rom : 'null'} </td>
                             <td>{item.cameraData && item.cameraData.valueVi ? item.cameraData.valueVi : 'null'}</td>
                             <td>{item.displayData && item.displayData.valueVi ? item.displayData.valueVi : 'null'}</td>
-                            <td>{item.pinData && item.pinData.valueVi ? item.pinData.valueVi : 'null'}</td>
-                            <td>{item.quantity}</td>
-                            <td>
-                                <a href="#" className="settings" title="Settings" data-toggle="tooltip"><i className="material-icons">&#xE8B8;</i></a>
-                                <a href="#" className="delete" title="Delete" data-toggle="tooltip"><i className="material-icons">&#xE5C9;</i></a>
-                            </td>
-                        </tr>
+                            <td>{item.pinData && item.pinData.valueVi ? item.pinData.valueVi : 'null'}</td> */}
+                                <EditInput
+                                    item={item.quantity}
+                                    type={'quantity'}
+                                    indexOf={indexOf}
+                                    index={index}
+                                    handleClick={handleClick}
+                                    handleClickOutInput={handleClickOutInput}
+                                    stateInput={stateInput}
+                                />
+                                <td>
+                                    <a
+                                        style={{ cursor: 'pointer' }}
+                                        onClick={() => handleClickAddDetailProduct(index)}
+                                        className="settings"><i className="material-icons">&#xE8B8;</i></a>
+                                    <a className="delete" ><i className="material-icons">&#xE5C9;</i></a>
+                                </td>
+                            </tr>
+                            {item.isSelected === true ? renderAddDetailProduct(item) : ''}
+                        </tbody>
+
                     )
                 })
             }
@@ -141,11 +226,11 @@ const UserList = (props) => {
                     <th>Giá</th>
                     <th>Hãng</th>
                     <th>Loại</th>
-                    <th>Ram</th>
+                    {/* <th>Ram</th>
                     <th>Bộ nhớ</th>
                     <th>Camera</th>
                     <th>Màng hình</th>
-                    <th>Pin</th>
+                    <th>Pin</th> */}
                     <th>Số lượng</th>
                     <th>Action</th>
 
@@ -156,7 +241,6 @@ const UserList = (props) => {
     };
     return (
         <div className="user__list-container">
-            {console.log(props)}
             <div className="container-xl">
                 <div className="table-responsive">
                     <div className="table-wrapper">
@@ -174,10 +258,8 @@ const UserList = (props) => {
                                     {listRowRender()}
                                 </tr>
                             </thead>
+                            {renderListItem()}
 
-                            <tbody>
-                                {renderListItem()}
-                            </tbody>
                         </table>
                         <div className="clearfix">
                             <div className="hint-text">

@@ -9,6 +9,7 @@ import NumberFormat from 'react-number-format';
 import Input from "./com/Input";
 import Select from "./com/Select";
 import ImagePreview from "./com/ImagePreview";
+import NumberInput from "./com/NumberInput";
 const ProductManage = (props) => {
     const outletContext = useOutletContext()
     const [nameItem, setNameItem] = useState('');
@@ -235,13 +236,17 @@ const ProductManage = (props) => {
 
                 <div className="manage__content-form form-group col-6">
                     <label>Giá (VNĐ)</label>
-                    <NumberFormat
+                    <NumberInput
+                        value={price}
+                        onValueChange={handleCovertPrice}
+                    />
+                    {/* <NumberFormat
                         value={price}
                         displayType="input"
                         thousandSeparator={true}
                         onValueChange={(values) => handleCovertPrice(values)}
                         className="form-control"
-                    />
+                    /> */}
                 </div>
             </div>
             <div className="row ">
