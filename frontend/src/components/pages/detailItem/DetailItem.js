@@ -14,6 +14,7 @@ import Policy from './Policy';
 import Configuration from './Configuration';
 import Post from './Post';
 import Modal from './modal/Modal';
+import Evaluate from './Evaluate';
 const DetailItem = () => {
     const { id } = useParams();
     const [product, setProduct] = useState({});
@@ -111,6 +112,10 @@ const DetailItem = () => {
                         markdown={markdown}
                         openModal={openModal}
                     />
+
+
+                    {/* Đánh giá SP */}
+                    <Evaluate/>
 
                 </div>
                 <div className="phone__detail-product-right">
