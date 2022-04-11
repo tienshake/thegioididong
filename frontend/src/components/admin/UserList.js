@@ -11,25 +11,22 @@ const UserList = (props) => {
     const [stateInput, setStateInput] = useState('');
     const [indexOf, setIndexOf] = useState('');
 
-
     let arrCount = [];
-
-
-    useEffect(() => {
-        const fetch = async () => {
-            const limit = 5;
-            let res = ''
-            if (props.type === 'users') {
-                res = await getAllUserService("ALL", limit, page ? page : 1);
-            }
-            if (props.type === 'products') {
-                res = await getAllProductService(limit, page ? page : 1);
-            }
-            if (res && res.errCode === 0) {
-                setUsers(res.data)
-                setCount(res.count)
-            }
+    const fetch = async () => {
+        const limit = 5;
+        let res = ''
+        if (props.type === 'users') {
+            res = await getAllUserService("ALL", limit, page ? page : 1);
         }
+        if (props.type === 'products') {
+            res = await getAllProductService(limit, page ? page : 1);
+        }
+        if (res && res.errCode === 0) {
+            setUsers(res.data)
+            setCount(res.count)
+        }
+    }
+    useEffect(() => {
         fetch()
     }, [page, props]);
     if (count > 0) {
@@ -161,7 +158,7 @@ const UserList = (props) => {
                                         className="avatar"
                                     ></div>{item.nameItem}</td>
                                 <EditInput
-                                    item={item.price}
+                                    value={item.price}
                                     type={'price'}
                                     indexOf={indexOf}
                                     index={index}
@@ -172,13 +169,8 @@ const UserList = (props) => {
 
                                 <td>{item.manufacturerData && item.manufacturerData.valueVi ? item.manufacturerData.valueVi : 'null'}</td>
                                 <td>{item.typeData && item.typeData.valueVi ? item.typeData.valueVi : 'null'}</td>
-                                {/* <td>{item.ram ? item.ram : 'null'}</td>
-                            <td>{item.rom ? item.rom : 'null'} </td>
-                            <td>{item.cameraData && item.cameraData.valueVi ? item.cameraData.valueVi : 'null'}</td>
-                            <td>{item.displayData && item.displayData.valueVi ? item.displayData.valueVi : 'null'}</td>
-                            <td>{item.pinData && item.pinData.valueVi ? item.pinData.valueVi : 'null'}</td> */}
                                 <EditInput
-                                    item={item.quantity}
+                                    value={item.quantity}
                                     type={'quantity'}
                                     indexOf={indexOf}
                                     index={index}

@@ -200,9 +200,7 @@ const ProductManage = (props) => {
         }
 
     }
-    const handleCovertPrice = (values) => {
-        setPrice(values.formattedValue)
-    };
+
     const handleDeletePreviewImage = (type, indexItem) => {
         switch (type) {
             case 'image':
@@ -224,6 +222,9 @@ const ProductManage = (props) => {
                 break;
         }
     };
+    // const handleCovertPrice = (values) => {
+    //     setPrice(values.formattedValue)
+    // };
     return (
         <div className="product-manage">
             <h4 className="mt-3">Sản phẩm</h4>
@@ -238,7 +239,8 @@ const ProductManage = (props) => {
                     <label>Giá (VNĐ)</label>
                     <NumberInput
                         value={price}
-                        onValueChange={handleCovertPrice}
+                        setPrice={setPrice}
+                    // onValueChange={handleCovertPrice}
                     />
                     {/* <NumberFormat
                         value={price}

@@ -31,7 +31,7 @@ export default function MyApp() {
           <Route path='/' element={<Home />}>
             <Route index element={<Phone />} />
             <Route path='phone' element={<Phone />} />
-            <Route path='/phone/:name/:id' element={<DetailItem />} />
+            <Route path='phone/:name/:id' element={<DetailItem />} />
             <Route path='accessory' element={<AccessoryPage />} />
             <Route path='*' element={<NotFound />} />
           </Route>

@@ -3,6 +3,13 @@
     min-height: 100vh;
     position  : relative;
 
+    .inputEdit {
+        .form-control {
+            width    : 100px;
+            font-size: 12px;
+        }
+    }
+
     .manage__nav {
         flex    : 1;
         height  : 100vh;
