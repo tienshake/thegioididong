@@ -53,36 +53,13 @@ const handleCreateProductService = (data) => {
                         where: { id: data.id },
                         raw: false
                     })
-                    product.nameItem = data.nameItem;
-                    product.image = data.image;
-                    product.state = data.state;
+                    product.price = data.price;
                     await product.save();
                     resolve({
                         errCode: 2,
-                        message: `Update product success`
+                        message: `Update product success`,
                     });
                 }
-
-
-
-
-                // let product = await db.Product.findOne({
-                //     where: { id: data.id },
-                //     raw: false
-                // })
-                // if (!product) {
-
-                // } else {
-                //     product.nameItem = data.nameItem;
-                //     product.image = data.image;
-                //     product.state = data.state;
-                //     await product.save();
-                //     resolve({
-                //         errCode: 2,
-                //         message: `Update product success`
-                //     });
-                // }
-
             }
         } catch (e) {
             reject(e)
