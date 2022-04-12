@@ -14,11 +14,14 @@ import Policy from './Policy';
 import Configuration from './Configuration';
 import Post from './Post';
 import Modal from './modal/Modal';
+import BuyModal from '../partial/buyModal/BuyModal'
 const DetailItem = () => {
     const { id } = useParams();
     const [product, setProduct] = useState({});
     const [markdown, setMarkdown] = useState({});
     const [modalIsOpen, setIsOpen] = useState(false);
+    const [isBuyProduct, setIsBuyProduct] = useState(false);
+
     useEffect(() => {
         if (id) {
             const fetch = async () => {
@@ -35,15 +38,14 @@ const DetailItem = () => {
         }
     }, []);
 
-
-
     const openModal = () => {
         setIsOpen(true);
     }
-
-
     const closeModal = () => {
         setIsOpen(false);
+    }
+    const handleBuyProduct = () => {
+        setIsBuyProduct(!isBuyProduct);
     }
     return (
         <div className="phone__detail-container">
@@ -157,6 +159,7 @@ const DetailItem = () => {
 
                     {/* payment */}
 
+
                     <div className='wrap__payment'>
                         <div className='all__box__payment'>
                             <p><b style={{ fontSize: '17px' }}>Ưu đãi khi thanh toán</b></p>
@@ -166,9 +169,15 @@ const DetailItem = () => {
 
                             {/* buttton buy */}
                             <div className='wrap__btn__buyProduct'>
-                                <GroupButtonBuy />
+                                <GroupButtonBuy
+                                    handleBuyProduct={handleBuyProduct}
+                                />
                             </div>
-
+                            {isBuyProduct &&
+                                <BuyModal
+                                    handleBuyProduct={handleBuyProduct}
+                                    product={product && product}
+                                />}
                             {/* extra offer */}
                             <div className='wrap__extra__offer'>
                                 <div className='box__extra__offer'>

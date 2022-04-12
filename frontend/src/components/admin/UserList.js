@@ -1,6 +1,6 @@
 import './UserList.scss'
 import React, { useState, useEffect } from 'react';
-import { getAllUserService, getAllProductService, getAllUCodeService } from '../../services/userService';
+import { getAllUserService, getAllProductService, createProductService } from '../../services/userService';
 import ReactPaginate from 'react-paginate';
 import EditInput from './com/EditInput';
 const UserList = (props) => {
@@ -10,6 +10,7 @@ const UserList = (props) => {
     const [page, setPage] = useState('');
     const [stateInput, setStateInput] = useState('');
     const [indexOf, setIndexOf] = useState('');
+    const [valueUpdate, setValueUpdate] = useState('');
 
     let arrCount = [];
     const fetch = async () => {
@@ -28,7 +29,16 @@ const UserList = (props) => {
     }
     useEffect(() => {
         fetch()
-    }, [page, props]);
+        if (valueUpdate) {
+            console.log(users[valueUpdate.index][valueUpdate.type])
+            // const updateProduct = async () => {
+            //     const res = await createProductService({ ...users[valueUpdate.index], })
+            //     if (res && res.errCode === 0) {
+            //     }
+            // }
+            // updateProduct()
+        };
+    }, [page, props, valueUpdate]);
     if (count > 0) {
         for (var i = 0; i < count; i++) {
             arrCount.push(i)
@@ -115,26 +125,27 @@ const UserList = (props) => {
             if (users && users.length > 0) {
                 result = users.map((item, index) => {
                     return (
-                        <tr key={index}>
-                            <td>{item.id}</td>
-                            <td><div
-                                style={{
-                                    backgroundImage: `url(${item.image})`,
-                                    backgroundPosition: 'center',
-                                    backgroundSize: 'cover',
-                                    backgroundRepeat: 'no-repeat'
-                                }}
-                                className="avatar"
-                            ></div>{item.name}</td>
-                            <td>{item.email}</td>
-                            <td>{item.roleId}</td>
-                            <td>{item.address}</td>
-                            <td>{item.phoneNumber}</td>
-                            <td>
-                                <a href="#" className="settings" title="Settings" data-toggle="tooltip"><i className="material-icons">&#xE8B8;</i></a>
-                                <a href="#" className="delete" title="Delete" data-toggle="tooltip"><i className="material-icons">&#xE5C9;</i></a>
-                            </td>
-                        </tr>
+                        <tbody key={index}>
+                            <tr>
+                                <td>{item.id}</td>
+                                <td><div
+                                    style={{
+                                        backgroundImage: `url(${item.image})`,
+                                        backgroundPosition: 'center',
+                                        backgroundSize: 'cover',
+                                        backgroundRepeat: 'no-repeat'
+                                    }}
+                                    className="avatar"></div>{item.name}</td>
+                                <td>{item.email}</td>
+                                <td>{item.roleId}</td>
+                                <td>{item.address}</td>
+                                <td>{item.phoneNumber}</td>
+                                <td>
+                                    <a href="#" className="settings" title="Settings" data-toggle="tooltip"><i className="material-icons">&#xE8B8;</i></a>
+                                    <a href="#" className="delete" title="Delete" data-toggle="tooltip"><i className="material-icons">&#xE5C9;</i></a>
+                                </td>
+                            </tr>
+                        </tbody>
                     )
                 })
             }
@@ -144,7 +155,7 @@ const UserList = (props) => {
                 result = users.map((item, index) => {
                     return (
                         <tbody key={index}>
-                            <tr >
+                            <tr>
                                 <td>{item.id}</td>
                                 <td>
                                     <div
@@ -165,8 +176,8 @@ const UserList = (props) => {
                                     handleClick={handleClick}
                                     handleClickOutInput={handleClickOutInput}
                                     stateInput={stateInput}
+                                    setValueUpdate={setValueUpdate}
                                 />
-
                                 <td>{item.manufacturerData && item.manufacturerData.valueVi ? item.manufacturerData.valueVi : 'null'}</td>
                                 <td>{item.typeData && item.typeData.valueVi ? item.typeData.valueVi : 'null'}</td>
                                 <EditInput
@@ -218,14 +229,8 @@ const UserList = (props) => {
                     <th>Giá</th>
                     <th>Hãng</th>
                     <th>Loại</th>
-                    {/* <th>Ram</th>
-                    <th>Bộ nhớ</th>
-                    <th>Camera</th>
-                    <th>Màng hình</th>
-                    <th>Pin</th> */}
                     <th>Số lượng</th>
                     <th>Action</th>
-
                 </>
             )
         }
@@ -246,12 +251,9 @@ const UserList = (props) => {
                         </div>
                         <table className="table table-striped table-hover">
                             <thead>
-                                <tr>
-                                    {listRowRender()}
-                                </tr>
+                                <tr>{listRowRender()}</tr>
                             </thead>
                             {renderListItem()}
-
                         </table>
                         <div className="clearfix">
                             <div className="hint-text">

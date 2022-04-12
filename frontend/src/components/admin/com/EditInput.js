@@ -4,14 +4,14 @@ import { createProductService } from "../../../services/userService";
 const EditInput = (props) => {
     const [valueInput, setValueInput] = useState(props.value);
     // const fetch = async (e) => {
-    //     const res = await createProductService({ ...props.item, price: price })
-    //     if (res && res.errCode === 0) {
-    //         setPrice(price)
-    //         props.fetch()
-    //     }
-    // };
+
     const handleSaveEdit = (e) => {
-        // fetch()
+        console.log(valueInput);
+        props.setValueUpdate({
+            value: valueInput,
+            type: props.type,
+            index: props.index
+        })
     };
 
     return (

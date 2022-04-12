@@ -24,18 +24,17 @@ const ProductManage = (props) => {
     const [camera, setCamera] = useState('CAM8');
     const [image, setImage] = useState('');
     const [imageDetail, setImageDetail] = useState('');
-    const [imageMultiple, setMultiple] = useState([]);
-    const [chip, setChip] = useState([]);
-    const [operatingSystem, setOperatingSystem] = useState([]);
-
+    const [imageMultiple, setMultiple] = useState('');
+    const [chip, setChip] = useState('');
+    const [operatingSystem, setOperatingSystem] = useState('');
     //================================================
-    const [selectType, setSelectType] = useState([]);
-    const [selectPloai, setSelectPloai] = useState([]);
-    const [selectColor, setSelectColor] = useState([]);
-    const [selectOperatingSystem, setSelectOperatingSystem] = useState([]);
-    const [selectPin, setSelectPin] = useState([]);
-    const [selectDisplay, setSelectDisplay] = useState([]);
-    const [selectCamera, setSelectCamera] = useState([]);
+    const [selectType, setSelectType] = useState('');
+    const [selectPloai, setSelectPloai] = useState('');
+    const [selectColor, setSelectColor] = useState('');
+    const [selectOperatingSystem, setSelectOperatingSystem] = useState('');
+    const [selectPin, setSelectPin] = useState('');
+    const [selectDisplay, setSelectDisplay] = useState('');
+    const [selectCamera, setSelectCamera] = useState('');
     useEffect(() => {
         const fetch = async (e) => {
             const resType = await getAllUCodeService('TYPEPHONE');
@@ -240,15 +239,7 @@ const ProductManage = (props) => {
                     <NumberInput
                         value={price}
                         setPrice={setPrice}
-                    // onValueChange={handleCovertPrice}
                     />
-                    {/* <NumberFormat
-                        value={price}
-                        displayType="input"
-                        thousandSeparator={true}
-                        onValueChange={(values) => handleCovertPrice(values)}
-                        className="form-control"
-                    /> */}
                 </div>
             </div>
             <div className="row ">

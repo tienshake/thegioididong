@@ -1,9 +1,11 @@
 import React from 'react'
 
-export default function GroupButtonBuy() {
+export default function GroupButtonBuy(props) {
     return (
         <>
-            <div className='btn__buyNow'>
+            <div className='btn__buyNow'
+                onClick={props.handleBuyProduct}
+            >
                 <p>Mua ngay</p>
             </div>
 
