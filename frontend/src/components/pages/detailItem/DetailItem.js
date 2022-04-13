@@ -14,7 +14,7 @@ import Policy from './Policy';
 import Configuration from './Configuration';
 import Post from './Post';
 import Modal from './modal/Modal';
-import BuyModal from '../partial/buyModal/BuyModal'
+import BuyModal from './buyModal/BuyModal'
 import Evaluate from './Evaluate';
 const DetailItem = () => {
     const { id } = useParams();

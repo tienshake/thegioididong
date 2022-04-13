@@ -1,7 +1,12 @@
 import './BuyModal.scss';
+import { connect } from 'react-redux'
+//Import action dùng để dispatch
+import { actAddNote } from '../../../../store/actions/index'
 import { AiOutlineClose } from "react-icons/ai";
 const BuyModal = (props) => {
-    console.log(props.product);
+    const handleClick = (e) => {
+        props.addNote('alo')
+    };
     return (
         <div className="buynow">
             <div className="buy-header">
@@ -44,12 +49,27 @@ const BuyModal = (props) => {
                         <span>Giảm</span><strong> 1.000.000₫</strong>
                         <span>còn</span><strong> 35.990.000₫</strong>
                     </div>
-                    <button className="ordered">Thêm vào giỏ hàng</button>
+                    <button className="ordered"
+                        onClick={handleClick}
+                    >Thêm vào giỏ hàng</button>
                     <a href="" className="ordered-product">Xem giỏ hàng</a>
                 </div>
             </div>
         </div>
     );
 }
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addNote: (content) => {
+            dispatch(actAddNote(content))
+        }
+    }
+}
 
-export default BuyModal;
+const mapStateToProps = (state, ownProps) => {
+    return {
+        productsRedux: state.productsRedux
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BuyModal)
