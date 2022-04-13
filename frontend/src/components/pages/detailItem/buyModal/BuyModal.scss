@@ -87,8 +87,18 @@
     }
 
     .product-quantity {
-        margin-top   : 20px;
-        border-bottom: 1px solid #d7d7d7;
+        margin-top    : 20px;
+        border-bottom : 1px solid #d7d7d7;
+        display       : flex;
+        padding-bottom: 10px;
+
+        .cart__item-right {
+            margin-left: 20px;
+        }
+
+        span {
+            display: inline-block;
+        }
 
     }
 

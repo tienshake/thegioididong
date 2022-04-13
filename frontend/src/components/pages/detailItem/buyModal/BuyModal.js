@@ -1,12 +1,32 @@
+import React, { useState } from 'react';
 import './BuyModal.scss';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 //Import action dùng để dispatch
-import { actAddNote } from '../../../../store/actions/index'
+import { addCart } from '../../../../store/actions/index';
 import { AiOutlineClose } from "react-icons/ai";
+import { Link } from 'react-router-dom';
+import Quantity from '../../cart/Quantity';
 const BuyModal = (props) => {
-    const handleClick = (e) => {
-        props.addNote('alo')
+    const [quantity, setQuantity] = useState(1);
+    const [color, setColor] = useState('');
+
+    const handleClick = (product) => {
+        props.addCart({
+            id: product.id,
+            quantity: quantity,
+            name: product.nameItem,
+            image: product.image,
+            price: product.price,
+            ram: product.ram,
+            rom: product.rom,
+            color: color
+        })
     };
+    const handleOnChange = (color) => {
+        setColor(color)
+    };
+    console.log(color);
+
     return (
         <div className="buynow">
             <div className="buy-header">
@@ -31,7 +51,12 @@ const BuyModal = (props) => {
                                 <div className='color__data'
                                     style={{ backgroundColor: `${item.color}` }}
                                 /><br></br>
-                                <input type="radio" name="color" id="" /><br></br>
+                                <input
+                                    type="radio"
+                                    name="color"
+                                    value={color}
+                                    onChange={() => handleOnChange(item.color)}
+                                /><br></br>
                                 <span>{item.color}</span>
                             </div>
                         )
@@ -39,7 +64,10 @@ const BuyModal = (props) => {
                 </div>
                 <div className="product-quantity">
                     <span>chọn số lượng:</span>
-                    <div className="select"></div>
+                    <Quantity
+                        quantity={quantity}
+                        setQuantity={setQuantity}
+                    />
                 </div>
             </div>
             <div className="buy-footer">
@@ -50,9 +78,9 @@ const BuyModal = (props) => {
                         <span>còn</span><strong> 35.990.000₫</strong>
                     </div>
                     <button className="ordered"
-                        onClick={handleClick}
+                        onClick={() => handleClick(props.product)}
                     >Thêm vào giỏ hàng</button>
-                    <a href="" className="ordered-product">Xem giỏ hàng</a>
+                    <Link to='/cart' className="ordered-product">Xem giỏ hàng</Link>
                 </div>
             </div>
         </div>
@@ -60,8 +88,8 @@ const BuyModal = (props) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        addNote: (content) => {
-            dispatch(actAddNote(content))
+        addCart: (payload) => {
+            dispatch(addCart(payload))
         }
     }
 }

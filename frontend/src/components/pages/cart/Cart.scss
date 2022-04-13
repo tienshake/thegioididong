@@ -1,0 +1,429 @@
+.cart__item-right {
+    display      : flex;
+    align-items  : center;
+    border       : 1px solid #dfdfdf;
+    background   : #fff;
+    border-radius: 3px;
+    line-height  : 30px;
+    font-size    : 14px;
+    color        : #333;
+    font-size    : 15px;
+
+    span {
+        width        : 30px;
+        border-top   : none;
+        border-bottom: none;
+        border-left  : 1px solid #dfdfdf;
+        border-right : 1px solid #dfdfdf;
+        text-align   : center;
+    }
+
+    .minus {
+        width              : 30px;
+        text-align         : center;
+        cursor             : pointer;
+        font-size          : 25px;
+        color              : #4691d7;
+        -webkit-user-select: none;
+        -khtml-user-select : none;
+        -moz-user-select   : none;
+        -o-user-select     : none;
+        user-select        : none;
+    }
+
+    .plus {
+        width              : 30px;
+        text-align         : center;
+        cursor             : pointer;
+        font-size          : 25px;
+        color              : #4691d7;
+        -webkit-user-select: none;
+        -khtml-user-select : none;
+        -moz-user-select   : none;
+        -o-user-select     : none;
+        user-select        : none;
+    }
+
+    input {
+        width        : 30px;
+        border-top   : none;
+        border-bottom: none;
+        border-left  : 1px solid #dfdfdf;
+        border-right : 1px solid #dfdfdf;
+        text-align   : center;
+    }
+}
+
+.cart-container {
+    width           : 100%;
+    height          : 100%;
+    background-color: #f0f0f0;
+    font-family     : Arial, Helvetica, sans-serif;
+
+
+    .header__cart {
+        margin         : auto;
+        width          : 600px;
+        display        : flex;
+        justify-content: space-between;
+        padding        : 10px;
+        align-items    : center;
+
+        .buy__add-product {
+            color    : #4691d7;
+            font-size: 14px;
+            cursor   : pointer;
+        }
+
+        .cart__title {
+            font-size: 13px;
+
+        }
+    }
+
+    .middleCart {
+        padding: 0 20px;
+
+        .cart__item-control {
+            display        : flex;
+            min-height     : 50px;
+            flex-direction : column;
+            justify-content: space-between;
+
+            .cart__item {
+                display        : flex;
+                justify-content: space-between;
+
+                .cart__item-left {}
+
+
+            }
+
+        }
+
+
+        .price {
+            margin-top     : 30px;
+            border-bottom  : 1px solid gray;
+            display        : flex;
+            justify-content: space-between;
+            font-size      : 14px;
+
+            span {
+                display: inline-block;
+            }
+
+            p {
+                display: inline-block;
+            }
+        }
+
+        width           : 600px;
+        background-color: #FFFFFF;
+        margin          : auto;
+        padding-top     : 20px;
+        height          : 960px;
+
+        .product-item {
+            display      : flex;
+            border-bottom: 1px solid #cccccc;
+            padding      : 20px 0;
+        }
+
+        .product-item .image {}
+
+        .heading {
+            width  : 80%;
+            height : 100%;
+            padding: 0 10px;
+        }
+
+        .headding_content1 {
+            display        : flex;
+            align-items    : center;
+            justify-content: space-between;
+            margin-bottom  : 10px;
+
+            h1 {
+                font-size  : 14px;
+                margin     : 0;
+                padding    : 0;
+                font-weight: 700;
+
+            }
+
+        }
+
+        .heading__content2 {
+            display         : block;
+            font-size       : 12px;
+            overflow        : hidden;
+            background-color: #f1f1f1;
+        }
+
+
+        .headding_content1 span,
+        .headding__Between p {
+            color    : red;
+            font-size: 14px;
+        }
+
+        .heading h3 {
+            font-size: 12px;
+        }
+
+        .image span {
+            opacity  : 0.6;
+            font-size: 14px;
+            margin   : 50px 20px;
+        }
+
+        .heading__input {
+            display: flex;
+        }
+
+        .heading__input p {
+            margin-top: 0;
+            font-size : 12px;
+        }
+
+        .heading label {
+            color    : #28A7E7;
+            font-size: 12px;
+        }
+
+        .headding__Between {
+            height          : 40px;
+            background-color: #FFF3C2;
+        }
+
+
+        /* thông tin người dùng */
+
+        .info {
+            height      : 600px;
+            padding-left: 20px;
+        }
+
+        .infor-customer {
+            display   : block;
+            overflow  : hidden;
+            border-top: 1px solid #d1d1d1;
+            padding   : 10px 30px;
+        }
+
+        .choosegetgoods {
+            display: block;
+            padding: 0 30px;
+        }
+
+
+        .deli-address {
+            border: 1px solid gray;
+            width : 90%;
+            margin: auto;
+        }
+
+        .active h4 {
+            padding-left: 10px;
+            margin-top  : 5px;
+            font-size   : 14px;
+            font-weight : 300;
+        }
+
+        .cntry-district {
+            display     : flex;
+            padding-left: 10px;
+        }
+
+        .cntry-district .btn-click {
+            float : left;
+            width : 49%;
+            margin: 2% 1% 2% 0;
+            cursor: pointer;
+        }
+
+        .cntry-district .btn-click button {
+            display      : block;
+            padding      : 10px;
+            border       : 1px solid #d1d1d1;
+            border-radius: 4px;
+            width        : 100%;
+            background   : #fff;
+            text-align   : left;
+            color        : #288ad6;
+            position     : relative;
+            cursor       : pointer;
+        }
+
+        .wards.disable .right {
+            float: right;
+            width: 0px;
+        }
+
+        .deli-address .wards button {
+            display      : block;
+            padding      : 10px;
+            margin-left  : 10px;
+            border       : 1px solid #d1d1d1;
+            border-radius: 4px;
+            width        : 48%;
+            background   : #fff;
+            text-align   : left;
+            color        : #288ad6;
+            position     : relative;
+            cursor       : pointer;
+        }
+
+
+        .wards.disable .left {
+            display: flex;
+            height : 100%;
+        }
+
+        .left input {
+            margin-left  : 5px;
+            width        : 245px;
+            border       : 1px solid #d1d1d1;
+            border-radius: 4px;
+
+        }
+
+        .teemo {
+            width       : 250px;
+            padding-left: 10px;
+        }
+
+
+        .anotheroption .leuleo {
+            display      : block;
+            overflow     : hidden;
+            border       : 1px solid #d1d1d1;
+            border-radius: 4px;
+            padding      : 10px;
+            width        : 100%;
+            box-sizing   : border-box;
+            margin-bottom: 7px;
+        }
+
+        .chexinfo {
+            display: flex;
+        }
+
+        .chexinfo p {
+            margin-top  : 0;
+            padding-left: 10px;
+        }
+
+        .choosegetgoods h4 {
+            display       : block;
+            overflow      : hidden;
+            text-transform: uppercase;
+            margin-top    : 0;
+            font-weight   : 300;
+            font-size     : 14px;
+        }
+
+        .click-choose {
+            display: flex;
+        }
+
+        .choose-link.current,
+        .choose-link {
+            display     : flex;
+            padding-left: 10px;
+        }
+
+        .choose-link.current p,
+        .choose-link p {
+            margin      : 0 0 20px 0;
+            padding-left: 10px;
+        }
+
+        .infor-customer h4 {
+            display       : block;
+            overflow      : hidden;
+            font-size     : 14px;
+            text-transform: uppercase;
+            color         : #333;
+            font-weight   : 300;
+            margin-top    : 0;
+        }
+
+        .form-customer .sex-customer span {
+            display       : inline-block;
+            vertical-align: middle;
+            font-size     : 14px;
+            color         : #333;
+            margin-right  : 15px;
+            cursor        : pointer;
+        }
+
+        .form-customer .fillinform {
+            display : block;
+            overflow: hidden;
+            padding : 10px 0;
+        }
+
+        .form-customer .fillinform .fillname {
+            float : left;
+            width : 49%;
+            margin: 0 1% 0 0;
+        }
+
+        .form-customer .fillinform .fillname input {
+            display      : block;
+            overflow     : hidden;
+            border       : 1px solid #d1d1d1;
+            border-radius: 4px;
+            padding      : 10px;
+            color        : #333;
+            box-sizing   : border-box;
+            width        : 100%;
+        }
+
+        .form-customer .fillinform .fillname:nth-child(2) {
+            float       : right;
+            margin-right: 0;
+        }
+
+
+        footer button {
+            display      : block;
+            overflow     : hidden;
+            color        : #fff;
+            text-align   : center;
+            height       : 50px;
+            width        : 100%;
+            border-radius: 4px;
+            border       : 0;
+            cursor       : pointer;
+            background   : linear-gradient(180deg, #f79429, #f7712e);
+            margin-left  : -10px;
+        }
+
+        .footer {
+            display: flex;
+        }
+
+        .footer h3 {
+            font-size: 14px;
+        }
+
+        .footer strong {
+            padding-left: 400px;
+            margin-top  : 10px;
+            color       : red;
+        }
+
+        footer span {
+            text-align: center;
+            display   : block;
+            overflow  : hidden;
+            color     : #666;
+            font-size : 12px;
+            margin-top: -10px;
+        }
+
+    }
+}

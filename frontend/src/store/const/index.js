@@ -1,1 +1,8 @@
-export const ADD_NEW_NOTE = "ADD_NEW_NOTE";
+export const INCREASE_QUANTITY = 'INCREASE_QUANTITY';
+export const DECREASE_QUANTITY = 'DECREASE_QUANTITY';
+export const GET_ALL_PRODUCT = 'GET_ALL_PRODUCT';
+export const GET_NUMBER_CART = 'GET_NUMBER_CART';
+export const ADD_CART = 'ADD_CART';
+export const TOTAL_PRODUCT_CART = 'TOTAL_PRODUCT_CART';
+export const UPDATE_CART = 'UPDATE_CART';
+export const DELETE_CART = 'DELETE_CART';
