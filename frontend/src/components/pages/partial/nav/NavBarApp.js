@@ -1,6 +1,7 @@
 // import library
-import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import {
     FaShoppingCart,
     FaNewspaper,
@@ -13,8 +14,10 @@ import {
 import { IoIosHeadset } from "react-icons/io";
 import './NavBarApp.css';
 import { Carousel } from 'react-responsive-carousel';
-export default function NavBarApp(props) {
-
+const NavBarApp = (props) => {
+    useEffect(() => {
+        console.log(props.productsRedux);
+    }, []);
     return (
         <>
             <header>
@@ -152,3 +155,16 @@ export default function NavBarApp(props) {
         </>
     )
 }
+const mapDispatchToProps = (dispatch) => {
+    return {
+
+    }
+}
+
+const mapStateToProps = (state, ownProps) => {
+    return {
+        productsRedux: state.productsRedux
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBarApp)

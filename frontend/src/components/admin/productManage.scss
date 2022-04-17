@@ -4,6 +4,25 @@
         color      : #9b9c9c;
     }
 
+    .format-number {
+        position: relative;
+
+        &::before {
+            content         : "";
+            background-color: #cccccc;
+            height          : 100%;
+            width           : 1px;
+            position        : absolute;
+            left            : 63%;
+        }
+
+        .format {
+            position: absolute;
+            top     : 20%;
+            right   : 45px;
+        }
+    }
+
     .deleteImage {
         color    : rgb(241, 47, 47);
         cursor   : pointer;

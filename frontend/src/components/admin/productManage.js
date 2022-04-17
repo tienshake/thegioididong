@@ -14,6 +14,7 @@ const ProductManage = (props) => {
     const outletContext = useOutletContext()
     const [nameItem, setNameItem] = useState('');
     const [quantity, setQuantity] = useState('');
+    const [priceNumber, setPriceNumber] = useState('');
     const [price, setPrice] = useState('');
     const [type, setType] = useState('PL1');
     const [manufacturer, setManufacturer] = useState('TP1');
@@ -234,11 +235,20 @@ const ProductManage = (props) => {
                     name={'Tên sản phẩm'}
                 />
 
-                <div className="manage__content-form form-group col-6">
+                <div className="manage__content-form form-group col-6 format-number">
                     <label>Giá (VNĐ)</label>
-                    <NumberInput
+                    <NumberFormat
                         value={price}
-                        setPrice={setPrice}
+                        displayType="text"
+                        thousandSeparator={true}
+                        // onValueChange={(values) => handleCovertPrice(values)}
+                        className="format"
+                    />
+                    {console.log(price)}
+                    <input type="number"
+                        value={price}
+                        onChange={(e) => setPrice(e.target.value)}
+                        className="form-control"
                     />
                 </div>
             </div>

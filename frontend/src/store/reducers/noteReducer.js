@@ -51,7 +51,11 @@ const noteReducers = (state = init, action) => {
                     state.Carts.push(_cart);
                 }
             }
-
+            state.Carts.map((item, key) => {
+                if (item.id = !action.payload.id) {
+                    state.numberCart++
+                }
+            });
             return {
                 ...state,
                 numberCart: state.numberCart + 1
@@ -74,18 +78,7 @@ const noteReducers = (state = init, action) => {
             return {
                 ...state
             }
-        case TOTAL_PRODUCT_CART:
-            let quantityData = ''
-            let priceData = ''
-            state.Carts && state.Carts.length > 0 && state.Carts.reduce((prev, curr) => {
-                quantityData = prev.quantity + curr.quantity
-                priceData = (+prev.price.replace(/,/g, '')) + (+curr.price.replace(/,/g, ''))
-            }, { quantity: 0, price: '0,0' });
-            state.total = quantityData * priceData
 
-            return {
-                ...state
-            }
 
         default:
             return state;

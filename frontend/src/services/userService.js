@@ -1,6 +1,9 @@
 import axios from '../axios';
 
 
+const loginApi = async (email, password) => {
+    return await axios.post(`/api/login`, { email, password });
+}
 const getAllUCodeService = async (id) => {
     return await axios.get(`/api/AllCode?id=${id}`);
 }
@@ -39,6 +42,7 @@ const getMarkDownById = async (id) => {
 }
 
 export {
+    loginApi,
     createUserService,
     getAllUserService,
     getAllUCodeService,

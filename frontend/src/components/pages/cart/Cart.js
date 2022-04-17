@@ -4,18 +4,27 @@ import './Cart.scss';
 import { AiOutlineLeft, AiFillCaretDown } from "react-icons/ai";
 import { IncreaseQuantity, DecreaseQuantity, totalProduct } from '../../../store/actions/index';
 import Quantity from './Quantity';
+import NumberFormat from 'react-number-format';
 
 const Cart = (props) => {
     const [quantity, setQuantity] = useState('');
     const [products, setProducts] = useState('');
-    // const [comments, setComments] = useState('');
+    const [totalCart, setTotalCart] = useState(0);
 
     useEffect(() => {
         if (props.productsRedux
             && props.productsRedux.Carts
             && props.productsRedux.Carts.length > 0) {
-            setProducts(props.productsRedux.Carts);
-
+            const Products = props.productsRedux.Carts
+            let ListCart = [];
+            let TotalCart = 0;
+            Object.keys(Products).forEach(function (item) {
+                TotalCart += Products[item].quantity * Products[item].price;
+                ListCart.push(Products[item]);
+            });
+            console.log(props.productsRedux)
+            setProducts(ListCart);
+            setTotalCart(TotalCart);
         }
     }, [props]);
     const decreaseQuantity = (id) => {
@@ -24,7 +33,6 @@ const Cart = (props) => {
     const increaseQuantity = (id) => {
         props.IncreaseQuantity(id)
     };
-
     return (
         <div className="cart-container">
             <div className='header__cart'>
@@ -42,7 +50,13 @@ const Cart = (props) => {
                             <div className="heading">
                                 <div className="headding_content1">
                                     <h1>{item.name} {item.rom} </h1>
-                                    <span> {item.price} <sup>₫</sup> </span>
+                                    <span>
+                                        <NumberFormat
+                                            value={item.price}
+                                            displayType="text"
+                                            thousandSeparator={true}
+                                        />₫
+                                        <sup>₫</sup> </span>
                                 </div>
                                 <div className="cart__item-control">
                                     <label htmlFor="">5 khuyến mãi<AiFillCaretDown /></label>
@@ -68,7 +82,11 @@ const Cart = (props) => {
 
                 <div className="price">
                     <p>Tạm tính (1 sản phẩm):</p>
-                    <span>34.990.000₫</span>
+                    <span> <NumberFormat
+                        value={totalCart}
+                        displayType="text"
+                        thousandSeparator={true}
+                    />₫</span>
                 </div>
                 <div className="info">
                     <div className="infor-customer">
@@ -177,10 +195,6 @@ const mapDispatchToProps = (dispatch) => {
         DecreaseQuantity: (payload) => {
             dispatch(DecreaseQuantity(payload))
         },
-        totalProduct: () => {
-            dispatch(totalProduct())
-        },
-
     }
 }
 

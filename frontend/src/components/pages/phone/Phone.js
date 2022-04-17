@@ -15,6 +15,7 @@ import { getAllProductHomeService } from '../../../services/userService';
 import Banner from '../partial/banner/Banner';
 import Search from '../../../utils/Search';
 import Sticked from '../partial/sticked/Sticked';
+import NumberFormat from 'react-number-format';
 const Phone = () => {
     let navigate = useNavigate();
     const outletContext = useOutletContext();
@@ -107,7 +108,15 @@ const Phone = () => {
                                         </p>
                                         <div className="phone__name">{item.nameItem}</div>
                                         <div className="phone__rom"><span>{item.ram}/{item.rom}</span></div>
-                                        <div className="phone__price">{item.price}₫</div>
+                                        <div className="phone__price">
+                                            <NumberFormat
+                                                value={item.price}
+                                                displayType="text"
+                                                thousandSeparator={true}
+                                            />₫
+                                            {/* {item.price}₫ */}
+                                        </div>
+
                                         <div className="phone__gif">Quà 2.000.000₫</div>
                                         <div className="phone__vote">
                                             {item.vote ? renderStar(star) : <span>Chưa có đánh giá</span>}
