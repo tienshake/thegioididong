@@ -6,20 +6,14 @@ import {
     DELETE_CART
 } from "../const/index";
 const localStorageData = localStorage.getItem('products');
-console.log(JSON.parse(localStorageData));
 const dataLocal = localStorageData ? JSON.parse(localStorageData) : [];
-const init = dataLocal ? dataLocal : {
-    numberCart: 0,
-    Carts: [],
+
+const init = {
+    numberCart: dataLocal && dataLocal.numberCart ? dataLocal.numberCart : 0,
+    Carts: dataLocal && dataLocal.Carts ? dataLocal.Carts : [],
     products: [],
-    total: 0
+    total: dataLocal && dataLocal.total ? dataLocal.total : 0
 }
-// const init = {
-//     numberCart: 0,
-//     Carts: dataLocal && dataLocal.Carts ? dataLocal.Carts : [],
-//     products: [],
-//     total: 0
-// }
 const noteReducers = (state = init, action) => {
     switch (action.type) {
         case ADD_CART:
@@ -43,19 +37,19 @@ const noteReducers = (state = init, action) => {
                         check = true;
                     }
                 });
-                // if (!check) {
-                //     let _cart = {
-                //         id: action.payload.id,
-                //         quantity: action.payload.quantity,
-                //         name: action.payload.name,
-                //         image: action.payload.image,
-                //         price: action.payload.price,
-                //         color: action.payload.color,
-                //         ram: action.payload.ram,
-                //         rom: action.payload.rom,
-                //     }
-                //     state.Carts.push(_cart);
-                // }
+                if (!check) {
+                    let _cart = {
+                        id: action.payload.id,
+                        quantity: action.payload.quantity,
+                        name: action.payload.name,
+                        image: action.payload.image,
+                        price: action.payload.price,
+                        color: action.payload.color,
+                        ram: action.payload.ram,
+                        rom: action.payload.rom,
+                    }
+                    state.Carts.push(_cart);
+                }
             }
             if (state) {
                 let number = 0
@@ -107,13 +101,17 @@ const noteReducers = (state = init, action) => {
                 ...state,
             }
         case TOTAL_PRODUCT_CART:
-            state.total = action.payload
-            if (state) {
-                localStorage.setItem("products", JSON.stringify(state));
-            }
+            let stateTotal = state.total
+            stateTotal = action.payload
+            // state.total = action.payload
+            // if (state) {
+            //     localStorage.setItem("products", JSON.stringify(state));
+            // }
             return {
                 ...state,
+                total: stateTotal
             }
+
         default:
             return state;
     }

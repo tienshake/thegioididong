@@ -18,23 +18,30 @@ import './NavBarApp.css';
 import { Carousel } from 'react-responsive-carousel';
 const NavBarApp = (props) => {
     const navigate = useNavigate();
-    // const [total, setTotal] = useState();
-    // useEffect(() => {
-    //     if (props.productsRedux && props.productsRedux.total) {
-    //         setTotal(props.productsRedux.total)
-    //     }
-    // }, [props]);
+    const [numberCart, setNumberCart] = useState('');
+    const [profile, setProfile] = useState('');
+    useEffect(() => {
+        const profile = Cookies.get("profile");
+        if (profile) setProfile(profile)
+        if (props.productsRedux && props.productsRedux.numberCart) {
+            setNumberCart(props.productsRedux.numberCart)
+        }
+        if (props.productsRedux && props.productsRedux.numberCart === 0) {
+            setNumberCart('')
+        }
+    }, [props, numberCart]);
     const handleClickLoginLogout = async (e) => {
         const profile = Cookies.get("profile");
-        if (!profile) {
-            navigate('/login');
-        } else {
+        if (profile) {
             Cookies.remove("profile");
+            setProfile('')
+        } else {
+            navigate('/login');
+
         }
 
     };
-    // console.log(total);
-
+    console.log(numberCart)
     return (
         <>
             <header>
@@ -83,11 +90,15 @@ const NavBarApp = (props) => {
 
                     {/* giỏ hàng */}
 
-                    <Link style={{ textDecoration: 'none' }} to='gio-hang'>
+                    <Link style={{ textDecoration: 'none' }} to='/cart'>
                         <div className='wrap__cart'>
-                            <p><FaShoppingCart style={{ fontSize: '20px' }} /></p>
+                            {numberCart && numberCart > 0 ?
+                                <p className="numberCart">{numberCart}</p>
+                                :
+                                <p><FaShoppingCart style={{ fontSize: '20px' }} /></p>
+                            }
                             <p>Giỏ hàng</p>
-                            <p>2</p>
+
                         </div>
                     </Link>
 
@@ -130,7 +141,7 @@ const NavBarApp = (props) => {
                         <Link style={{ textDecoration: 'none' }} to='/login'>
                             <p style={{ marginTop: '10px' }}
                                 onClick={handleClickLoginLogout}
-                            >Đăng nhập</p>
+                            >{profile ? 'Đăng xuất' : 'Đăng nhập'}</p>
                         </Link>
                     </div>
                     {/* spacer */}

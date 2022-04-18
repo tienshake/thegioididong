@@ -3,11 +3,10 @@ import { connect } from 'react-redux';
 import './Cart.scss';
 import { AiOutlineLeft, AiFillCaretDown } from "react-icons/ai";
 import { IncreaseQuantity, DecreaseQuantity, DeleteCart, totalProduct } from '../../../store/actions/index';
-import Quantity from './Quantity';
 import NumberFormat from 'react-number-format';
-
+import { useNavigate } from "react-router-dom";
 const Cart = (props) => {
-    const [quantity, setQuantity] = useState('');
+    const navigate = useNavigate();
     const [products, setProducts] = useState([]);
     const [totalCart, setTotalCart] = useState(0);
 
@@ -23,13 +22,16 @@ const Cart = (props) => {
                     TotalCart += Products[item].quantity * Products[item].price;
                     ListCart.push(Products[item]);
                 });
+
             }
             setProducts(ListCart);
             setTotalCart(TotalCart);
-            props.totalProduct(TotalCart)
         }
         fetch()
     }, [props]);
+    useEffect(() => {
+        props.totalProduct(totalCart)
+    }, [totalCart])
     const decreaseQuantity = (id) => {
         props.DecreaseQuantity(id)
     };
@@ -42,7 +44,9 @@ const Cart = (props) => {
     return (
         <div className="cart-container">
             <div className='header__cart'>
-                <span className="buy__add-product"><AiOutlineLeft />Mua thêm sản phẩm khác</span>
+                <span className="buy__add-product"
+                    onClick={() => navigate('/')}
+                ><AiOutlineLeft />Mua thêm sản phẩm khác</span>
                 <span className="cart__title">Giỏ hàng của bạn</span>
             </div>
             <div className="middleCart">

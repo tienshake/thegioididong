@@ -17,7 +17,7 @@ const Login = () => {
                 Cookies.set('profile', JSON.stringify(res.user));
                 Cookies.set('isLogin', true);
                 navigate('/');
-                window.location.reload();
+                // window.location.reload();
             }
         } catch (e) {
             if (e.response) {

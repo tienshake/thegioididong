@@ -65,6 +65,13 @@ header {}
     cursor   : pointer;
 }
 
+.wrap__cart .numberCart {
+    background-color: red;
+    width           : 20px;
+    height          : 20px;
+    border-radius   : 50%;
+}
+
 .service__nav p:hover {
     color: #fed100;
 }

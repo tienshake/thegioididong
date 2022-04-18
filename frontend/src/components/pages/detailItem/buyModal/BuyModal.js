@@ -10,28 +10,35 @@ import { alert, confirm } from 'react-bootstrap-confirmation';
 const BuyModal = (props) => {
     const [quantity, setQuantity] = useState(1);
     const [color, setColor] = useState('');
-    const handleClick = (product) => {
-        let productData = {
-            id: product.id,
-            quantity: quantity,
-            name: product.nameItem,
-            image: product.image,
-            price: product.price,
-            ram: product.ram,
-            rom: product.rom,
-            color: color
-        }
-        if (props.productsRedux.Carts.length > 0) {
-            const index = props.productsRedux.Carts.map(i => i.id).indexOf(productData.id);
-            const productIndex = props.productsRedux.Carts[index]
-            if (productIndex && productIndex.quantity) {
-                if (productIndex.quantity === 5) {
-                    return
-                }
-            }
 
+
+    const handleClick = (product) => {
+        if (color) {
+            let productData = {
+                id: product.id,
+                quantity: quantity,
+                name: product.nameItem,
+                image: product.image,
+                price: product.price,
+                ram: product.ram,
+                rom: product.rom,
+                color: color
+            }
+            if (props.productsRedux.Carts.length > 0) {
+                const index = props.productsRedux.Carts.map(i => i.id).indexOf(productData.id);
+                const productIndex = props.productsRedux.Carts[index]
+                if (productIndex && productIndex.quantity) {
+                    if (productIndex.quantity === 5) {
+                        return
+                    }
+                }
+
+            }
+            props.addCart(productData)
+            alert('Thêm sản phẩm thành công')
+        } else {
+            alert('Bạn chưa nhập màu')
         }
-        props.addCart(productData)
 
 
     };
