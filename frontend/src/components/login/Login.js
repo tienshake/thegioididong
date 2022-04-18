@@ -8,12 +8,13 @@ const Login = () => {
     const [errMessage, setErrMessage] = useState('');
     const handleLogin = async (e) => {
         try {
-            const res = await loginApi('tientrancntt@gmail.com', '123');
-
+            const res = await loginApi('viet123@gmail.com', '123');
             if (res && res.errCode !== 0) {
                 setErrMessage(res.errMessage);
             }
             if (res && res.errCode === 0) {
+                console.log(JSON.stringify(res.user));
+                delete res.user.image;
                 Cookies.set('profile', JSON.stringify(res.user));
                 Cookies.set('isLogin', true);
                 navigate('/');

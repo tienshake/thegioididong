@@ -10,6 +10,10 @@ const getAllUCodeService = async (id) => {
 const getAllUserService = async (id, limit, page) => {
     return await axios.get(`/api/getAllUser?id=${id}&limit=${limit}&page=${page}`);
 }
+const getUserByIdService = async (id) => {
+    return await axios.get(`/api/getUserById?id=${id}`);
+}
+
 const createUserService = async (data) => {
     return await axios.post('/api/createUser', data);
 };
@@ -45,6 +49,7 @@ export {
     loginApi,
     createUserService,
     getAllUserService,
+    getUserByIdService,
     getAllUCodeService,
     createProductService,
     createColorProductService,

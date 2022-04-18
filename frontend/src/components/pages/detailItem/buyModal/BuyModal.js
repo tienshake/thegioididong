@@ -13,7 +13,9 @@ const BuyModal = (props) => {
 
 
     const handleClick = (product) => {
-        if (color) {
+        if (!color) {
+            alert('Bạn chưa nhập màu')
+        } else {
             let productData = {
                 id: product.id,
                 quantity: quantity,
@@ -36,11 +38,7 @@ const BuyModal = (props) => {
             }
             props.addCart(productData)
             alert('Thêm sản phẩm thành công')
-        } else {
-            alert('Bạn chưa nhập màu')
         }
-
-
     };
     const handleOnChange = (color) => {
         setColor(color)

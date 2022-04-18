@@ -12,15 +12,37 @@ import {
     BsFillFileEarmarkPostFill,
     BsGift
 } from "react-icons/bs";
-
 import './Admin.scss';
 import { IoAppsOutline, IoPhonePortraitOutline, IoCreate } from "react-icons/io5";
 import { AiFillMail, AiOutlineUser, AiOutlineFileSync } from "react-icons/ai";
 import React, { useState, useEffect } from 'react';
-import { createUserService, createColorProductService, createProductService, createImgDetailProductService } from '../../services/userService';
+import Cookies from "js-cookie";
+import {
+    createUserService,
+    createColorProductService, createProductService,
+    createImgDetailProductService, getUserByIdService
+} from '../../services/userService';
 import { alert, confirm } from 'react-bootstrap-confirmation';
 
 const Admin = (props) => {
+    const [profile, setProfile] = useState('');
+    useEffect(() => {
+        const profile = Cookies.get("profile");
+        if (profile) {
+            console.log(profile)
+            const id = JSON.parse(profile).id
+            console.log(id)
+            const fetch = async () => {
+                const res = await getUserByIdService(id);
+                if (res && res.errCode === 0) {
+                    setProfile(res.data)
+                }
+            }
+            fetch()
+        };
+
+    }, []);
+    console.log(profile)
     const createToAdmin = async (data, type, colors, imageMultiple) => {
         try {
             const isConfirm = await confirm("Bạn có muốn tạo không?");
@@ -112,10 +134,11 @@ const Admin = (props) => {
                             <li> <FaRegBell /></li>
                             <li><IoAppsOutline /></li>
                             <li><AiFillMail /></li>
+                            <li>{profile && profile.name ? profile.name : ''}</li>
                             <li>
                                 <div className="avatar"
                                     style={{
-                                        backgroundImage: "url(" + "https://anhdep123.com/wp-content/uploads/2021/02/anh-avatar-hai-huoc.jpg" + ")",
+                                        backgroundImage: `url(${profile && profile.image ? profile.image : 'https://anhdep123.com/wp-content/uploads/2021/02/anh-avatar-hai-huoc.jpg'})`,
                                         backgroundPosition: 'center',
                                         backgroundSize: 'cover',
                                         backgroundRepeat: 'no-repeat'

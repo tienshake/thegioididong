@@ -41,7 +41,6 @@ const NavBarApp = (props) => {
         }
 
     };
-    console.log(numberCart)
     return (
         <>
             <header>
