@@ -21,7 +21,7 @@ const Phone = () => {
     const outletContext = useOutletContext();
     const color = randomColor(); // a hex code for an attractive color
     const myRef = useRef()
-    const [products, setProducts] = useState([1, 2, 3, 4, 5, 6, 7]);
+    const [products, setProducts] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
     const [limit, setLimit] = useState(10);
 
     let dataRender = [...products]

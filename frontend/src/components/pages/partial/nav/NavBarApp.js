@@ -111,12 +111,12 @@ const NavBarApp = (props) => {
                     </div>
 
                     {/* service menu */}
-                    <div style={{ width: '200px', fontSize: '12px', fontWeight: '500', color: 'yellow' }}>
+                    <p className="dotnew"><span className="animation"></span></p>
+                    <div children="cover__circle" style={{ width: '200px', fontSize: '12px', fontWeight: '500', color: 'yellow' }}>
                         <p style={{ lineHeight: '14px', marginTop: '3px' }}>
                             Viettel trả sau đến hạn  thanh<br /> toán. Mua thẻ nạp ngay!
                         </p>
                     </div>
-
                     <div className='service__nav'>
                         <Link style={{ textDecoration: 'none' }} to='/24h-congnghe'>
                             <p>

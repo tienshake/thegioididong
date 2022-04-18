@@ -47,22 +47,69 @@ header {}
 }
 
 .wrap__cart {
-    width        : 100px;
-    height       : 29px;
-    display      : flex;
-    color        : #fff;
-    font-size    : 14px;
-    border       : 1px solid #8f8f8f;
-    text-align   : center;
-    border-radius: 5px;
-    margin-top   : 5px;
-    font-weight  : 500;
+    width           : 100px;
+    height          : 29px;
+    display         : flex;
+    color           : #fff;
+    font-size       : 14px;
+    border          : 0.3px solid #8f8f8f;
+    text-align      : center;
+    border-radius   : 5px;
+    margin-top      : 5px;
+    font-weight     : 500;
+    background-color: rgba(102, 102, 102, 0.9);
+}
+
+.dotnew {
+    background-color: #ffe66b;
+    border-radius   : 100%;
+    display         : block;
+    height          : 8px;
+    margin          : 15px 15px 0;
+    width           : 8px;
+}
+
+.animation {
+    border          : 1px solid #ffe66b;
+    background-color: rgba(255, 230, 107, .2);
+    border-radius   : 100%;
+    display         : block;
+    height          : 8px;
+    opacity         : 1;
+    animation       : sonar 1.25s linear infinite;
+    width           : 8px;
+}
+
+
+
+/* .circle__item {
+    border-radius   : 50%;
+    background-color: #ffe66b !important;
+    width           : 10px;
+    height          : 10px;
+
+
+} */
+
+@keyframes sonar {
+    0% {
+        opacity          : 1;
+        -webkit-transform: scale(1);
+        transform        : scale(1);
+    }
+
+    100% {
+        -webkit-transform: scale(4);
+        transform        : scale(4);
+        opacity          : 0;
+    }
 }
 
 .wrap__cart p {
     margin   : auto;
     font-size: 13px;
     cursor   : pointer;
+
 }
 
 .wrap__cart .numberCart {

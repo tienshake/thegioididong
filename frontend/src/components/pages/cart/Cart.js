@@ -141,26 +141,21 @@ const Cart = (props) => {
                             <h4>Chọn địa chỉ để biết thời gian nhận hàng và phí vận chuyển (nếu có) </h4>
                             <div className="cntry-district">
                                 <div className="btn-click country">
-                                    <button type="button">Hồ Chí Minh
-                                        <select name="" id="">
-                                            <option value=""> </option>
-                                            <option value="">Hà Nội</option>
-                                            <option value="">Huế</option>
-                                            <option value="">Hải Phòng</option>
-                                            <option value="">Quảng Nam</option>
-                                        </select>
-                                    </button>
+                                    <input type="text" placeholder="Chọn Tỉnh thành" />
                                 </div>
                                 <div className="btn-click district">
-                                    <button>Chọn Quận / Huyện</button>
+                                    <input type="text" placeholder="Chọn Quận / Huyện" />
                                 </div>
                             </div>
-                            <div className="wards disable">
-                                <div className="left"><button>Chọn Phường / Xã</button>
+                            <div className="cntry-district">
+                                <div className="btn-click country">
+                                    <input type="text" placeholder="Chọn Phường / Xã" />
+                                </div>
+                                <div className="btn-click district">
                                     <input type="text" placeholder="Số nhà, tên đường" />
                                 </div>
-                                <div className="right"></div>
                             </div>
+
 
                         </form>
                     </div>
@@ -183,17 +178,17 @@ const Cart = (props) => {
                     </div>
                     <div className="finaltotal">
                         <div className="area-total">
-                            <div className="discountcode"><span>Sử dụng mã giảm giá</span><select name="" id=""></select> </div>
+                            <div className="discountcode"><span>Sử dụng mã giảm giá</span><span name="" id="">sun</span> </div>
                         </div>
                     </div>
-                    <footer>
-                        <div className="footer">
+                    <div className="footer__cart">
+                        <div className="footer__cart-price">
                             <h3>Tổng tiền:</h3>
                             <strong>36.990.000</strong>
                         </div>
                         <button>Đặt hàng</button><br></br>
                         <span>Có thể chọn hình thức thanh toán sau khi đặt hàng</span>
-                    </footer>
+                    </div>
                 </div>
             </div>
         </div >

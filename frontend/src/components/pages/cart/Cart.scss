@@ -56,10 +56,10 @@
 
 .cart-container {
     width           : 100%;
-    height          : 100%;
     background-color: #f0f0f0;
     font-family     : Arial, Helvetica, sans-serif;
-
+    min-height      : 1000px;
+    padding-bottom  : 50px;
 
     .header__cart {
         margin         : auto;
@@ -82,7 +82,7 @@
     }
 
     .middleCart {
-        padding: 0 20px;
+        padding: 20px 20px;
 
         .cart__item-control {
             display        : flex;
@@ -122,7 +122,6 @@
         background-color: #FFFFFF;
         margin          : auto;
         padding-top     : 20px;
-        height          : 960px;
 
         .product-item {
             display      : flex;
@@ -209,7 +208,6 @@
         /* thông tin người dùng */
 
         .info {
-            height      : 600px;
             padding-left: 20px;
         }
 
@@ -227,9 +225,10 @@
 
 
         .deli-address {
-            border: 1px solid gray;
-            width : 90%;
-            margin: auto;
+            border : 1px solid gray;
+            width  : 90%;
+            margin : auto;
+            padding: 10px;
         }
 
         .active h4 {
@@ -312,15 +311,34 @@
             width        : 100%;
             box-sizing   : border-box;
             margin-bottom: 7px;
+            margin-top   : 20px;
+
+        }
+
+        .uline {
+            margin-top: 10px;
+
+        }
+
+        .area-total {
+            margin: 10px;
+        }
+
+        .discountcode {
+            display    : flex;
+            align-items: center;
+            gap        : 10px;
         }
 
         .chexinfo {
-            display: flex;
+            display    : flex;
+            align-items: center;
+            gap        : 10px;
+            margin     : 5px;
         }
 
         .chexinfo p {
-            margin-top  : 0;
-            padding-left: 10px;
+            margin: 0;
         }
 
         .choosegetgoods h4 {
@@ -333,19 +351,27 @@
         }
 
         .click-choose {
+            display    : flex;
+            align-items: center;
+        }
+
+        .choose-link current {
             display: flex;
+
         }
 
         .choose-link.current,
         .choose-link {
-            display     : flex;
-            padding-left: 10px;
+            display        : flex;
+            align-items    : center;
+            justify-content: center;
+            padding        : 5px;
+            gap            : 10px;
         }
 
         .choose-link.current p,
         .choose-link p {
-            margin      : 0 0 20px 0;
-            padding-left: 10px;
+            margin: 0;
         }
 
         .infor-customer h4 {
@@ -356,6 +382,12 @@
             color         : #333;
             font-weight   : 300;
             margin-top    : 0;
+        }
+
+        .sex-customer {
+            display    : flex;
+            align-items: center;
+            gap        : 10px;
         }
 
         .form-customer .sex-customer span {
@@ -396,7 +428,7 @@
         }
 
 
-        footer button {
+        .footer__cart button {
             display      : block;
             overflow     : hidden;
             color        : #fff;
@@ -410,21 +442,22 @@
             margin-left  : -10px;
         }
 
-        .footer {
-            display: flex;
+        .footer__cart-price {
+            display        : flex;
+            justify-content: space-between;
+            padding        : 10px 0;
         }
 
-        .footer h3 {
+        .footer__cart-price h3 {
             font-size: 14px;
+            display  : block;
         }
 
-        .footer strong {
-            padding-left: 400px;
-            margin-top  : 10px;
-            color       : red;
+        .footer__cart-price strong {
+            color: red;
         }
 
-        footer span {
+        .footer__cart span {
             text-align: center;
             display   : block;
             overflow  : hidden;
