@@ -9,6 +9,7 @@ const initWebRoutes = (app) => {
     //User API================================================================
     router.post("/api/createUser", userController.createUserController);
     router.get("/api/getAllUser", userController.handleGetAllUseController);
+    router.get("/api/getUserById", userController.handleGetUserById);
     router.post("/api/login", userController.handleLogin);
     //Product API======================================================
     router.post("/api/create-product", productController.handleCreateProduct);

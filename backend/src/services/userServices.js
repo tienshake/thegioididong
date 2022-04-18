@@ -9,7 +9,8 @@ const checkUserEmail = (userEmail) => {
     return new Promise(async (resolve, reject) => {
         try {
             const user = await db.User.findOne({
-                where: { email: userEmail }
+                where: { email: userEmail },
+
             })
             if (user) {
                 resolve(true)
@@ -36,15 +37,17 @@ const hashUserPassword = (password) => {
 const handleUserLogin = (email, password) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const userData = {}
+            let userData = {}
             let isExist = await checkUserEmail(email)
             if (isExist) {
                 const user = await db.User.findOne({
                     where: { email: email },
-                    attributes: ['email', 'roleId', 'firstName', 'lastName', 'password', 'keyId', 'id'],
+                    attributes: {
+                        exclude: ['image', 'createdAt', 'updatedAt', 'keyId']
+                    },
                     raw: true
                 })
-                // false
+
                 if (user) {
                     const check = bcrypt.compareSync(password, user.password);
                     if (check) {
@@ -56,6 +59,7 @@ const handleUserLogin = (email, password) => {
                         userData.errCode = 3;
                         userData.errMessage = `Wrong password`;
                     }
+
                 } else {
                     userData.errCode = 2;
                     userData.errMessage = `User's not found`;
@@ -64,6 +68,7 @@ const handleUserLogin = (email, password) => {
                 userData.errCode = 1;
                 userData.errMessage = `Your's email isn't exist in your system. Please try other email`;
             }
+            // userData.user.image = new Buffer(userData.user.image, 'base64').toString('binary');
             resolve(userData)
 
         } catch (e) {
@@ -185,11 +190,39 @@ const getAllCodeServices = (typeInput) => {
         }
     })
 }
+const handleGetUserById = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (!id) {
+                resolve({
+                    error: 1,
+                    errMessage: 'Missing required parameter!'
+                })
+            } else {
+                const res = {};
+                const user = await db.User.findOne({
+                    where: { id: id }
+                });
+                if (user && user.image) {
+                    user.image = new Buffer(user.image, 'base64').toString('binary');
+                }
+                res.errCode = 0;
+                res.data = user;
+                resolve(res);
+            }
+
+
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
 module.exports = {
     createUserServices,
     getAllUserServices,
     handleUserLogin,
-    getAllCodeServices
+    getAllCodeServices,
+    handleGetUserById
 }
 
 // const deleteUser = (userId) => {
