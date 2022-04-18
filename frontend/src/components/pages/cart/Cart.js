@@ -2,36 +2,42 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import './Cart.scss';
 import { AiOutlineLeft, AiFillCaretDown } from "react-icons/ai";
-import { IncreaseQuantity, DecreaseQuantity, totalProduct } from '../../../store/actions/index';
+import { IncreaseQuantity, DecreaseQuantity, DeleteCart, totalProduct } from '../../../store/actions/index';
 import Quantity from './Quantity';
 import NumberFormat from 'react-number-format';
 
 const Cart = (props) => {
     const [quantity, setQuantity] = useState('');
-    const [products, setProducts] = useState('');
+    const [products, setProducts] = useState([]);
     const [totalCart, setTotalCart] = useState(0);
 
     useEffect(() => {
-        if (props.productsRedux
-            && props.productsRedux.Carts
-            && props.productsRedux.Carts.length > 0) {
-            const Products = props.productsRedux.Carts
-            let ListCart = [];
-            let TotalCart = 0;
-            Object.keys(Products).forEach(function (item) {
-                TotalCart += Products[item].quantity * Products[item].price;
-                ListCart.push(Products[item]);
-            });
-            console.log(props.productsRedux)
+        let ListCart = []
+        let TotalCart = 0;
+        const fetch = async () => {
+            if (props.productsRedux
+                && props.productsRedux.Carts
+                && props.productsRedux.Carts.length > 0) {
+                const Products = await props.productsRedux.Carts;
+                Object.keys(Products).forEach(function (item) {
+                    TotalCart += Products[item].quantity * Products[item].price;
+                    ListCart.push(Products[item]);
+                });
+            }
             setProducts(ListCart);
             setTotalCart(TotalCart);
+            props.totalProduct(TotalCart)
         }
+        fetch()
     }, [props]);
     const decreaseQuantity = (id) => {
         props.DecreaseQuantity(id)
     };
     const increaseQuantity = (id) => {
         props.IncreaseQuantity(id)
+    };
+    const DeleteCart = (id) => {
+        props.DeleteCart(id)
     };
     return (
         <div className="cart-container">
@@ -45,7 +51,9 @@ const Cart = (props) => {
                         <div className="product-item" key={i}>
                             <div className="image">
                                 <img src={item.image} alt="" width="80" /><br></br>
-                                <span>Xóa</span>
+                                <span
+                                    onClick={() => DeleteCart(i)}
+                                >Xóa</span>
                             </div>
                             <div className="heading">
                                 <div className="headding_content1">
@@ -194,6 +202,12 @@ const mapDispatchToProps = (dispatch) => {
         },
         DecreaseQuantity: (payload) => {
             dispatch(DecreaseQuantity(payload))
+        },
+        DeleteCart: (payload) => {
+            dispatch(DeleteCart(payload))
+        },
+        totalProduct: (payload) => {
+            dispatch(totalProduct(payload))
         },
     }
 }

@@ -6,12 +6,12 @@ import { addCart } from '../../../../store/actions/index';
 import { AiOutlineClose } from "react-icons/ai";
 import { Link } from 'react-router-dom';
 import Quantity from '../../cart/Quantity';
+import { alert, confirm } from 'react-bootstrap-confirmation';
 const BuyModal = (props) => {
     const [quantity, setQuantity] = useState(1);
     const [color, setColor] = useState('');
-
     const handleClick = (product) => {
-        props.addCart({
+        let productData = {
             id: product.id,
             quantity: quantity,
             name: product.nameItem,
@@ -20,12 +20,24 @@ const BuyModal = (props) => {
             ram: product.ram,
             rom: product.rom,
             color: color
-        })
+        }
+        if (props.productsRedux.Carts.length > 0) {
+            const index = props.productsRedux.Carts.map(i => i.id).indexOf(productData.id);
+            const productIndex = props.productsRedux.Carts[index]
+            if (productIndex && productIndex.quantity) {
+                if (productIndex.quantity === 5) {
+                    return
+                }
+            }
+
+        }
+        props.addCart(productData)
+
+
     };
     const handleOnChange = (color) => {
         setColor(color)
     };
-    console.log(color);
 
     return (
         <div className="buynow">

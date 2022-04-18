@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux'
-import noteReducers from './noteReducer'
+import noteReducers from './noteReducer';
+import userReducer from './userReducer';
 
 export default combineReducers({
-    productsRedux: noteReducers
+    productsRedux: noteReducers,
+    userRedux: userReducer
 })

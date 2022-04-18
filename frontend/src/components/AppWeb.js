@@ -1,5 +1,4 @@
 // import library
-import React from 'react';
 import {
   BrowserRouter as Router,
   Routes,
@@ -7,6 +6,7 @@ import {
 
 } from 'react-router-dom';
 import Cookies from "js-cookie";
+import React, { useState, useEffect } from 'react';
 
 // import components
 import AccessoryPage from './pages/accessoryPage/AccessoryPage';
@@ -24,7 +24,14 @@ import Cart from './pages/cart/Cart';
 
 
 export default function MyApp() {
+  const [user, setUser] = useState('');
 
+  useEffect(() => {
+    const userCookie = Cookies.get("profile");
+    if (userCookie) {
+      setUser(JSON.parse(userCookie))
+    }
+  }, []);
   return (
     <>
       <Router>
@@ -37,17 +44,17 @@ export default function MyApp() {
             <Route path='cart' element={<Cart />} />
             <Route path='*' element={<NotFound />} />
           </Route>
-          <Route path='/manage' element={<Admin />} >
-            <Route index element={<UserManage />} />
-            <Route path='create-user' element={<UserManage />} />
-            <Route path='users' element={<UserList type={'users'} />} />
-            <Route path='create-product' element={<ProductManage />} />
-            <Route path='products' element={<UserList type={'products'} />} />
-            <Route path='creat-post-product' element={<PostProduct />} />
-          </Route>
-          <Route path='/login' element={<Login />} >
-
-          </Route>
+          {user &&
+            <Route path='/manage' element={<Admin />} >
+              <Route index element={<UserManage />} />
+              <Route path='create-user' element={<UserManage />} />
+              <Route path='users' element={<UserList type={'users'} />} />
+              <Route path='create-product' element={<ProductManage />} />
+              <Route path='products' element={<UserList type={'products'} />} />
+              <Route path='creat-post-product' element={<PostProduct />} />
+            </Route>
+          }
+          <Route path='/login' element={<Login />} />
         </Routes>
       </Router>
     </>

@@ -2,6 +2,8 @@
 import { Link, NavLink } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 import {
     FaShoppingCart,
     FaNewspaper,
@@ -15,9 +17,24 @@ import { IoIosHeadset } from "react-icons/io";
 import './NavBarApp.css';
 import { Carousel } from 'react-responsive-carousel';
 const NavBarApp = (props) => {
-    useEffect(() => {
-        console.log(props.productsRedux);
-    }, []);
+    const navigate = useNavigate();
+    // const [total, setTotal] = useState();
+    // useEffect(() => {
+    //     if (props.productsRedux && props.productsRedux.total) {
+    //         setTotal(props.productsRedux.total)
+    //     }
+    // }, [props]);
+    const handleClickLoginLogout = async (e) => {
+        const profile = Cookies.get("profile");
+        if (!profile) {
+            navigate('/login');
+        } else {
+            Cookies.remove("profile");
+        }
+
+    };
+    // console.log(total);
+
     return (
         <>
             <header>
@@ -70,6 +87,7 @@ const NavBarApp = (props) => {
                         <div className='wrap__cart'>
                             <p><FaShoppingCart style={{ fontSize: '20px' }} /></p>
                             <p>Giỏ hàng</p>
+                            <p>2</p>
                         </div>
                     </Link>
 
@@ -110,7 +128,9 @@ const NavBarApp = (props) => {
                     </div>
                     <div className='service__nav'>
                         <Link style={{ textDecoration: 'none' }} to='/login'>
-                            <p style={{ marginTop: '10px' }}>Đăng nhập</p>
+                            <p style={{ marginTop: '10px' }}
+                                onClick={handleClickLoginLogout}
+                            >Đăng nhập</p>
                         </Link>
                     </div>
                     {/* spacer */}

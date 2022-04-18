@@ -2,7 +2,9 @@ import {
     ADD_CART,
     INCREASE_QUANTITY,
     DECREASE_QUANTITY,
-    TOTAL_PRODUCT_CART
+    TOTAL_PRODUCT_CART,
+    POST_LOGIN,
+    DELETE_CART
 } from "../const/index";
 
 
@@ -28,10 +30,24 @@ export const DecreaseQuantity = (payload) => {
     };
 };
 
+export function DeleteCart(payload) {
+    return {
+        type: DELETE_CART,
+        payload
+    }
+}
 
-export const totalProduct = () => {
+export const totalProduct = (payload) => {
     return {
         type: TOTAL_PRODUCT_CART,
+        payload
     };
 };
+
+export const handleLogin = () => {
+    return {
+        type: POST_LOGIN,
+    };
+};
+
 
