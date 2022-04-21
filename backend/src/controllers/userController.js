@@ -75,10 +75,25 @@ const handleGetUserById = async (req, res) => {
         })
     }
 };
+const createUserCloneController = async (req, res) => {
+    try {
+        const dataUser = req.body.dataUser;
+        const dataOderProduct = req.body.dataOderProduct;
+        const message = await userServices.createUserCloneController(dataUser, dataOderProduct);
+        return res.status(200).json(message)
+    } catch (e) {
+        console.log('create error:', e)
+        return res.status(200).json({
+            errCode: -1,
+            errMessage: 'Error from server'
+        })
+    }
+};
 module.exports = {
     createUserController,
     handleGetAllUseController,
     handleLogin,
     handleAllCode,
-    handleGetUserById
+    handleGetUserById,
+    createUserCloneController
 }

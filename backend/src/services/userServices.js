@@ -217,12 +217,73 @@ const handleGetUserById = (id) => {
         }
     })
 }
+const createUserCloneController = (dataUser, dataOderProduct) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (!dataUser.name || !dataUser.email || !dataUser.phoneNumber || !dataUser.gender
+                // || !dataUser.quantity || !dataUser.productId
+                || !dataUser.provincial || !dataUser.district
+                || !dataUser.wards || !dataUser.streetName
+            ) {
+                resolve({
+                    errCode: 1,
+                    errMessage: 'Missing required parameter!'
+                })
+            } else {
+                const resOderInfo = await db.OderInfo.create({
+                    name: dataUser.name,
+                    email: dataUser.email,
+                    phoneNumber: dataUser.phoneNumber,
+                    gender: dataUser.gender,
+                    provincial: dataUser.provincial,
+                    district: dataUser.district,
+                    wards: dataUser.wards,
+                    streetName: dataUser.streetName,
+                    note: dataUser.note,
+                });
+                if (resOderInfo) {
+                    dataOderProduct.map(item => {
+                        item.state = 1;
+                        item.oderInfoId = resOderInfo.dataValues.id
+                    })
+                    await db.Oder.bulkCreate(dataOderProduct);
+                }
+                // let oderInfo = await db.OderInfo.findOne({
+                //     where: { email: dataUser.email },
+                //     raw: false
+                // });
+                // if (!oderInfo) {
+                //     await db.OderInfo.create({
+                //         name: dataUser.name,
+                //         email: dataUser.email,
+                //         phoneNumber: dataUser.phoneNumber,
+                //         gender: dataUser.gender,
+                //         provincial: dataUser.provincial,
+                //         district: dataUser.district,
+                //         wards: dataUser.wards,
+                //         streetName: dataUser.streetName,
+                //         note: dataUser.note,
+                //     });
+                // } else {
+
+                // }
+                resolve({
+                    errCode: 0,
+                    message: 'oke'
+                })
+            }
+        } catch (e) {
+            reject(e)
+        }
+    })
+};
 module.exports = {
     createUserServices,
     getAllUserServices,
     handleUserLogin,
     getAllCodeServices,
-    handleGetUserById
+    handleGetUserById,
+    createUserCloneController
 }
 
 // const deleteUser = (userId) => {

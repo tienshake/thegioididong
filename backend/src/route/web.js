@@ -8,6 +8,7 @@ const initWebRoutes = (app) => {
     router.get("/api/AllCode", userController.handleAllCode);
     //User API================================================================
     router.post("/api/createUser", userController.createUserController);
+    router.post("/api/createCloneUser", userController.createUserCloneController);
     router.get("/api/getAllUser", userController.handleGetAllUseController);
     router.get("/api/getUserById", userController.handleGetUserById);
     router.post("/api/login", userController.handleLogin);
@@ -23,22 +24,12 @@ const initWebRoutes = (app) => {
     router.post("/api/post-markdown", productController.handlePostMarkDown);
     router.get("/api/get-markDown-by-id", productController.handleMarkDownById);
 
-
-
     router.delete("/api/delete-all-product", productController.handleDeleteProduct);
     router.post("/api/buy-with-state-product", productController.handleBuyWithStateProduct);
     router.post("/api/update-product-cart", productController.handleUpdateProductCart);
     router.delete("/api/delete-product", productController.handleDeleteProductById);
     //API======================================================
-
-
-
-
-
-
-
-
-
+    return app.use("/", router);
     // router.get("/api/getAllUser", userController.handleGetAllUser);
     // router.post("/api/create-user", userController.handleCreateUser);
     // router.put("/api/edit-user", userController.handleEditUser);
@@ -53,8 +44,6 @@ const initWebRoutes = (app) => {
     // router.get("/api/get-schedule-doctor-by-date", doctorController.getScheduleDoctorByDate);
     // router.get("/api/get-extra-info-doctor-by-id", doctorController.getExtraInfoDoctorById);
 
-
-    return app.use("/", router);
 }
 
 export default initWebRoutes;
