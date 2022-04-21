@@ -19,6 +19,7 @@ const BuyModal = (props) => {
             let productData = {
                 id: product.id,
                 quantity: quantity,
+                quantityItem: product.quantity,
                 name: product.nameItem,
                 image: product.image,
                 price: product.price,
@@ -83,6 +84,7 @@ const BuyModal = (props) => {
                     <span>chọn số lượng:</span>
                     <Quantity
                         quantity={quantity}
+                        quantityItem={props.product.quantity}
                         setQuantity={setQuantity}
                     />
                 </div>

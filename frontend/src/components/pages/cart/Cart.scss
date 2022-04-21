@@ -101,6 +101,15 @@
 
         }
 
+        .fillname {
+            &.email {
+                input {
+                    margin-top: 10px;
+
+                }
+            }
+        }
+
 
         .price {
             margin-top     : 30px;
@@ -384,10 +393,17 @@
             margin-top    : 0;
         }
 
+
         .sex-customer {
             display    : flex;
             align-items: center;
             gap        : 10px;
+
+            .sex-customer-wrap {
+                display    : flex;
+                align-items: center;
+                gap        : 10px;
+            }
         }
 
         .form-customer .sex-customer span {

@@ -17,6 +17,9 @@ const getUserByIdService = async (id) => {
 const createUserService = async (data) => {
     return await axios.post('/api/createUser', data);
 };
+const createCloneUserService = async (dataUser, dataOderProduct) => {
+    return await axios.post('/api/createCloneUser', { dataUser, dataOderProduct });
+};
 const createProductService = async (data) => {
     return await axios.post('/api/create-product', data);
 };
@@ -59,5 +62,6 @@ export {
     getProductByIdService,
     getAllProductSelected,
     createMarkDown,
-    getMarkDownById
+    getMarkDownById,
+    createCloneUserService
 }

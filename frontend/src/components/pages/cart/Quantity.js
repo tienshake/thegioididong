@@ -18,7 +18,7 @@ const Quantity = (props) => {
         }
     };
     const handleOnClickPlus = (e) => {
-        if (props.quantity < 5) {
+        if (props.quantity < +props.quantityItem) {
             props.setQuantity((prev) => {
                 prev++
                 return prev
@@ -30,7 +30,7 @@ const Quantity = (props) => {
         if (props.quantity === 1 && type === 'minus') {
             color = '#cccccc'
         }
-        if (props.quantity === 5 && type === 'plus') {
+        if (props.quantity === +props.quantityItem && type === 'plus') {
             color = '#cccccc'
 
         }
@@ -45,7 +45,6 @@ const Quantity = (props) => {
                 onClick={handleOnClickMinus}
             >-</div>
             <input type="text"
-
                 value={props.quantity}
                 onChange={(e) => handleOnChangeInput(e)}
             />

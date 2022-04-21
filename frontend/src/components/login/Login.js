@@ -8,7 +8,7 @@ const Login = () => {
     const [errMessage, setErrMessage] = useState('');
     const handleLogin = async (e) => {
         try {
-            const res = await loginApi('viet123@gmail.com', '123');
+            const res = await loginApi('tien@gmail.com', '123');
             if (res && res.errCode !== 0) {
                 setErrMessage(res.errMessage);
             }

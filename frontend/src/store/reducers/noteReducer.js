@@ -27,6 +27,7 @@ const noteReducers = (state = init, action) => {
                     color: action.payload.color,
                     ram: action.payload.ram,
                     rom: action.payload.rom,
+                    quantityItem: action.payload.quantityItem,
                 }
                 state.Carts.push(cart);
             } else {
@@ -47,6 +48,7 @@ const noteReducers = (state = init, action) => {
                         color: action.payload.color,
                         ram: action.payload.ram,
                         rom: action.payload.rom,
+                        quantityItem: action.payload.quantityItem,
                     }
                     state.Carts.push(_cart);
                 }
@@ -63,7 +65,8 @@ const noteReducers = (state = init, action) => {
                 ...state,
             }
         case INCREASE_QUANTITY:
-            if (state.Carts[action.payload].quantity < 5) {
+            if (state.Carts[action.payload].quantity < state.Carts[action.payload].quantityItem) {
+                console.log(state.Carts[action.payload].quantityItem);
                 state.Carts[action.payload].quantity++;
                 state.numberCart++
             }

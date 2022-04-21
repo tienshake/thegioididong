@@ -5,29 +5,56 @@ import { AiOutlineLeft, AiFillCaretDown } from "react-icons/ai";
 import { IncreaseQuantity, DecreaseQuantity, DeleteCart, totalProduct } from '../../../store/actions/index';
 import NumberFormat from 'react-number-format';
 import { useNavigate } from "react-router-dom";
+import { getAllUCodeService, createCloneUserService } from '../../../services/userService'
 const Cart = (props) => {
     const navigate = useNavigate();
     const [products, setProducts] = useState([]);
+    const [dataOderProduct, setDataOderProduct] = useState([]);
     const [totalCart, setTotalCart] = useState(0);
+    const [gender, setGender] = useState('');
+    const [name, setName] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [email, setEmail] = useState('');
+    const [provincial, setProvincial] = useState('');
+    const [district, setDistrict] = useState('');
+    const [wards, setWards] = useState('');
+    const [streetName, setStreetName] = useState('');
+    const [note, setNote] = useState('');
+    //=====================
+    const [genderSelect, setGenderSelect] = useState('');
 
+    const fetchAllCode = async (e) => {
+        const resGender = await getAllUCodeService('GENDER');
+        if (resGender && resGender.errCode === 0) {
+            setGenderSelect(resGender.data)
+        }
+    };
     useEffect(() => {
         let ListCart = []
         let TotalCart = 0;
+        let dataOder = []
         const fetch = async () => {
             if (props.productsRedux
                 && props.productsRedux.Carts
                 && props.productsRedux.Carts.length > 0) {
                 const Products = await props.productsRedux.Carts;
                 Object.keys(Products).forEach(function (item) {
+                    const object = {}
                     TotalCart += Products[item].quantity * Products[item].price;
+                    object.quantity = Products[item].quantity
+                    object.productId = Products[item].id
+                    object.color = Products[item].color
+                    dataOder.push(object);
                     ListCart.push(Products[item]);
                 });
 
             }
             setProducts(ListCart);
             setTotalCart(TotalCart);
+            setDataOderProduct(dataOder)
         }
         fetch()
+        fetchAllCode()
     }, [props]);
     useEffect(() => {
         props.totalProduct(totalCart)
@@ -41,6 +68,38 @@ const Cart = (props) => {
     const DeleteCart = (id) => {
         props.DeleteCart(id)
     };
+    const handleBuyProduct = async (e) => {
+        // console.log(dataOderProduct);
+        const dataUser = {
+            gender,
+            name,
+            email,
+            phoneNumber,
+            provincial,
+            district,
+            wards,
+            streetName,
+            note,
+        }
+        const res = await createCloneUserService(dataUser, dataOderProduct)
+        if (res && res.errCode === 0) {
+            alert('thanh cong')
+        } else {
+            alert('that bai')
+        }
+
+    };
+    // console.log(
+    //     gender,
+    //     name,
+    //     email,
+    //     phoneNumber,
+    //     provincial,
+    //     district,
+    //     wards,
+    //     streetName,
+    //     note,
+    // );
     return (
         <div className="cart-container">
             <div className='header__cart'>
@@ -51,6 +110,10 @@ const Cart = (props) => {
             </div>
             <div className="middleCart">
                 {products && products.length > 0 && products.map((item, i) => {
+                    let isQuantityPlus = item.quantity == item.quantityItem ? false : true;
+                    let isQuantityMinus = item.quantity === 1 ? false : true;
+                    let colorPlus = isQuantityPlus ? `#4691d7` : `#cccccc`
+                    let colorMinus = isQuantityMinus ? `#4691d7` : `#cccccc`
                     return (
                         <div className="product-item" key={i}>
                             <div className="image">
@@ -76,13 +139,17 @@ const Cart = (props) => {
                                         <div className="cart__item-left">
                                             <label htmlFor="">màu {item.color}<AiFillCaretDown /></label>
                                         </div>
+
                                         <div className="cart__item-right">
                                             <div className="minus"
                                                 onClick={() => decreaseQuantity(i)}
+                                                style={{ color: `${colorMinus}` }}
+
                                             >-</div>
                                             <span >{item.quantity}</span>
                                             <div className="plus"
                                                 onClick={() => increaseQuantity(i)}
+                                                style={{ color: `${colorPlus}` }}
                                             >+</div>
                                         </div>
                                     </div>
@@ -105,54 +172,79 @@ const Cart = (props) => {
                         <h4>Thông tin khách hàng</h4>
                         <form className="form-customer" action="">
                             <div className="sex-customer">
-                                <input type="radio" />
-                                <span>Anh</span>
-                                <input type="radio" />
-                                <span>Chị</span>
+                                {genderSelect && genderSelect.length > 0 && genderSelect.map((item, i) => {
+                                    return (
+                                        <div className="sex-customer-wrap" key={i}>
+                                            <input
+                                                onChange={(e) => setGender(item.keyMap)}
+                                                type="radio" value={gender}
+                                                name="gender" />
+                                            <span>{item.valueVi}</span>
+                                        </div>
+                                    )
+                                })}
+
                             </div>
                             <div className="fillinform">
                                 <div className="fillname">
-                                    <input type="text" placeholder="Họ và tên" />
+                                    <input
+                                        onChange={(e) => setName(e.target.value)}
+                                        value={name}
+                                        type="text"
+                                        placeholder="Họ và tên" />
 
                                 </div>
                                 <div className="fillname phoneNumber">
-                                    <input type="text" placeholder="Số điện thoại" />
+                                    <input
+                                        onChange={(e) => setPhoneNumber(e.target.value)}
+                                        value={phoneNumber}
+                                        type="text"
+                                        placeholder="Số điện thoại" />
+                                </div>
+                                <div className="fillname email">
+                                    <input
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        value={email}
+                                        type="text"
+                                        placeholder="email" />
                                 </div>
                             </div>
                         </form>
-                    </div>
-                    <div className="choosegetgoods">
-                        <h4>Chọn cách thức nhận hàng</h4>
-                        <div className="click-choose">
-                            <div className="choose-link current">
-                                <div className="choose-link current">
-                                    <input type="radio" />
-                                    <p>Giao tận nơi</p>
-                                </div>
-                            </div>
-                            <div className="choose-link">
-                                <input type="radio" />
-                                <p>Nhận tại siêu thị</p>
-                            </div>
-                        </div>
                     </div>
                     <div className="deli-address">
                         <form className="active" action="">
                             <h4>Chọn địa chỉ để biết thời gian nhận hàng và phí vận chuyển (nếu có) </h4>
                             <div className="cntry-district">
                                 <div className="btn-click country">
-                                    <input type="text" placeholder="Chọn Tỉnh thành" />
+                                    <input
+                                        onChange={(e) => setProvincial(e.target.value)}
+                                        value={provincial}
+                                        type="text"
+                                        placeholder="Chọn Tỉnh thành" />
                                 </div>
                                 <div className="btn-click district">
-                                    <input type="text" placeholder="Chọn Quận / Huyện" />
+                                    <input
+                                        onChange={(e) => setDistrict(e.target.value)}
+                                        value={district}
+                                        type="text"
+                                        placeholder="Chọn Quận / Huyện" />
                                 </div>
                             </div>
+
                             <div className="cntry-district">
                                 <div className="btn-click country">
-                                    <input type="text" placeholder="Chọn Phường / Xã" />
+                                    <input
+                                        onChange={(e) => setWards(e.target.value)}
+                                        value={wards}
+                                        type="text"
+                                        placeholder="Chọn Phường / Xã" />
                                 </div>
                                 <div className="btn-click district">
-                                    <input type="text" placeholder="Số nhà, tên đường" />
+                                    <input
+                                        onChange={(e) => setStreetName(e.target.value)}
+                                        value={streetName}
+                                        type="text"
+                                        placeholder="Số nhà, tên đường" />
                                 </div>
                             </div>
 
@@ -160,33 +252,21 @@ const Cart = (props) => {
                         </form>
                     </div>
                     <div className="anotheroption">
-                        <input className="leuleo" type="text" placeholder="Yêu cầu khác (không bắt buộc)" />
-                        <div className="uline">
-                            <div className="chexinfo">
-                                <input type="checkbox" />
-                                <p>Gọi người xác nhận khác (nếu có)</p>
-                            </div>
-                            <div className="chexinfo">
-                                <input type="checkbox" />
-                                <p>Chuyện danh bạn, dữ liệu qua máy mới</p>
-                            </div>
-                            <div className="chexinfo">
-                                <input type="checkbox" />
-                                <p>Xuất hóa đơn công ty</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="finaltotal">
-                        <div className="area-total">
-                            <div className="discountcode"><span>Sử dụng mã giảm giá</span><span name="" id="">sun</span> </div>
-                        </div>
+                        <input
+                            onChange={(e) => setNote(e.target.value)}
+                            value={note}
+                            className="leuleo"
+                            type="text"
+                            placeholder="Yêu cầu khác (không bắt buộc)" />
                     </div>
                     <div className="footer__cart">
                         <div className="footer__cart-price">
                             <h3>Tổng tiền:</h3>
                             <strong>36.990.000</strong>
                         </div>
-                        <button>Đặt hàng</button><br></br>
+                        <button
+                            onClick={handleBuyProduct}
+                        >Đặt hàng</button><br></br>
                         <span>Có thể chọn hình thức thanh toán sau khi đặt hàng</span>
                     </div>
                 </div>
