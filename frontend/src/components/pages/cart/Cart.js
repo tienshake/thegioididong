@@ -298,3 +298,18 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)
+
+
+
+
+const object =
+{
+    id: 1,
+    name: 'Iphone 13 promax',
+    price: 30000000,
+    colorData: [
+        { color: 'white' },
+        { color: 'black' },
+        { color: 'red' },
+    ]
+}

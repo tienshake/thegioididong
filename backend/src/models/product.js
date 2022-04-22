@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
 
 
             Product.hasMany(models.Color, { foreignKey: 'productId', as: 'colorData' });
-
+            Product.hasMany(models.DetailPhotos, { foreignKey: 'productId', as: 'photoDetail' });
 
 
             // Product.belongsTo(models.Allcode, { foreignKey: 'positionId', targetKey: 'keyMap', as: 'positionData' });

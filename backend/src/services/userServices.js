@@ -125,8 +125,6 @@ const createUserServices = (data) => {
 
 const getAllUserServices = (userId, limit, page) => {
     return new Promise(async (resolve, reject) => {
-
-
         try {
             let offset = (page - 1) * limit
             let users = '';
@@ -139,6 +137,9 @@ const getAllUserServices = (userId, limit, page) => {
                     attributes: {
                         exclude: ['password']
                     },
+                    // raw: true,
+                    // nest: true 
+                    // nest: true
                 })
                 users = usersData;
                 countData = count;
@@ -154,8 +155,10 @@ const getAllUserServices = (userId, limit, page) => {
             }
             if (users && users.length > 0) {
                 users.map((user) => {
-                    user.image = new Buffer(user.image, 'base64').toString('binary');
-                    return user
+                    if (user.image) {
+                        user.image = new Buffer(user.image, 'base64').toString('binary');
+                        return user
+                    }
                 })
 
             }

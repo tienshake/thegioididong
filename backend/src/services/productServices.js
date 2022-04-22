@@ -318,61 +318,100 @@ const handleGetProductById = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
             let product = '';
-            if (!id) {
-                resolve({
-                    erCode: 1,
-                    message: 'Missing parameter!'
-                })
-            } else {
-                product = await db.Product.findOne({
-                    where: { id: id },
-                    // attributes: {
-                    //     exclude: ['image'],
-                    // },
-                    include: [
-                        { model: db.Allcode, as: 'typeData', attributes: ['valueVi', 'valueEn'] },
-                        { model: db.Allcode, as: 'manufacturerData', attributes: ['valueVi', 'valueEn'] },
-                        { model: db.Allcode, as: 'pinData', attributes: ['valueVi', 'valueEn'] },
-                        { model: db.Allcode, as: 'cameraData', attributes: ['valueVi', 'valueEn'] },
-                        { model: db.Allcode, as: 'displayData', attributes: ['valueVi', 'valueEn'] }
-                    ],
-                    raw: true,
-                    nest: true
-                })
-                if (product) {
-                    const ColorArr = await db.Color.findAll({
-                        where: { productId: id },
+            product = await db.Product.findByPk(id, {
+                include: [
+                    { model: db.Allcode, as: 'typeData', attributes: ['valueVi', 'valueEn'] },
+                    { model: db.Allcode, as: 'manufacturerData', attributes: ['valueVi', 'valueEn'] },
+                    { model: db.Allcode, as: 'pinData', attributes: ['valueVi', 'valueEn'] },
+                    { model: db.Allcode, as: 'cameraData', attributes: ['valueVi', 'valueEn'] },
+                    { model: db.Allcode, as: 'displayData', attributes: ['valueVi', 'valueEn'] },
+                    {
+                        model: db.Color,
                         attributes: ['color'],
-                        raw: true,
-                        nest: true
-                    })
-                    product.colorData = ColorArr
-
-                    const photoDetailArr = await db.DetailPhotos.findAll({
-                        where: { productId: id },
+                        as: 'colorData',
+                        plain: true
+                    },
+                    {
+                        model: db.DetailPhotos,
                         attributes: ['image'],
-                        raw: true,
-                        nest: true
-                    })
-                    photoDetailArr.map(item => {
-                        if (item && item.image) {
-                            item.image = new Buffer(item.image, 'base64').toString('binary');
-                        }
-                        return item
-                    })
-                    product.photoDetail = photoDetailArr
-                }
-            }
+                        as: 'photoDetail',
+                        plain: true
+                    }
+                ]
 
+            });
             if (product && product.image) {
                 product.image = new Buffer(product.image, 'base64').toString('binary');
             }
             if (product && product.imgAngle) {
                 product.imgAngle = new Buffer(product.imgAngle, 'base64').toString('binary');
             }
-
+            if (product && product.photoDetail && product.photoDetail.length > 0) {
+                product.photoDetail.map(item => {
+                    item.image = new Buffer(item.image, 'base64').toString('binary');
+                    return item;
+                })
+            }
             product.errCode = 0;
             resolve(product)
+
+
+            // let product = '';
+            // if (!id) {
+            //     resolve({
+            //         erCode: 1,
+            //         message: 'Missing parameter!'
+            //     })
+            // } else {
+            //     product = await db.Product.findOne({
+            //         where: { id: id },
+            //         // attributes: {
+            //         //     exclude: ['image'],
+            //         // },
+            //         include: [
+            //             { model: db.Allcode, as: 'typeData', attributes: ['valueVi', 'valueEn'] },
+            //             { model: db.Allcode, as: 'manufacturerData', attributes: ['valueVi', 'valueEn'] },
+            //             { model: db.Allcode, as: 'pinData', attributes: ['valueVi', 'valueEn'] },
+            //             { model: db.Allcode, as: 'cameraData', attributes: ['valueVi', 'valueEn'] },
+            //             { model: db.Allcode, as: 'displayData', attributes: ['valueVi', 'valueEn'] }
+            //         ],
+            //         raw: true,
+            //         nest: true
+            //     })
+            //     if (product) {
+            //         const ColorArr = await db.Color.findAll({
+            //             where: { productId: id },
+            //             attributes: ['color'],
+            //             raw: true,
+            //             nest: true
+            //         })
+            //         product.colorData = ColorArr
+
+            //         const photoDetailArr = await db.DetailPhotos.findAll({
+            //             where: { productId: id },
+            //             attributes: ['image'],
+            //             raw: true,
+            //             nest: true
+            //         })
+            //         photoDetailArr.map(item => {
+            //             if (item && item.image) {
+            //                 item.image = new Buffer(item.image, 'base64').toString('binary');
+            //             }
+            //             return item
+            //         })
+            //         product.photoDetail = photoDetailArr
+            //     }
+            // }
+
+            // if (product && product.image) {
+            //     product.image = new Buffer(product.image, 'base64').toString('binary');
+            // }
+            // if (product && product.imgAngle) {
+            //     product.imgAngle = new Buffer(product.imgAngle, 'base64').toString('binary');
+            // }
+
+            // product.errCode = 0;
+            // resolve(product)
         } catch (e) {
             reject(e)
         }

@@ -29,9 +29,7 @@ const Admin = (props) => {
     useEffect(() => {
         const profile = Cookies.get("profile");
         if (profile) {
-            console.log(profile)
             const id = JSON.parse(profile).id
-            console.log(id)
             const fetch = async () => {
                 const res = await getUserByIdService(id);
                 if (res && res.errCode === 0) {
@@ -42,7 +40,6 @@ const Admin = (props) => {
         };
 
     }, []);
-    console.log(profile)
     const createToAdmin = async (data, type, colors, imageMultiple) => {
         try {
             const isConfirm = await confirm("Bạn có muốn tạo không?");

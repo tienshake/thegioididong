@@ -244,7 +244,6 @@ const ProductManage = (props) => {
                         // onValueChange={(values) => handleCovertPrice(values)}
                         className="format"
                     />
-                    {console.log(price)}
                     <input type="number"
                         value={price}
                         onChange={(e) => setPrice(e.target.value)}
