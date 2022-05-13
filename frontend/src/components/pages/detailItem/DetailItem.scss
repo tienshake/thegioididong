@@ -271,6 +271,16 @@
                 display       : flex;
                 flex-direction: column;
 
+                .number {
+                    display: flex;
+                    color  : red;
+                }
+
+                .price__data {
+                    display: flex;
+                    gap    : 10px;
+                }
+
                 p {
                     margin     : 0;
                     flex       : 1;

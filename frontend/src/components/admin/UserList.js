@@ -87,15 +87,7 @@ const UserList = (props) => {
                 </tr>
                 <tr style={{ marginBottom: '20px' }}>
                     <td></td>
-                    <EditInput
-                        item={item.ram ? item.ram : 'null'}
-                        type={'ram'}
-                        indexOf={indexOf}
-                        index={index}
-                        handleClick={handleClick}
-                        handleClickOutInput={handleClickOutInput}
-                        stateInput={stateInput}
-                    />
+                    <td>{item.ram ? item.ram : 'null'}</td>
                     <td>{item.rom ? item.rom : 'null'} </td>
                     <td>{item.cameraData && item.cameraData.valueVi ? item.cameraData.valueVi : 'null'}</td>
                     <td>{item.displayData && item.displayData.valueVi ? item.displayData.valueVi : 'null'}</td>

@@ -16,6 +16,7 @@ import Post from './Post';
 import Modal from './modal/Modal';
 import BuyModal from './buyModal/BuyModal'
 import Evaluate from './Evaluate';
+import NumberFormat from 'react-number-format';
 const DetailItem = () => {
     const { id } = useParams();
     const [product, setProduct] = useState({});
@@ -136,7 +137,13 @@ const DetailItem = () => {
                     </div>
                     <div className="price">
                         <p>Giá tại <span>Đà Nẵng</span></p>
-                        <span><h5>{product.price}₫</h5><span>trả góp 0%</span></span>
+                        <div className="price__data">
+                            <div className="number"><NumberFormat
+                                value={product.price}
+                                displayType="text"
+                                thousandSeparator={true} />₫</div>
+                            <span>trả góp 0%</span>
+                        </div>
                     </div>
 
                     {/* promotion ifomation */}

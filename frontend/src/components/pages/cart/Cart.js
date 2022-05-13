@@ -5,7 +5,7 @@ import { AiOutlineLeft, AiFillCaretDown } from "react-icons/ai";
 import { IncreaseQuantity, DecreaseQuantity, DeleteCart, totalProduct } from '../../../store/actions/index';
 import NumberFormat from 'react-number-format';
 import { useNavigate } from "react-router-dom";
-import { getAllUCodeService, createCloneUserService } from '../../../services/userService'
+import { getAllUCodeService, createOder } from '../../../services/userService'
 const Cart = (props) => {
     const navigate = useNavigate();
     const [products, setProducts] = useState([]);
@@ -69,8 +69,10 @@ const Cart = (props) => {
         props.DeleteCart(id)
     };
     const handleBuyProduct = async (e) => {
-        // console.log(dataOderProduct);
-        const dataUser = {
+        const sum = dataOderProduct.reduce((prev, curr) => {
+            return prev + curr.quantity
+        }, 0)
+        const dataOder = {
             gender,
             name,
             email,
@@ -80,8 +82,12 @@ const Cart = (props) => {
             wards,
             streetName,
             note,
+            state: 1,
+            quantity: sum,
+            sumPrice: totalCart,
         }
-        const res = await createCloneUserService(dataUser, dataOderProduct)
+        console.log(dataOder);
+        const res = await createOder(dataOder, dataOderProduct)
         if (res && res.errCode === 0) {
             alert('thanh cong')
         } else {
@@ -298,18 +304,3 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)
-
-
-
-
-const object =
-{
-    id: 1,
-    name: 'Iphone 13 promax',
-    price: 30000000,
-    colorData: [
-        { color: 'white' },
-        { color: 'black' },
-        { color: 'red' },
-    ]
-}
