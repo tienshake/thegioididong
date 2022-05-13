@@ -418,41 +418,47 @@ const handleMarkDownById = async (id) => {
     })
 };
 
-const createOder = (dataUser, dataOderProduct) => {
+const createOder = ({ dataOder, dataOderProduct }) => {
     return new Promise(async (resolve, reject) => {
+
         try {
-            if (!dataUser.name || !dataUser.email || !dataUser.phoneNumber || !dataUser.gender
-                || !dataUser.provincial || !dataUser.district
-                || !dataUser.wards || !dataUser.streetName
-                || !dataUser.note || !dataUser.state
-                || !dataUser.quantity || !dataUser.sumPrice
+            if (!dataOder.name || !dataOder.email || !dataOder.phoneNumber || !dataOder.gender
+                || !dataOder.provincial || !dataOder.district
+                || !dataOder.wards || !dataOder.streetName
+                || !dataOder.note || !dataOder.state
+                || !dataOder.quantity || !dataOder.sumPrice
             ) {
                 resolve({
                     errCode: 1,
                     errMessage: 'Missing required parameter!'
                 })
             } else {
-                const resOder = await db.Oder.create({
-                    name: dataUser.name,
-                    email: dataUser.email,
-                    phoneNumber: dataUser.phoneNumber,
-                    gender: dataUser.gender,
-                    provincial: dataUser.provincial,
-                    district: dataUser.district,
-                    wards: dataUser.wards,
-                    streetName: dataUser.streetName,
-                    state: 1,
-                    quantity: dataUser.wards,
-                    sumPrice: dataUser.streetName,
-                    note: dataUser.note,
+                await db.Oder.create({
+                    name: dataOder.name,
+                    email: dataOder.email,
+                    phoneNumber: dataOder.phoneNumber,
+                    gender: dataOder.gender,
+                    provincial: dataOder.provincial,
+                    district: dataOder.district,
+                    wards: dataOder.wards,
+                    streetName: dataOder.streetName,
+                    state: dataOder.state,
+                    quantity: dataOder.wards,
+                    sumPrice: dataOder.streetName,
+                    note: dataOder.note,
+                }).then(async (data) => {
+                    if (data && data.dataValues && data.dataValues.id) {
+                        dataOderProduct.map(item => {
+                            item.oderId = data.dataValues.id
+                        })
+                        await db.ProductOder.bulkCreate([
+                            { quantity: 2, productId: 6, color: 'white', oderId: 13 },
+                            { quantity: 1, productId: 5, color: 'red', oderId: 13 }
+                        ]);
+                        console.log('dataOderProduct', dataOderProduct);
+                    }
                 });
-                // if (resOder) {
-                //     dataOderProduct.map(item => {
-                //         item.state = 1;
-                //         item.oderInfoId = resOder.dataValues.id
-                //     })
-                //     await db.Oder.bulkCreate(dataOderProduct);
-                // }
+
                 resolve({
                     errCode: 0,
                     message: 'oke'
