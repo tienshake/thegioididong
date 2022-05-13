@@ -18,11 +18,20 @@ module.exports = (sequelize, DataTypes) => {
 
         }
     };
+
     Oder.init({
-        productId: DataTypes.STRING,
+        email: DataTypes.STRING,
+        name: DataTypes.STRING,
+        gender: DataTypes.STRING,
+        phoneNumber: DataTypes.STRING,
+        provincial: DataTypes.STRING,
+        district: DataTypes.STRING,
+        wards: DataTypes.STRING,
+        streetName: DataTypes.STRING,
+        note: DataTypes.STRING,
+        state: DataTypes.STRING,
         quantity: DataTypes.STRING,
-        oderInfoId: DataTypes.STRING,
-        state: DataTypes.STRING
+        sumPrice: DataTypes.STRING,
     }, {
         sequelize,
         modelName: 'Oder',

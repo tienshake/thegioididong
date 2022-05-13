@@ -338,7 +338,6 @@ const handleGetProductById = (id) => {
                         plain: true
                     }
                 ]
-
             });
             if (product && product.image) {
                 product.image = new Buffer(product.image, 'base64').toString('binary');
@@ -354,64 +353,6 @@ const handleGetProductById = (id) => {
             }
             product.errCode = 0;
             resolve(product)
-
-
-            // let product = '';
-            // if (!id) {
-            //     resolve({
-            //         erCode: 1,
-            //         message: 'Missing parameter!'
-            //     })
-            // } else {
-            //     product = await db.Product.findOne({
-            //         where: { id: id },
-            //         // attributes: {
-            //         //     exclude: ['image'],
-            //         // },
-            //         include: [
-            //             { model: db.Allcode, as: 'typeData', attributes: ['valueVi', 'valueEn'] },
-            //             { model: db.Allcode, as: 'manufacturerData', attributes: ['valueVi', 'valueEn'] },
-            //             { model: db.Allcode, as: 'pinData', attributes: ['valueVi', 'valueEn'] },
-            //             { model: db.Allcode, as: 'cameraData', attributes: ['valueVi', 'valueEn'] },
-            //             { model: db.Allcode, as: 'displayData', attributes: ['valueVi', 'valueEn'] }
-            //         ],
-            //         raw: true,
-            //         nest: true
-            //     })
-            //     if (product) {
-            //         const ColorArr = await db.Color.findAll({
-            //             where: { productId: id },
-            //             attributes: ['color'],
-            //             raw: true,
-            //             nest: true
-            //         })
-            //         product.colorData = ColorArr
-
-            //         const photoDetailArr = await db.DetailPhotos.findAll({
-            //             where: { productId: id },
-            //             attributes: ['image'],
-            //             raw: true,
-            //             nest: true
-            //         })
-            //         photoDetailArr.map(item => {
-            //             if (item && item.image) {
-            //                 item.image = new Buffer(item.image, 'base64').toString('binary');
-            //             }
-            //             return item
-            //         })
-            //         product.photoDetail = photoDetailArr
-            //     }
-            // }
-
-            // if (product && product.image) {
-            //     product.image = new Buffer(product.image, 'base64').toString('binary');
-            // }
-            // if (product && product.imgAngle) {
-            //     product.imgAngle = new Buffer(product.imgAngle, 'base64').toString('binary');
-            // }
-
-            // product.errCode = 0;
-            // resolve(product)
         } catch (e) {
             reject(e)
         }
@@ -476,6 +417,52 @@ const handleMarkDownById = async (id) => {
         }
     })
 };
+
+const createOder = (dataUser, dataOderProduct) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (!dataUser.name || !dataUser.email || !dataUser.phoneNumber || !dataUser.gender
+                || !dataUser.provincial || !dataUser.district
+                || !dataUser.wards || !dataUser.streetName
+                || !dataUser.note || !dataUser.state
+                || !dataUser.quantity || !dataUser.sumPrice
+            ) {
+                resolve({
+                    errCode: 1,
+                    errMessage: 'Missing required parameter!'
+                })
+            } else {
+                const resOder = await db.Oder.create({
+                    name: dataUser.name,
+                    email: dataUser.email,
+                    phoneNumber: dataUser.phoneNumber,
+                    gender: dataUser.gender,
+                    provincial: dataUser.provincial,
+                    district: dataUser.district,
+                    wards: dataUser.wards,
+                    streetName: dataUser.streetName,
+                    state: 1,
+                    quantity: dataUser.wards,
+                    sumPrice: dataUser.streetName,
+                    note: dataUser.note,
+                });
+                // if (resOder) {
+                //     dataOderProduct.map(item => {
+                //         item.state = 1;
+                //         item.oderInfoId = resOder.dataValues.id
+                //     })
+                //     await db.Oder.bulkCreate(dataOderProduct);
+                // }
+                resolve({
+                    errCode: 0,
+                    message: 'oke'
+                })
+            }
+        } catch (e) {
+            reject(e)
+        }
+    })
+};
 module.exports = {
     handleCreateProductService,
     handleGetProductById,
@@ -489,5 +476,6 @@ module.exports = {
     handleGetAllProductHome,
     handleAllProductOnlyNameAndId,
     handlePostMarkDown,
-    handleMarkDownById
+    handleMarkDownById,
+    createOder
 }

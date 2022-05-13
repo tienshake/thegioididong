@@ -8,7 +8,7 @@ const initWebRoutes = (app) => {
     router.get("/api/AllCode", userController.handleAllCode);
     //User API================================================================
     router.post("/api/createUser", userController.createUserController);
-    router.post("/api/createCloneUser", userController.createUserCloneController);
+    // router.post("/api/createCloneUser", userController.createUserCloneController);
     router.get("/api/getAllUser", userController.handleGetAllUseController);
     router.get("/api/getUserById", userController.handleGetUserById);
     router.post("/api/login", userController.handleLogin);
@@ -17,6 +17,7 @@ const initWebRoutes = (app) => {
     router.get("/api/get-product-by-id", productController.handleGetProductById);
     router.get("/api/get-all-product", productController.handleGetAllProduct);
     router.get("/api/get-all-product-home", productController.handleGetAllProductHome);
+    router.post("/api/createOder", productController.createOder);
 
     router.post("/api/create-color-product", productController.handleCreateColorProduct);
     router.post("/api/create-imgDetail-product", productController.handleCreateImgDetailProduct);

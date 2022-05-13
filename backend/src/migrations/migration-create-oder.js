@@ -9,16 +9,40 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      productId: {
+      email: {
         type: Sequelize.STRING
       },
-      oderInfoId: {
+      name: {
+        type: Sequelize.STRING
+      },
+      gender: {
+        type: Sequelize.STRING
+      },
+      phoneNumber: {
+        type: Sequelize.STRING
+      },
+      provincial: {
+        type: Sequelize.STRING
+      },
+      district: {
+        type: Sequelize.STRING
+      },
+      wards: {
+        type: Sequelize.STRING
+      },
+      streetName: {
+        type: Sequelize.STRING
+      },
+      note: {
+        type: Sequelize.STRING
+      },
+      state: {
         type: Sequelize.STRING
       },
       quantity: {
         type: Sequelize.STRING
       },
-      state: {
+      sumPrice: {
         type: Sequelize.STRING
       },
       createdAt: {

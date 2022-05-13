@@ -259,6 +259,18 @@ const handleMarkDownById = async (req, res) => {
         })
     }
 };
+const createOder = async (req, res) => {
+    try {
+        const message = await productServices.createOder(req.body);
+        return res.status(200).json(message)
+    } catch (e) {
+        console.log('create error:', e)
+        return res.status(200).json({
+            errCode: -1,
+            errMessage: 'Error from server'
+        })
+    }
+};
 module.exports = {
     handleCreateProduct,
     handleGetProductById,
@@ -272,5 +284,6 @@ module.exports = {
     handleGetAllProductHome,
     handleAllProductOnlyNameAndId,
     handlePostMarkDown,
-    handleMarkDownById
+    handleMarkDownById,
+    createOder
 }

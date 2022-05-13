@@ -16,11 +16,11 @@ module.exports = (sequelize, DataTypes) => {
             Product.belongsTo(models.Allcode, { foreignKey: 'pin', targetKey: 'keyMap', as: 'pinData' });
             Product.belongsTo(models.Allcode, { foreignKey: 'camera', targetKey: 'keyMap', as: 'cameraData' });
             Product.belongsTo(models.Allcode, { foreignKey: 'display', targetKey: 'keyMap', as: 'displayData' });
+            Product.hasMany(models.DetailPhotos, { foreignKey: 'productId', as: 'photoDetail' });
+
 
 
             Product.hasMany(models.Color, { foreignKey: 'productId', as: 'colorData' });
-            Product.hasMany(models.DetailPhotos, { foreignKey: 'productId', as: 'photoDetail' });
-
 
             // Product.belongsTo(models.Allcode, { foreignKey: 'positionId', targetKey: 'keyMap', as: 'positionData' });
             // Product.belongsTo(models.Allcode, { foreignKey: 'gender', targetKey: 'keyMap', as: 'genderData' });
