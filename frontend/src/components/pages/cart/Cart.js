@@ -5,7 +5,8 @@ import { AiOutlineLeft, AiFillCaretDown } from "react-icons/ai";
 import { IncreaseQuantity, DecreaseQuantity, DeleteCart, totalProduct } from '../../../store/actions/index';
 import NumberFormat from 'react-number-format';
 import { useNavigate } from "react-router-dom";
-import { getAllUCodeService, createOder } from '../../../services/userService'
+import { getAllUCodeService, createOder } from '../../../services/userService';
+import { alert, confirm } from 'react-bootstrap-confirmation';
 const Cart = (props) => {
     const navigate = useNavigate();
     const [products, setProducts] = useState([]);
@@ -68,6 +69,38 @@ const Cart = (props) => {
     const DeleteCart = (id) => {
         props.DeleteCart(id)
     };
+    const validateOder = (inputData) => {
+        const dataOderArr = [
+            'gender',
+            'name',
+            'email',
+            'phoneNumber',
+            'provincial',
+            'district',
+            'wards',
+            'streetName',
+            'quantity',
+            'sumPrice',
+            'state'
+        ]
+        let isValid = true;
+        let element = '';
+        for (let i = 0; i < dataOderArr.length; i++) {
+            if (!inputData[dataOderArr[i]]) {
+                isValid = false;
+                element = dataOderArr[i];
+                break;
+            }
+        }
+        return {
+            isValid,
+            element
+        };
+
+
+
+
+    };
     const handleBuyProduct = async (e) => {
         const sum = dataOderProduct.reduce((prev, curr) => {
             return prev + curr.quantity
@@ -86,26 +119,26 @@ const Cart = (props) => {
             quantity: sum,
             sumPrice: totalCart,
         }
-        console.log(dataOder);
-        const res = await createOder(dataOder, dataOderProduct)
-        if (res && res.errCode === 0) {
-            alert('thanh cong')
+        const checkObject = await validateOder(dataOder);
+        if (checkObject.isValid === false) {
+            alert(`Bạn nhật thiếu ${checkObject.element}`)
+
         } else {
-            alert('that bai')
+            const isConfirm = await confirm("Bạn có muốn thực hiện thanh toán không?");
+            if (isConfirm) {
+                const res = await createOder(dataOder, dataOderProduct)
+                if (res && res.errCode === 0) {
+                    alert('thanh cong')
+                    navigate(`/oder`)
+                } else {
+                    alert('that bai')
+                }
+
+            }
         }
 
+
     };
-    // console.log(
-    //     gender,
-    //     name,
-    //     email,
-    //     phoneNumber,
-    //     provincial,
-    //     district,
-    //     wards,
-    //     streetName,
-    //     note,
-    // );
     return (
         <div className="cart-container">
             <div className='header__cart'>
@@ -193,6 +226,7 @@ const Cart = (props) => {
                             </div>
                             <div className="fillinform">
                                 <div className="fillname">
+                                    <label>Họ và tên</label>
                                     <input
                                         onChange={(e) => setName(e.target.value)}
                                         value={name}
@@ -201,6 +235,7 @@ const Cart = (props) => {
 
                                 </div>
                                 <div className="fillname phoneNumber">
+                                    <label>Số điện thoại</label>
                                     <input
                                         onChange={(e) => setPhoneNumber(e.target.value)}
                                         value={phoneNumber}
@@ -208,6 +243,7 @@ const Cart = (props) => {
                                         placeholder="Số điện thoại" />
                                 </div>
                                 <div className="fillname email">
+                                    <label>email</label>
                                     <input
                                         onChange={(e) => setEmail(e.target.value)}
                                         value={email}

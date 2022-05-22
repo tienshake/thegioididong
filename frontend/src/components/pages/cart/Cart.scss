@@ -9,6 +9,7 @@
     color        : #333;
     font-size    : 15px;
 
+
     span {
         width        : 30px;
         border-top   : none;
@@ -97,6 +98,15 @@
                 .cart__item-left {}
 
 
+            }
+
+        }
+
+        .fillinform {
+            .fillname {
+                label {
+                    font-size: 14px;
+                }
             }
 
         }

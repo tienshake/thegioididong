@@ -85,7 +85,6 @@ const handleGetAllProductService = (limit, page) => {
                     { model: db.Allcode, as: 'pinData', attributes: ['valueVi', 'valueEn'] },
                     { model: db.Allcode, as: 'cameraData', attributes: ['valueVi', 'valueEn'] },
                     { model: db.Allcode, as: 'displayData', attributes: ['valueVi', 'valueEn'] },
-
                 ],
                 raw: true,
                 nest: true
@@ -424,8 +423,7 @@ const createOder = ({ dataOder, dataOderProduct }) => {
         try {
             if (!dataOder.name || !dataOder.email || !dataOder.phoneNumber || !dataOder.gender
                 || !dataOder.provincial || !dataOder.district
-                || !dataOder.wards || !dataOder.streetName
-                || !dataOder.note || !dataOder.state
+                || !dataOder.wards || !dataOder.streetName || !dataOder.state
                 || !dataOder.quantity || !dataOder.sumPrice
             ) {
                 resolve({
@@ -443,8 +441,8 @@ const createOder = ({ dataOder, dataOderProduct }) => {
                     wards: dataOder.wards,
                     streetName: dataOder.streetName,
                     state: dataOder.state,
-                    quantity: dataOder.wards,
-                    sumPrice: dataOder.streetName,
+                    quantity: dataOder.quantity,
+                    sumPrice: dataOder.sumPrice,
                     note: dataOder.note,
                 }).then(async (data) => {
                     if (data && data.dataValues && data.dataValues.id) {
@@ -455,7 +453,6 @@ const createOder = ({ dataOder, dataOderProduct }) => {
                             { quantity: 2, productId: 6, color: 'white', oderId: 13 },
                             { quantity: 1, productId: 5, color: 'red', oderId: 13 }
                         ]);
-                        console.log('dataOderProduct', dataOderProduct);
                     }
                 });
 

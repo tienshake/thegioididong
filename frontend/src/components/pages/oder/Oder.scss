@@ -1,0 +1,19 @@
+.oder-container {
+    width           : 100%;
+    background-color: #f0f0f0;
+    font-family     : Arial, Helvetica, sans-serif;
+    margin          : 0;
+
+    .oder__content {
+        background-color: #fff;
+        height          : 300px;
+        width           : 1000px;
+        margin-top      : 50px;
+        margin-bottom   : 50px;
+
+        .header {
+            background-color: red;
+        }
+    }
+
+}

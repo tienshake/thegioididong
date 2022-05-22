@@ -21,6 +21,7 @@ import ProductManage from './admin/productManage';
 import DetailItem from './pages/detailItem/DetailItem';
 import PostProduct from './admin/PostProduct';
 import Cart from './pages/cart/Cart';
+import Oder from './pages/oder/Oder';
 
 
 export default function MyApp() {
@@ -42,6 +43,7 @@ export default function MyApp() {
             <Route path='phone/:name/:id' element={<DetailItem />} />
             <Route path='accessory' element={<AccessoryPage />} />
             <Route path='cart' element={<Cart />} />
+            <Route path='oder' element={<Oder />} />
             <Route path='*' element={<NotFound />} />
           </Route>
           {user &&
