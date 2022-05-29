@@ -22,10 +22,11 @@ import DetailItem from './pages/detailItem/DetailItem';
 import PostProduct from './admin/PostProduct';
 import Cart from './pages/cart/Cart';
 import Oder from './pages/oder/Oder';
+import Register from './login/Register';
 
 
 export default function MyApp() {
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState("");
 
   useEffect(() => {
     const userCookie = Cookies.get("profile");
@@ -57,6 +58,7 @@ export default function MyApp() {
             </Route>
           }
           <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
         </Routes>
       </Router>
     </>

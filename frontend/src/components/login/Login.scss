@@ -5,6 +5,11 @@
     padding: 8% 0 0;
     margin : auto;
 
+    .errMessage {
+        color    : red;
+        font-size: 12px;
+    }
+
     .form {
         position  : relative;
         z-index   : 1;
