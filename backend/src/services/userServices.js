@@ -11,7 +11,7 @@ const generateAccessToken = (user) => {
         id: user.id,
         roleId: user.roleId,
         email: user.email,
-    }, process.env.ASSESS_TOKEN_SECRET, { expiresIn: "1m" });
+    }, process.env.ASSESS_TOKEN_SECRET, { expiresIn: "1d" });
     return accessToken
 }
 
@@ -171,6 +171,8 @@ const handleCreateItemAllCode = (data) => {
         
 }
 
+
+
 const createUserServices = (data) => {
 
     return new Promise(async (resolve, reject) => {
@@ -216,6 +218,30 @@ const createUserServices = (data) => {
     })
 };
 
+const handleDeleteUserById = (id)=> {
+    return new Promise(async (resolve, reject) => {
+        try {
+         if(!id) {
+            resolve({
+                errCode: 1,
+                errMessage: "Missing parameter"
+            })
+         } else {
+            const count = await db.User.destroy({ where: { id: id } });
+            if(count) {
+                resolve({
+                    errCode: 0,
+                    errMessage: `Delete user success with ${count}`
+                })
+            }
+         }
+
+        } catch (e) {
+            console.log(e);
+            reject(e)
+        }
+    })
+}
 
 
 const getAllUserServices = (userId, limit, page) => {
@@ -383,5 +409,6 @@ module.exports = {
     handleGetUserById,
     createUserCloneController,
     handleRefreshToken,
-    handleCreateItemAllCode
+    handleCreateItemAllCode,
+    handleDeleteUserById
 }

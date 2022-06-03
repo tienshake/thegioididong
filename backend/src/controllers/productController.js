@@ -96,7 +96,7 @@ const handleDeleteProductById = async (req, res) => {
     try {
         const id = req.query.id;
         if (id) {
-            const message = await productServices.handleDeleteProductByIdService(id);
+            const message = await productServices.handleDeleteProductById(id);
             return res.status(200).json(message)
         } else {
             return res.status(200).json({

@@ -245,24 +245,26 @@ const handleUpdateProductCartService = (keyId) => {
         }
     })
 }
-const handleDeleteProductByIdService = (id) => {
+const handleDeleteProductById = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const product = await db.Product.findOne({ where: { id: id } });
-            if (!product) {
+         if(!id) {
+            resolve({
+                errCode: 1,
+                errMessage: "Missing parameter"
+            })
+         } else {
+            const count = await db.Product.destroy({ where: { id: id } });
+            if(count) {
                 resolve({
-                    errCode: 2,
-                    message: `The product isn't exist`
+                    errCode: 0,
+                    errMessage: `Delete user success with ${count}`
                 })
             }
-            if (product) {
-                product.state = 0;
-            }
-            resolve({
-                errCode: 0,
-                message: `The product is delete`
-            })
+         }
+
         } catch (e) {
+            console.log(e);
             reject(e)
         }
     })
@@ -471,7 +473,7 @@ module.exports = {
     handleDeleteAllProductService,
     handleBuyWithStateProductService,
     handleUpdateProductCartService,
-    handleDeleteProductByIdService,
+    handleDeleteProductById,
     handleCreateColorProduct,
     handleCreateImgDetailProduct,
     handleGetAllProductHome,

@@ -15,6 +15,7 @@ const initWebRoutes = (app) => {
     router.post("/api/createUser", middleWareController.verifyToken, userController.createUserController);
     router.get("/api/getAllUser", middleWareController.verifyToken, userController.handleGetAllUseController);
     router.get("/api/getUserById",  middleWareController.verifyToken,userController.handleGetUserById);
+    router.delete("/api/deleteUserById", middleWareController.verifyToken,userController.handleDeleteUserById);
     //Product API======================================================
     router.post("/api/create-product", middleWareController.verifyToken, productController.handleCreateProduct);
     router.get("/api/get-product-by-id", middleWareController.verifyToken, productController.handleGetProductById);

@@ -111,6 +111,19 @@ const createUserController = async (req, res) => {
         })
     }
 };
+const handleDeleteUserById =async (req, res) => {
+    try {
+        const id = req.query.id
+        const message = await userServices.handleDeleteUserById(id);
+        return res.status(200).json(message)
+    } catch (e) {
+        console.log('create error:', e)
+        return res.status(200).json({
+            errCode: -1,
+            errMessage: 'Error from server'
+        })
+    }
+};
 
 const handleGetAllUseController = async (req, res) => {
     const id = req.query.id;
@@ -181,5 +194,6 @@ module.exports = {
     createUserCloneController,
     handleRefreshToken,
     handleLogout,
-    handleCreateItemAllCode
+    handleCreateItemAllCode,
+    handleDeleteUserById
 }
