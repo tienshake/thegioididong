@@ -4,6 +4,8 @@ import { getAllUserService, getAllProductService, createProductService } from '.
 import ReactPaginate from 'react-paginate';
 import EditInput from './com/EditInput';
 import Cookies from "js-cookie";
+import {deleteUserById, deleteProductById} from "../../services/userService";
+import { alert, confirm } from 'react-bootstrap-confirmation';
 const UserList = (props) => {
 
 
@@ -18,9 +20,6 @@ const UserList = (props) => {
     let arrCount = [];
 
     useEffect(() => {
-        // const profileCookie = Cookies.get("profile");
-        // if (profileCookie) setProfile(JSON.parse(profileCookie))
-        // console.log(profile)
         const fetch = async () => {
             const limit = 5;
             let res = ''
@@ -52,6 +51,46 @@ const UserList = (props) => {
             arrCount.push(i)
         }
     }
+
+    const handleDeleteUserById = async (id) => {
+        const isConfirm = await confirm("bạn có muốn xóa người dùng này không?");
+            if (isConfirm) {
+                const res = await deleteUserById(id);
+                if (res && res.errCode === 0) {
+                    const limit = 5;
+                      const res =  await getAllUserService("ALL", limit, page ? page : 1);
+                      if(res && res.errCode === 0) {
+                        setUsers(res.data)
+                        setCount(res.count)
+                      }
+                    alert("Delete user success")
+
+                }else {
+                    alert("Not Delete user")
+                }
+            }
+       
+    };
+
+    const handleDeleteProductById = async (id) => {
+        const isConfirm = await confirm("bạn có muốn xóa sản phẩm này không?");
+        if (isConfirm) {
+            const res = await deleteProductById(id);
+            if (res && res.errCode === 0) {
+                const limit = 5;
+                  const res =  await getAllProductService("ALL", limit, page ? page : 1);
+                  if(res && res.errCode === 0) {
+                    setUsers(res.data)
+                    setCount(res.count)
+                  }
+                alert("Delete user success")
+
+            }else {
+                alert("Not Delete user")
+            }
+        }
+    }
+
     const handlePageClick = ({ selected }) => {
         setPage(selected + 1)
     };
@@ -119,6 +158,7 @@ const UserList = (props) => {
             })
         }
     };
+   
     const renderListItem = (e) => {
         let result = '';
         if (props.type === 'users') {
@@ -142,7 +182,9 @@ const UserList = (props) => {
                                 <td>{item.phoneNumber}</td>
                                 <td>
                                     <a href="#" className="settings" title="Settings" data-toggle="tooltip"><i className="material-icons">&#xE8B8;</i></a>
-                                    <a href="#" className="delete" title="Delete" data-toggle="tooltip"><i className="material-icons">&#xE5C9;</i></a>
+                                    <a href="#" className="delete" title="Delete" data-toggle="tooltip"
+                                        onClick={() => handleDeleteUserById(item.id)}
+                                    ><i className="material-icons">&#xE5C9;</i></a>
                                 </td>
                             </tr>
                         </tbody>
@@ -194,7 +236,9 @@ const UserList = (props) => {
                                         style={{ cursor: 'pointer' }}
                                         onClick={() => handleClickAddDetailProduct(index)}
                                         className="settings"><i className="material-icons">&#xE8B8;</i></a>
-                                    <a className="delete" ><i className="material-icons">&#xE5C9;</i></a>
+                                    <a className="delete" 
+                                         onClick={() => handleDeleteProductById(item.id)}
+                                    ><i className="material-icons">&#xE5C9;</i></a>
                                 </td>
                             </tr>
                             {item.isSelected === true ? renderAddDetailProduct(item) : ''}

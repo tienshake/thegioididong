@@ -74,6 +74,22 @@ const getMarkDownById = async (id) => {
 const createOder = async (dataOder, dataOderProduct) => {
     return await axios.post('/api/createOder', { dataOder, dataOderProduct });
 };
+
+const deleteUserById  = async (id) => {
+    return await axios.delete(`/api/deleteUserById?id=${id}`, {
+        headers: {
+            token: `Bearer ${tokens.token}`
+        }
+    });
+};
+const deleteProductById = async (id) => {
+    return await axios.delete(`/api/delete-product?id=${id}`, {
+        headers: {
+            token: `Bearer ${tokens.token}`
+        }
+    });
+    
+}
 export {
     loginApi,
     createUserService,
@@ -89,5 +105,7 @@ export {
     getAllProductSelected,
     createMarkDown,
     getMarkDownById,
-    createOder
+    createOder,
+    deleteUserById,
+    deleteProductById
 }
