@@ -24,7 +24,7 @@ export default function AccessoryPage() {
             const limit = 5
             const res = await getAllProductHomeService(limit, 'PL2');
             if (res && res.errCode === 0) {
-                setCardProducts(res.data)
+                setCardProducts(res.data) //
             }
         };
         fetch()
