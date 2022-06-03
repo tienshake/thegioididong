@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import viewEngine from './config/viewEngine';
 import initWebRoutes from './route/web';
 import connectDB from './config/connectDB'
+const cookieParser = require("cookie-parser");
 var cors = require('cors')
 
 //evn
@@ -14,7 +15,9 @@ app.use(cors({ credentials: true, origin: true }));
 //config app
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
-
+//cookies
+app.use(cookieParser());
+//limit
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb' }, { extended: true }));
 // viewEngine

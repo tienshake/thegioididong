@@ -59,16 +59,16 @@ const UserManage = (props) => {
     return (
         <div className="user-manage">
             <div className="manage__content-form form-group">
-                <label>Email (Required)</label>
+                <label>Email</label>
                 <input
                     onChange={(e) => setEmail(e.target.value)}
                     type="text" className="form-control" />
             </div>
             <div className="manage__content-form form-group">
-                <label>Mật khẩu (Required)</label>
+                <label>Mật khẩu</label>
                 <input
                     onChange={(e) => setPassword(e.target.value)}
-                    type="text" className="form-control" />
+                    type="password" className="form-control" />
             </div>
             <div className="manage__content-form form-group">
                 <label>Tên người dùng</label>
@@ -95,7 +95,7 @@ const UserManage = (props) => {
                 <label>Số điện thoại</label>
                 <input
                     onChange={(e) => setPhoneNumber(e.target.value)}
-                    type="text" className="form-control" />
+                    type="number" className="form-control" />
             </div>
             <div className="manage__content-form form-group">
                 <label className="manage__content-label">Role</label>

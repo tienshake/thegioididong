@@ -8,3 +8,4 @@ export const UPDATE_CART = 'UPDATE_CART';
 export const DELETE_CART = 'DELETE_CART';
 
 export const POST_LOGIN = 'UPDATE_CART';
+export const LOGIN = 'LOGIN';

@@ -1,5 +1,41 @@
 import userServices from '../services/userServices';
 
+
+let refreshTokens = []
+
+const handleRefreshToken = async (req, res) => {
+    const resFreshToken = req.cookies.refreshToken
+    const data = await userServices.handleRefreshToken(resFreshToken);
+    const newRefreshToken = data.newRefreshToken
+
+    if (!refreshTokens.includes(resFreshToken)) {
+        return res.status(200).json({
+            errCode: 3,
+            errMessage: "Refresh Token is valid",
+        })
+    }
+
+    refreshTokens = refreshTokens.filter(token => token !== resFreshToken)
+
+    refreshTokens.push(newRefreshToken)
+
+    res.cookie("refreshToken", newRefreshToken, {
+        httpOnly: true,
+        secure: false,
+        path: "/",
+        sameSite: "strict"
+    })
+
+    return res.status(200).json({
+        errCode: 0,
+        errMessage: "Oke",
+        accessToken: data.newAccessToken
+    })
+
+};
+
+
+
 const handleLogin = async (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
@@ -10,12 +46,59 @@ const handleLogin = async (req, res) => {
         })
     }
     const userData = await userServices.handleUserLogin(email, password)
+    const data = { ...userData.user, token: userData.token }
+    const refreshToken = userData.refreshToken
+
+    refreshTokens.push(refreshToken);
+
+    res.cookie("refreshToken", refreshToken, {
+        httpOnly: true,
+        secure: false,
+        path: "/",
+        sameSite: "strict"
+    })
+
     return res.status(200).json({
         errCode: userData.errCode,
         errMessage: userData.errMessage,
-        user: userData.user ? userData.user : {}
+        user: userData.user && data ? data : {},
+        refreshToken: refreshToken
     })
+};
+
+const handleLogout = async (req, res) => {
+    try {
+        res.clearCookie("refreshToken")
+        refreshTokens = refreshTokens.filter(token => token !== req.cookies.refreshToken)
+        return res.status(200).json({
+            errCode: 0,
+            errMessage: 'Logout Oke'
+        })
+    } catch (e) {
+        console.log('create error:', e)
+        return res.status(200).json({
+            errCode: -1,
+            errMessage: 'Error from server'
+        })
+    }
+
+
+};
+
+
+const handleCreateItemAllCode= async (req, res) => {
+    try {
+        const message = await userServices.handleCreateItemAllCode(req.body);
+        return res.status(200).json(message)
+    } catch (e) {
+        console.log('create error:', e)
+        return res.status(200).json({
+            errCode: -1,
+            errMessage: 'Error from server'
+        })
+    }
 }
+
 const createUserController = async (req, res) => {
     try {
         const message = await userServices.createUserServices(req.body);
@@ -95,5 +178,8 @@ module.exports = {
     handleLogin,
     handleAllCode,
     handleGetUserById,
-    createUserCloneController
+    createUserCloneController,
+    handleRefreshToken,
+    handleLogout,
+    handleCreateItemAllCode
 }

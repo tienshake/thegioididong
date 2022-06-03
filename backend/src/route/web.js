@@ -1,21 +1,24 @@
 import express from 'express';
 import userController from '../controllers/userController';
 import productController from '../controllers/productController';
+import middleWareController from '../controllers/middleWareController';
 const router = express.Router();
 
 const initWebRoutes = (app) => {
     //All code API============================================================
     router.get("/api/AllCode", userController.handleAllCode);
+    router.post("/api/create-item-allCode", userController.handleCreateItemAllCode);
     //User API================================================================
-    router.post("/api/createUser", userController.createUserController);
-    // router.post("/api/createCloneUser", userController.createUserCloneController);
-    router.get("/api/getAllUser", userController.handleGetAllUseController);
-    router.get("/api/getUserById", userController.handleGetUserById);
     router.post("/api/login", userController.handleLogin);
+    router.post("/api/logout", middleWareController.verifyToken, userController.handleLogout);
+    router.post("/api/refresh-token", userController.handleRefreshToken);
+    router.post("/api/createUser", middleWareController.verifyToken, userController.createUserController);
+    router.get("/api/getAllUser", middleWareController.verifyToken, userController.handleGetAllUseController);
+    router.get("/api/getUserById",  middleWareController.verifyToken,userController.handleGetUserById);
     //Product API======================================================
-    router.post("/api/create-product", productController.handleCreateProduct);
-    router.get("/api/get-product-by-id", productController.handleGetProductById);
-    router.get("/api/get-all-product", productController.handleGetAllProduct);
+    router.post("/api/create-product", middleWareController.verifyToken, productController.handleCreateProduct);
+    router.get("/api/get-product-by-id", middleWareController.verifyToken, productController.handleGetProductById);
+    router.get("/api/get-all-product", middleWareController.verifyToken, productController.handleGetAllProduct);
     router.get("/api/get-all-product-home", productController.handleGetAllProductHome);
     router.post("/api/createOder", productController.createOder);
 
@@ -31,19 +34,6 @@ const initWebRoutes = (app) => {
     router.delete("/api/delete-product", productController.handleDeleteProductById);
     //API======================================================
     return app.use("/", router);
-    // router.get("/api/getAllUser", userController.handleGetAllUser);
-    // router.post("/api/create-user", userController.handleCreateUser);
-    // router.put("/api/edit-user", userController.handleEditUser);
-    // router.delete("/api/delete-user", userController.handleDeleteUser);
-    // router.get("/api/AllCode", userController.handleAllCode);
-
-    // router.get("/api/top-doctor-home", doctorController.getDoctorHome);
-    // router.get("/api/get-all-doctor", doctorController.getAllDoctor);
-    // router.post("/api/save-info-doctor", doctorController.postSaveInfoDoctor);
-    // router.get("/api/get-detail-doctor-by-id", doctorController.getDetailDoctorById);
-    // router.post("/api/bulk-create-schedule", doctorController.bulkCreateSchedule);
-    // router.get("/api/get-schedule-doctor-by-date", doctorController.getScheduleDoctorByDate);
-    // router.get("/api/get-extra-info-doctor-by-id", doctorController.getExtraInfoDoctorById);
 
 }
 

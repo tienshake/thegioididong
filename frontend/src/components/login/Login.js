@@ -17,12 +17,11 @@ const Login = () => {
 
             }
             if (res && res.errCode === 0) {
-                // console.log(JSON.stringify(res.user));
                 delete res.user.image;
                 Cookies.set('profile', JSON.stringify(res.user));
                 Cookies.set('isLogin', true);
                 navigate('/');
-                // window.location.reload();
+                window.location.reload();
             }
         } catch (e) {
             if (e.response) {

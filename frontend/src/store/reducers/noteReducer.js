@@ -3,7 +3,8 @@ import {
     INCREASE_QUANTITY,
     DECREASE_QUANTITY,
     TOTAL_PRODUCT_CART,
-    DELETE_CART
+    DELETE_CART,
+    LOGIN
 } from "../const/index";
 const localStorageData = localStorage.getItem('products');
 const dataLocal = localStorageData ? JSON.parse(localStorageData) : [];
@@ -12,10 +13,20 @@ const init = {
     numberCart: dataLocal && dataLocal.numberCart ? dataLocal.numberCart : 0,
     Carts: dataLocal && dataLocal.Carts ? dataLocal.Carts : [],
     products: [],
-    total: dataLocal && dataLocal.total ? dataLocal.total : 0
+    total: dataLocal && dataLocal.total ? dataLocal.total : 0,
+    login: {
+        currentUser: null,
+        isFetching: false,
+        error: false
+    }
 }
 const noteReducers = (state = init, action) => {
     switch (action.type) {
+        case LOGIN:
+            state.login.isFetching = true;
+            return {
+                ...state,
+            }
         case ADD_CART:
             if (state.numberCart == 0) {
                 let cart = {

@@ -3,8 +3,11 @@ import React, { useState, useEffect } from 'react';
 import { getAllUserService, getAllProductService, createProductService } from '../../services/userService';
 import ReactPaginate from 'react-paginate';
 import EditInput from './com/EditInput';
+import Cookies from "js-cookie";
 const UserList = (props) => {
 
+
+    const [profile, setProfile] = useState('');
     const [users, setUsers] = useState([]);
     const [count, setCount] = useState('');
     const [page, setPage] = useState('');
@@ -13,22 +16,27 @@ const UserList = (props) => {
     const [valueUpdate, setValueUpdate] = useState('');
 
     let arrCount = [];
-    const fetch = async () => {
-        const limit = 5;
-        let res = ''
-        if (props.type === 'users') {
-            res = await getAllUserService("ALL", limit, page ? page : 1);
-        }
-        if (props.type === 'products') {
-            res = await getAllProductService(limit, page ? page : 1);
-        }
-        if (res && res.errCode === 0) {
-            setUsers(res.data)
-            setCount(res.count)
-        }
-    }
+
     useEffect(() => {
+        // const profileCookie = Cookies.get("profile");
+        // if (profileCookie) setProfile(JSON.parse(profileCookie))
+        // console.log(profile)
+        const fetch = async () => {
+            const limit = 5;
+            let res = ''
+            if (props.type === 'users') {
+                res = await getAllUserService("ALL", limit, page ? page : 1);
+            }
+            if (props.type === 'products') {
+                res = await getAllProductService(limit, page ? page : 1);
+            }
+            if (res && res.errCode === 0) {
+                setUsers(res.data)
+                setCount(res.count)
+            }
+        }
         fetch()
+
         if (valueUpdate) {
             console.log(users[valueUpdate.index][valueUpdate.type])
             // const updateProduct = async () => {

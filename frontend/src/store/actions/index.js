@@ -4,9 +4,18 @@ import {
     DECREASE_QUANTITY,
     TOTAL_PRODUCT_CART,
     POST_LOGIN,
-    DELETE_CART
+    DELETE_CART,
+    LOGIN
 } from "../const/index";
 
+
+
+export const login = (payload) => {
+    return {
+        type: LOGIN,
+        payload,
+    };
+}
 
 export const addCart = (payload) => {
     return {

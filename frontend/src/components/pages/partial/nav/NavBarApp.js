@@ -37,7 +37,6 @@ const NavBarApp = (props) => {
             setProfile('')
         } else {
             navigate('/login');
-
         }
 
     };

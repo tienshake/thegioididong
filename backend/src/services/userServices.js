@@ -1,10 +1,111 @@
 import db from '../models/index';
 import bcrypt from 'bcryptjs';
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv"
 const salt = bcrypt.genSaltSync(10);
 
+dotenv.config()
+
+const generateAccessToken = (user) => {
+    const accessToken = jwt.sign({
+        id: user.id,
+        roleId: user.roleId,
+        email: user.email,
+    }, process.env.ASSESS_TOKEN_SECRET, { expiresIn: "1m" });
+    return accessToken
+}
+
+const generateRefreshToken = (user) => {
+    const refreshToken = jwt.sign({
+        id: user.id,
+        roleId: user.roleId,
+        email: user.email,
+    }, process.env.REFRESH_TOKEN_SECRET, { expiresIn: "30d" });
+
+    return refreshToken
+}
+
+const handleRefreshToken = (resFreshToken) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (!resFreshToken) {
+                resolve({
+                    errCode: 1,
+                    errMessage: "You're not authenticated"
+                })
+            }
+            jwt.verify(resFreshToken, process.env.REFRESH_TOKEN_SECRET, async (err, user) => {
+                if (err) {
+                    resolve({
+                        errCode: 2,
+                        errMessage: "You're got an error"
+                    })
+                } else {
+                    const newAccessToken = await generateAccessToken(user);
+                    const newRefreshToken = await generateRefreshToken(user);
+                    resolve({ newAccessToken, newRefreshToken })
+
+                }
+            })
+        } catch (err) {
+            reject(err)
+        }
+    })
+
+}
 
 
 
+const handleUserLogin = (email, password) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let userData = {}
+            let isExist = await checkUserEmail(email)
+            if (isExist) {
+                const user = await db.User.findOne({
+                    where: { email: email },
+                    attributes: {
+                        exclude: ['image', 'createdAt', 'updatedAt', 'keyId']
+                    },
+                    raw: true
+                })
+
+                if (user) {
+                    const check = await bcrypt.compareSync(password, user.password);
+                    if (check) {
+                        userData.errCode = 0;
+                        userData.errMessage = 'oke';
+                        delete user.password;
+                        userData.user = {
+                            name: user.name,
+                            gender: user.gender,
+                            phoneNumber: user.phoneNumber,
+                        };
+                        const accessToken = await generateAccessToken(user)
+                        const refreshToken = await generateRefreshToken(user)
+                        userData.token = accessToken
+                        userData.refreshToken = refreshToken
+                    } else {
+                        userData.errCode = 3;
+                        userData.errMessage = `Wrong password`;
+                    }
+
+                } else {
+                    userData.errCode = 2;
+                    userData.errMessage = `User's not found`;
+                }
+            } else {
+                userData.errCode = 1;
+                userData.errMessage = `Your's email isn't exist in your system. Please try other email`;
+            }
+            // userData.user.image = new Buffer(userData.user.image, 'base64').toString('binary');
+            resolve(userData)
+
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
 const checkUserEmail = (userEmail) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -34,50 +135,44 @@ const hashUserPassword = (password) => {
     })
 }
 
-const handleUserLogin = (email, password) => {
+
+
+
+
+
+
+//login=============
+
+const handleCreateItemAllCode = (data) => {
     return new Promise(async (resolve, reject) => {
-        try {
-            let userData = {}
-            let isExist = await checkUserEmail(email)
-            if (isExist) {
-                const user = await db.User.findOne({
-                    where: { email: email },
-                    attributes: {
-                        exclude: ['image', 'createdAt', 'updatedAt', 'keyId']
-                    },
-                    raw: true
-                })
-
-                if (user) {
-                    const check = bcrypt.compareSync(password, user.password);
-                    if (check) {
-                        userData.errCode = 0;
-                        userData.errMessage = 'oke';
-                        delete user.password;
-                        userData.user = user;
-                    } else {
-                        userData.errCode = 3;
-                        userData.errMessage = `Wrong password`;
-                    }
-
-                } else {
-                    userData.errCode = 2;
-                    userData.errMessage = `User's not found`;
-                }
-            } else {
-                userData.errCode = 1;
-                userData.errMessage = `Your's email isn't exist in your system. Please try other email`;
-            }
-            // userData.user.image = new Buffer(userData.user.image, 'base64').toString('binary');
-            resolve(userData)
-
-        } catch (e) {
-            reject(e)
-        }
+       try {
+           if(!data) {
+            resolve({
+                errCode: 1,
+                message: 'Missing parameter!'
+            })
+           } else {
+            await db.Allcode.create({
+                keyMap: data.keyMap,
+                type: data.type,
+                valueEn: data.valueEn,
+                valueVi: data.valueVi,
+            });
+            resolve({
+                errCode: 0,
+                message: 'oke'
+            })
+           }
+        
+       } catch (error) {
+           console.log(error)
+       }
     })
+        
 }
 
 const createUserServices = (data) => {
+
     return new Promise(async (resolve, reject) => {
         try {
             if (!data.email || !data.password || !data.name
@@ -286,135 +381,7 @@ module.exports = {
     handleUserLogin,
     getAllCodeServices,
     handleGetUserById,
-    createUserCloneController
+    createUserCloneController,
+    handleRefreshToken,
+    handleCreateItemAllCode
 }
-
-// const deleteUser = (userId) => {
-//     return new Promise(async (resolve, reject) => {
-//         try {
-//             const user = await db.User.findOne({ where: { id: userId } });
-//             if (!user) {
-//                 resolve({
-//                     errCode: 2,
-//                     message: `The user isn't exist`
-//                 })
-//             }
-//             if (user) {
-//                 await db.User.destroy({ where: { id: user.id } });
-//             }
-//             resolve({
-//                 errCode: 0,
-//                 message: `The user is delete`
-//             })
-//         } catch (e) {
-//             reject(e)
-//         }
-//     })
-// }
-// const updateUser = (data) => {
-//     return new Promise(async (resolve, reject) => {
-//         try {
-//             if (!data.id || !data.roleId || !data.positionId || !data.gender) {
-//                 resolve({
-//                     errCode: 2,
-//                     message: `Missing required parameter`
-//                 });
-//             }
-//             const user = await db.User.findOne({
-//                 where: { id: data.id },
-//                 raw: false
-//             })
-//             if (user) {
-//                 user.firstName = data.firstName
-//                 user.lastName = data.lastName
-//                 user.address = data.address
-//                 user.gender = data.gender
-//                 user.phoneNumber = data.phoneNumber
-//                 user.roleId = data.roleId
-//                 user.positionId = data.positionId
-//                 if (data.avatar) {
-//                     user.image = data.avatar
-//                 }
-//                 await user.save();
-
-//                 resolve({
-//                     errCode: 0,
-//                     message: `Update user success`
-//                 });
-
-//             } else {
-//                 resolve({
-//                     errCode: 1,
-//                     message: `User isn't found`
-//                 });
-//             }
-
-//         } catch (e) {
-//             reject(e)
-//         }
-//     })
-// }
-// const getAllCodeServices = (typeInput) => {
-//     return new Promise(async (resolve, reject) => {
-//         try {
-//             if (!typeInput) {
-//                 resolve({
-//                     error: 1,
-//                     errMessage: 'Missing required parameter!'
-//                 })
-//             } else {
-//                 const res = {};
-//                 const allCode = await db.Allcode.findAll({
-//                     where: { type: typeInput }
-//                 });
-//                 res.errCode = 0;
-//                 res.data = allCode;
-//                 resolve(res);
-
-//             }
-
-
-//         } catch (e) {
-//             reject(e)
-//         }
-//     })
-// }
-
-
-
-
-// const createUser = (data) => {
-//     return new Promise(async (resolve, reject) => {
-//         try {
-//             //checkUserEmail
-//             const check = await checkUserEmail(data.email)
-//             if (check === true) {
-//                 resolve({
-//                     errCode: 1,
-//                     errMessage: 'you email is already in used, please another email'
-//                 })
-//             } else {
-//                 const hashPasswordFromBcrypt = await hashUserPassword(data.password);
-//                 await db.User.create({
-//                     email: data.email,
-//                     password: hashPasswordFromBcrypt,
-//                     firstName: data.firstName,
-//                     lastName: data.lastName,
-//                     address: data.address,
-//                     phoneNumber: data.phoneNumber,
-//                     gender: data.gender,
-//                     roleId: data.roleId,
-//                     positionId: data.positionId,
-//                     image: data.avatar
-//                 })
-//                 resolve({
-//                     errCode: 0,
-//                     message: 'oke'
-//                 })
-//             }
-
-//         } catch (e) {
-//             reject(e)
-//         }
-//     })
-// }

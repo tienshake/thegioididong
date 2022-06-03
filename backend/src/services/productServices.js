@@ -46,8 +46,6 @@ const handleCreateProductService = (data) => {
                         test: test.id
                     });
 
-
-
                 } else {
                     let product = await db.Product.findOne({
                         where: { id: data.id },
