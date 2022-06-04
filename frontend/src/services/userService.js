@@ -10,7 +10,11 @@ const loginApi = async (email, password) => {
     return await axios.post(`/api/login`, { email, password });
 }
 const getAllUCodeService = async (id) => {
-    return await axios.get(`/api/AllCode?id=${id}`);
+    return await axios.get(`/api/AllCode?id=${id}`, {
+        headers: {
+            token: `Bearer ${tokens.token}`
+        }
+    });
 }
 
 const getAllUserService = async (id, limit, page) => {
@@ -35,47 +39,78 @@ const createUserService = async (data) => {
         }
     });
 };
+const register = async (data) => {
+    return await axios.post('/api/register', data, {
+        headers: {
+            token: `Bearer ${tokens.token}`
+        }
+    });
+};
 
 const createProductService = async (data) => {
-    return await axios.post('/api/create-product', data,{
+    return await axios.post('/api/create-product', data, {
         headers: {
             token: `Bearer ${tokens.token}`
         }
     });
 };
 const createColorProductService = async (data) => {
-    return await axios.post('/api/create-color-product', data);
+    return await axios.post('/api/create-color-product', data, {
+        headers: {
+            token: `Bearer ${tokens.token}`
+        }
+    });
 };
 const createImgDetailProductService = async (data) => {
-    return await axios.post('/api/create-imgDetail-product', data);
+    return await axios.post('/api/create-imgDetail-product', data, {
+        headers: {
+            token: `Bearer ${tokens.token}`
+        }
+    });
 };
 const getAllProductService = async (limit, page) => {
-    return await axios.get(`/api/get-all-product?limit=${limit}&page=${page}`);
+    return await axios.get(`/api/get-all-product?limit=${limit}&page=${page}`, {
+        headers: {
+            token: `Bearer ${tokens.token}`
+        }
+    });
 }
 const getAllProductHomeService = async (limit, option) => {
     return await axios.get(`/api/get-all-product-home?limit=${limit}&option=${option}`);
 }
 const getProductByIdService = async (id) => {
-    return await axios.get(`/api/get-product-by-id?id=${id}`,{
+    return await axios.get(`/api/get-product-by-id?id=${id}`, {
         headers: {
             token: `Bearer ${tokens.token}`
         }
     });
 }
 const getAllProductSelected = async (id) => {
-    return await axios.get(`/api/get-all-product-only-name-and-id`);
+    return await axios.get(`/api/get-all-product-only-name-and-id`, {
+        headers: {
+            token: `Bearer ${tokens.token}`
+        }
+    });
 }
 const createMarkDown = async (data) => {
-    return await axios.post('/api/post-markdown', data);
+    return await axios.post('/api/post-markdown', data, {
+        headers: {
+            token: `Bearer ${tokens.token}`
+        }
+    });
 };
 const getMarkDownById = async (id) => {
-    return await axios.get(`/api/get-markDown-by-id?id=${id}`);
+    return await axios.get(`/api/get-markDown-by-id?id=${id}`, {
+        headers: {
+            token: `Bearer ${tokens.token}`
+        }
+    });
 }
 const createOder = async (dataOder, dataOderProduct) => {
     return await axios.post('/api/createOder', { dataOder, dataOderProduct });
 };
 
-const deleteUserById  = async (id) => {
+const deleteUserById = async (id) => {
     return await axios.delete(`/api/deleteUserById?id=${id}`, {
         headers: {
             token: `Bearer ${tokens.token}`
@@ -88,8 +123,17 @@ const deleteProductById = async (id) => {
             token: `Bearer ${tokens.token}`
         }
     });
-    
+
 }
+
+const getOderById = async (id) => {
+    return await axios.get(`/api/getOderById?id=${id}`, {
+        headers: {
+            token: `Bearer ${tokens.token}`
+        }
+    });
+};
+
 export {
     loginApi,
     createUserService,
@@ -107,5 +151,7 @@ export {
     getMarkDownById,
     createOder,
     deleteUserById,
-    deleteProductById
+    deleteProductById,
+    getOderById,
+    register
 }

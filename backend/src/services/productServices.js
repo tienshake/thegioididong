@@ -434,7 +434,7 @@ const createOder = ({ dataOder, dataOderProduct }) => {
                 const oder = db.Oder.findOne({
                     where: { userId: dataOder.userId }
                 })
-                if (oder) {
+                if (oder === null) {
                     resolve({
                         errCode: 2,
                         errMessage: 'Temporarily unable to order'

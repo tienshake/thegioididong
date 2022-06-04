@@ -19,23 +19,23 @@ const UserList = (props) => {
 
     let arrCount = [];
 
-    useEffect(() => {
-        const fetch = async () => {
-            const limit = 5;
-            let res = ''
-            if (props.type === 'users') {
-                res = await getAllUserService("ALL", limit, page ? page : 1);
-            }
-            if (props.type === 'products') {
-                res = await getAllProductService(limit, page ? page : 1);
-            }
-            if (res && res.errCode === 0) {
-                setUsers(res.data)
-                setCount(res.count)
-            }
-        }
-        fetch()
 
+    const fetch = async () => {
+        const limit = 5;
+        let res = ''
+        if (props.type === 'users') {
+            res = await getAllUserService("ALL", limit, page ? page : 1);
+        }
+        if (props.type === 'products') {
+            res = await getAllProductService(limit, page ? page : 1);
+        }
+        if (res && res.errCode === 0) {
+            setUsers(res.data)
+            setCount(res.count)
+        }
+    }
+    useEffect(() => {
+        fetch()
         if (valueUpdate) {
             console.log(users[valueUpdate.index][valueUpdate.type])
             // const updateProduct = async () => {
@@ -57,14 +57,7 @@ const UserList = (props) => {
             if (isConfirm) {
                 const res = await deleteUserById(id);
                 if (res && res.errCode === 0) {
-                    const limit = 5;
-                      const res =  await getAllUserService("ALL", limit, page ? page : 1);
-                      if(res && res.errCode === 0) {
-                        setUsers(res.data)
-                        setCount(res.count)
-                      }
-                    alert("Delete user success")
-
+                    fetch()
                 }else {
                     alert("Not Delete user")
                 }
@@ -77,14 +70,7 @@ const UserList = (props) => {
         if (isConfirm) {
             const res = await deleteProductById(id);
             if (res && res.errCode === 0) {
-                const limit = 5;
-                  const res =  await getAllProductService("ALL", limit, page ? page : 1);
-                  if(res && res.errCode === 0) {
-                    setUsers(res.data)
-                    setCount(res.count)
-                  }
-                alert("Delete user success")
-
+                fetch()
             }else {
                 alert("Not Delete user")
             }
@@ -238,6 +224,9 @@ const UserList = (props) => {
                                         className="settings"><i className="material-icons">&#xE8B8;</i></a>
                                     <a className="delete" 
                                          onClick={() => handleDeleteProductById(item.id)}
+                                         style={{
+                                             cursor: 'pointer'
+                                         }}
                                     ><i className="material-icons">&#xE5C9;</i></a>
                                 </td>
                             </tr>

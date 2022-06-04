@@ -12,11 +12,6 @@ module.exports = (sequelize, DataTypes) => {
         static associate(models) {
             // define association here
             DetailPhotos.belongsTo(models.Product, { foreignKey: 'productId', as: 'photoDetail' });
-            // DetailPhotos.belongsTo(models.Allcode, { foreignKey: 'positionId', targetKey: 'keyMap', as: 'positionData' });
-            // DetailPhotos.belongsTo(models.Allcode, { foreignKey: 'gender', targetKey: 'keyMap', as: 'genderData' });
-            // DetailPhotos.hasOne(models.Markdown, { foreignKey: 'doctorId' });
-            // DetailPhotos.hasOne(models.Doctor_Infor, { foreignKey: 'doctorId' });
-
         }
     };
 

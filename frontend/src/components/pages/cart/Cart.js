@@ -7,6 +7,8 @@ import NumberFormat from 'react-number-format';
 import { useNavigate } from "react-router-dom";
 import { getAllUCodeService, createOder } from '../../../services/userService';
 import { alert, confirm } from 'react-bootstrap-confirmation';
+import Cookies from "js-cookie";
+
 const Cart = (props) => {
     const navigate = useNavigate();
     const [products, setProducts] = useState([]);
@@ -33,7 +35,7 @@ const Cart = (props) => {
     useEffect(() => {
         let ListCart = []
         let TotalCart = 0;
-        let dataOder = []
+        let dataOder = [];
         const fetch = async () => {
             if (props.productsRedux
                 && props.productsRedux.Carts
@@ -102,40 +104,47 @@ const Cart = (props) => {
 
     };
     const handleBuyProduct = async (e) => {
+
         const sum = dataOderProduct.reduce((prev, curr) => {
             return prev + curr.quantity
         }, 0)
-        const dataOder = {
-            gender,
-            name,
-            email,
-            phoneNumber,
-            provincial,
-            district,
-            wards,
-            streetName,
-            note,
-            state: 1,
-            quantity: sum,
-            sumPrice: totalCart,
-        }
-        const checkObject = await validateOder(dataOder);
-        if (checkObject.isValid === false) {
-            alert(`Bạn nhật thiếu ${checkObject.element}`)
+        const profileCookie = Cookies.get("profile");
+        if (profileCookie) {
+            let user = JSON.parse(profileCookie)
+            const dataOder = {
+                userId: user.id,
+                gender,
+                name,
+                email,
+                phoneNumber,
+                provincial,
+                district,
+                wards,
+                streetName,
+                note,
+                state: 1,
+                quantity: sum,
+                sumPrice: totalCart,
+            }
+            const checkObject = await validateOder(dataOder);
+            if (checkObject.isValid === false) {
+                alert(`Bạn nhật thiếu ${checkObject.element}`)
 
-        } else {
-            const isConfirm = await confirm("Bạn có muốn thực hiện thanh toán không?");
-            if (isConfirm) {
-                const res = await createOder(dataOder, dataOderProduct)
-                if (res && res.errCode === 0) {
-                    alert('thanh cong')
-                    navigate(`/oder`)
-                } else {
-                    alert('that bai')
+            } else {
+                const isConfirm = await confirm("Bạn có muốn thực hiện thanh toán không?");
+                if (isConfirm) {
+                    const res = await createOder(dataOder, dataOderProduct)
+                    if (res && res.errCode === 0) {
+                        alert('Mua hàng thành công')
+                        navigate(`/oder`)
+                    } else {
+                        alert(`Warning ${res.errMessage}`)
+                    }
+
                 }
-
             }
         }
+
 
 
     };
@@ -304,7 +313,21 @@ const Cart = (props) => {
                     <div className="footer__cart">
                         <div className="footer__cart-price">
                             <h3>Tổng tiền:</h3>
-                            <strong>36.990.000</strong>
+                            <strong
+                                style={{
+                                    color: "red"
+                                }}
+                            >
+                                <NumberFormat
+                                    value={totalCart}
+                                    displayType="text"
+                                    thousandSeparator={true}
+                                    style={{
+                                        color: "red",
+                                        fontSize: "20px"
+                                    }}
+                                />
+                            </strong>
                         </div>
                         <button
                             onClick={handleBuyProduct}

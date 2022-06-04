@@ -55,10 +55,10 @@ const NavBarApp = (props) => {
                     showIndicators={false}
                 >
                     <div className="item-slidee">
-                        <img src="https://cdn.tgdd.vn/2022/02/banner/1200-44-1200x44-12.png" alt='' />
+                        <img src="https://cdn.tgdd.vn/2022/05/banner/1200-44-1200x44-9.png" alt='' />
                     </div>
                     <div className="item-slidee">
-                        <img src="https://cdn.tgdd.vn/2022/03/banner/Ca%CC%81-tha%CC%81ng-4-top-bar---1200x44-1200x44.gif" alt='' />
+                        <img src="https://cdn.tgdd.vn/2022/05/banner/1200-44-1200x44-11.png" alt='' />
                     </div>
                 </Carousel>
                 <div className='toolbar__top'>

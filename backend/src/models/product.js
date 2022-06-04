@@ -17,15 +17,7 @@ module.exports = (sequelize, DataTypes) => {
             Product.belongsTo(models.Allcode, { foreignKey: 'camera', targetKey: 'keyMap', as: 'cameraData' });
             Product.belongsTo(models.Allcode, { foreignKey: 'display', targetKey: 'keyMap', as: 'displayData' });
             Product.hasMany(models.DetailPhotos, { foreignKey: 'productId', as: 'photoDetail' });
-
-
-
             Product.hasMany(models.Color, { foreignKey: 'productId', as: 'colorData' });
-
-            // Product.belongsTo(models.Allcode, { foreignKey: 'positionId', targetKey: 'keyMap', as: 'positionData' });
-            // Product.belongsTo(models.Allcode, { foreignKey: 'gender', targetKey: 'keyMap', as: 'genderData' });
-            // Product.hasOne(models.Markdown, { foreignKey: 'doctorId' });
-            // Product.hasOne(models.Doctor_Infor, { foreignKey: 'doctorId' });
 
         }
     };

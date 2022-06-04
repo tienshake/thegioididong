@@ -11,11 +11,6 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
-            // PostProduct.belongsTo(models.Allcode, { foreignKey: 'positionId', targetKey: 'keyMap', as: 'positionData' });
-            // PostProduct.belongsTo(models.Allcode, { foreignKey: 'gender', targetKey: 'keyMap', as: 'genderData' });
-            // PostProduct.hasOne(models.Markdown, { foreignKey: 'doctorId' });
-            // PostProduct.hasOne(models.Doctor_Infor, { foreignKey: 'doctorId' });
-
         }
     };
 

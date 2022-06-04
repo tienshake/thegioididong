@@ -118,8 +118,7 @@ const ProductManage = (props) => {
         return isValid;
     }
     const handleOnClickSubmit = async (e) => {
-        const isValid = checkValiDateInput();
-        if (isValid) {
+        if (type === "PL2") {
             const typeData = 'CREATE-PRODUCT';
             outletContext.createToAdmin({
                 nameItem, price, type, manufacturer,
@@ -128,8 +127,21 @@ const ProductManage = (props) => {
                 imgAngle: imageDetail.avatar,
                 pin, display, camera, chip, operatingSystem
             }, typeData, selectColor.filter(item => item.isSelected === true), imageMultiple)
-            console.log(pin, display, camera)
+
+        } else {
+            const isValid = checkValiDateInput();
+            if (isValid) {
+                const typeData = 'CREATE-PRODUCT';
+                outletContext.createToAdmin({
+                    nameItem, price, type, manufacturer,
+                    ram, rom, quantity,
+                    image: image.avatar,
+                    imgAngle: imageDetail.avatar,
+                    pin, display, camera, chip, operatingSystem
+                }, typeData, selectColor.filter(item => item.isSelected === true), imageMultiple)
+            }
         }
+
 
 
     };

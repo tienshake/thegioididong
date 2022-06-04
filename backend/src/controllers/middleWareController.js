@@ -28,7 +28,6 @@ const middleWareController = {
                 } else {
                     if (user.roleId === "ADMIN") {
                         req.user = user;
-                        console.log(user)
                         next()
                     } else {
                         res.status(401).json("You are not admin")

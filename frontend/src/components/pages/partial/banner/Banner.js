@@ -16,22 +16,22 @@ const Banner = () => {
                     showIndicators={true}
                 >
                     <div className="item-slide">
-                        <img src="https://cdn.tgdd.vn/2022/03/banner/A1323-800-200-800x200.png" />
+                        <img src="https://cdn.tgdd.vn/2022/05/banner/xk-smart-800-200-800x200.png" />
                     </div>
                     <div className="item-slide">
-                        <img src="https://cdn.tgdd.vn/2022/03/banner/reno7-800-200-800x200-2.png" />
+                        <img src="https://cdn.tgdd.vn/2022/06/banner/xk-aseri-800-200-800x200.png" />
                     </div>
                     <div className="item-slide">
-                        <img src="https://cdn.tgdd.vn/2022/03/banner/S22-800-200-800x200-5.png" />
+                        <img src="https://cdn.tgdd.vn/2022/06/banner/800-200-800x200-3.png" />
                     </div>
                     <div className="item-slide">
-                        <img src="https://cdn.tgdd.vn/2022/03/banner/800x200-800x200-6.png" />
+                        <img src="https://cdn.tgdd.vn/2022/06/banner/xk-reno6-800-200-800x200.png" />
                     </div>
                     <div className="item-slide">
-                        <img src="https://cdn.tgdd.vn/2022/03/banner/redmi10c-800-200-800x200.png" />
+                        <img src="https://cdn.tgdd.vn/2022/06/banner/xk-reno6-800-200-800x200.png" />
                     </div>
                     <div className="item-slide">
-                        <img src="https://cdn.tgdd.vn/2022/03/banner/800-200-800x200-86.png" />
+                        <img src="https://cdn.tgdd.vn/2022/06/banner/800-200-800x200-24.png" />
                     </div>
 
                 </Carousel>
@@ -39,7 +39,7 @@ const Banner = () => {
             <div className="banner__right">
                 <div className="banner__right-top"
                     style={{
-                        backgroundImage: `url(${'https://cdn.tgdd.vn/2022/02/banner/samsung-390-97-390x97.png'})`,
+                        backgroundImage: `url(${'https://cdn.tgdd.vn/2022/05/banner/sticky-sam-390-97-390x97.png'})`,
                         backgroundPosition: 'center',
                         backgroundSize: 'cover',
                         backgroundRepeat: 'no-repeat'
@@ -47,7 +47,7 @@ const Banner = () => {
                 ></div>
                 <div className="banner__right-bottom"
                     style={{
-                        backgroundImage: `url(${'https://cdn.tgdd.vn/2022/03/banner/sticky-A15s-390x97.png'})`,
+                        backgroundImage: `url(${'https://cdn.tgdd.vn/2022/05/banner/sticky-a95-390-97-390x97.png'})`,
                         backgroundPosition: 'center',
                         backgroundSize: 'cover',
                         backgroundRepeat: 'no-repeat'

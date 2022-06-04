@@ -1,6 +1,15 @@
 .login-page {
     @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
+    &.register {
+        label {
+            float    : left;
+            padding  : 5px;
+            font-size: 14px;
+            color    : rgba(65, 65, 65, 0.8);
+        }
+    }
+
     width  : 360px;
     padding: 8% 0 0;
     margin : auto;

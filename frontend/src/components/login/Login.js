@@ -10,7 +10,7 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const handleLogin = async (e) => {
         try {
-            const res = await loginApi("tientrancntt@gmail.com", '123');
+            const res = await loginApi(email, password);
             if (res && res.errCode !== 0) {
                 setErrMessage(res.errMessage);
                 console.log(errMessage);
@@ -50,7 +50,7 @@ const Login = () => {
                 >
                     Login
                 </button>
-                {/* <p className="message">Not registered? <Link to={"/register"} >Create an account</Link></p> */}
+                <p className="message">Not registered? <Link to={"/register"} >Create an account</Link></p>
             </div>
         </div>
     );

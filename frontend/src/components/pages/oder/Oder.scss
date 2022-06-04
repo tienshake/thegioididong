@@ -5,14 +5,30 @@
     margin          : 0;
 
     .oder__content {
-        background-color: #fff;
-        height          : 300px;
-        width           : 1000px;
-        margin-top      : 50px;
-        margin-bottom   : 50px;
+        background-color   : #fff;
+        // height          : 300px;
+        width              : 1000px;
+        margin-top         : 50px;
+        margin-bottom      : 50px;
 
         .header {
-            background-color: red;
+            height         : 50px;
+            display        : flex;
+            align-items    : center;
+            justify-content: center;
+        }
+
+        .list-info {
+            display       : flex;
+            gap           : 10px;
+            flex-direction: column;
+            padding       : 30px;
+        }
+
+        .info-oder {
+            display    : flex;
+            align-items: center;
+            gap        : 15px;
         }
     }
 

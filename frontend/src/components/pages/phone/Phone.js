@@ -22,7 +22,7 @@ const Phone = () => {
     const color = randomColor(); // a hex code for an attractive color
     const myRef = useRef()
     const [products, setProducts] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-    const [limit, setLimit] = useState(10);
+    const [limit, setLimit] = useState(5);
 
     let dataRender = [...products]
     if (!outletContext.titleSearch) {
@@ -70,7 +70,7 @@ const Phone = () => {
                 <div className="phone__banner">
                     <Banner />
                 </div>
-                <div className="phone__filter"> <img className='img__top__nav' style={{ top: '0' }} src='https://scontent.xx.fbcdn.net/v/t1.15752-9/275324637_374867867825981_2618128450721432063_n.png?_nc_cat=107&ccb=1-5&_nc_sid=aee45a&_nc_ohc=sNtVKKbGxpQAX9m9Mfh&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AVKhqBT2Xs96uxnx1YaR8Ebbk2wpjqRrrDdWXwExk8WfHw&oe=626CD6EB' alt='' /></div>
+                <div className="phone__filter"> <img className='img__top__nav' style={{ top: '0' }} src='/test.PNG' alt='' /></div>
                 <div className="container phone__product">
                     <div className="row phone__product-list">
                         {dataRender && dataRender.length > 0 && dataRender.map((item, index) => {
@@ -139,7 +139,7 @@ const Phone = () => {
                         <button
                             onClick={handleSetLimit}
                             className="btn__add-more"
-                        >{limit <= products.length ? 'Xem thêm 10 Sản phẩm' : 'Không còn sản phẩm nào nữa'}</button>
+                        >{limit <= products.length ? 'Xem thêm Sản phẩm' : 'Không còn sản phẩm nào nữa'}</button>
                     </div>
                 </div>
             </div>
