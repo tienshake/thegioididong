@@ -11,7 +11,7 @@ const generateAccessToken = (user) => {
         id: user.id,
         roleId: user.roleId,
         email: user.email,
-    }, process.env.ASSESS_TOKEN_SECRET, { expiresIn: "1d" });
+    }, process.env.ASSESS_TOKEN_SECRET, { expiresIn: "30d" });
     return accessToken
 }
 
@@ -77,6 +77,7 @@ const handleUserLogin = (email, password) => {
                         userData.errMessage = 'oke';
                         delete user.password;
                         userData.user = {
+                            id: user.id,
                             name: user.name,
                             gender: user.gender,
                             phoneNumber: user.phoneNumber,
@@ -145,30 +146,30 @@ const hashUserPassword = (password) => {
 
 const handleCreateItemAllCode = (data) => {
     return new Promise(async (resolve, reject) => {
-       try {
-           if(!data) {
-            resolve({
-                errCode: 1,
-                message: 'Missing parameter!'
-            })
-           } else {
-            await db.Allcode.create({
-                keyMap: data.keyMap,
-                type: data.type,
-                valueEn: data.valueEn,
-                valueVi: data.valueVi,
-            });
-            resolve({
-                errCode: 0,
-                message: 'oke'
-            })
-           }
-        
-       } catch (error) {
-           console.log(error)
-       }
+        try {
+            if (!data) {
+                resolve({
+                    errCode: 1,
+                    message: 'Missing parameter!'
+                })
+            } else {
+                await db.Allcode.create({
+                    keyMap: data.keyMap,
+                    type: data.type,
+                    valueEn: data.valueEn,
+                    valueVi: data.valueVi,
+                });
+                resolve({
+                    errCode: 0,
+                    message: 'oke'
+                })
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
     })
-        
+
 }
 
 
@@ -218,23 +219,23 @@ const createUserServices = (data) => {
     })
 };
 
-const handleDeleteUserById = (id)=> {
+const handleDeleteUserById = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
-         if(!id) {
-            resolve({
-                errCode: 1,
-                errMessage: "Missing parameter"
-            })
-         } else {
-            const count = await db.User.destroy({ where: { id: id } });
-            if(count) {
+            if (!id) {
                 resolve({
-                    errCode: 0,
-                    errMessage: `Delete user success with ${count}`
+                    errCode: 1,
+                    errMessage: "Missing parameter"
                 })
+            } else {
+                const count = await db.User.destroy({ where: { id: id } });
+                if (count) {
+                    resolve({
+                        errCode: 0,
+                        errMessage: `Delete user success with ${count}`
+                    })
+                }
             }
-         }
 
         } catch (e) {
             console.log(e);

@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
-            // Oder.belongsTo(models.Allcode, { foreignKey: 'positionId', targetKey: 'keyMap', as: 'positionData' });
+            Oder.hasMany(models.ProductOder, { foreignKey: 'oderId' });
             // Oder.belongsTo(models.Allcode, { foreignKey: 'gender', targetKey: 'keyMap', as: 'genderData' });
             // Oder.hasOne(models.Markdown, { foreignKey: 'doctorId' });
             // Oder.hasOne(models.Doctor_Infor, { foreignKey: 'doctorId' });
@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     };
 
     Oder.init({
+        userId: DataTypes.STRING,
         email: DataTypes.STRING,
         name: DataTypes.STRING,
         gender: DataTypes.STRING,

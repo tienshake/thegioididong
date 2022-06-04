@@ -248,20 +248,20 @@ const handleUpdateProductCartService = (keyId) => {
 const handleDeleteProductById = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
-         if(!id) {
-            resolve({
-                errCode: 1,
-                errMessage: "Missing parameter"
-            })
-         } else {
-            const count = await db.Product.destroy({ where: { id: id } });
-            if(count) {
+            if (!id) {
                 resolve({
-                    errCode: 0,
-                    errMessage: `Delete user success with ${count}`
+                    errCode: 1,
+                    errMessage: "Missing parameter"
                 })
+            } else {
+                const count = await db.Product.destroy({ where: { id: id } });
+                if (count) {
+                    resolve({
+                        errCode: 0,
+                        errMessage: `Delete user success with ${count}`
+                    })
+                }
             }
-         }
 
         } catch (e) {
             console.log(e);
@@ -431,34 +431,69 @@ const createOder = ({ dataOder, dataOderProduct }) => {
                     errMessage: 'Missing required parameter!'
                 })
             } else {
-                await db.Oder.create({
-                    name: dataOder.name,
-                    email: dataOder.email,
-                    phoneNumber: dataOder.phoneNumber,
-                    gender: dataOder.gender,
-                    provincial: dataOder.provincial,
-                    district: dataOder.district,
-                    wards: dataOder.wards,
-                    streetName: dataOder.streetName,
-                    state: dataOder.state,
-                    quantity: dataOder.quantity,
-                    sumPrice: dataOder.sumPrice,
-                    note: dataOder.note,
-                }).then(async (data) => {
-                    if (data && data.dataValues && data.dataValues.id) {
-                        dataOderProduct.map(item => {
-                            item.oderId = data.dataValues.id
-                        })
-                        await db.ProductOder.bulkCreate([
-                            { quantity: 2, productId: 6, color: 'white', oderId: 13 },
-                            { quantity: 1, productId: 5, color: 'red', oderId: 13 }
-                        ]);
-                    }
-                });
+                const oder = db.Oder.findOne({
+                    where: { userId: dataOder.userId }
+                })
+                if (oder) {
+                    resolve({
+                        errCode: 2,
+                        errMessage: 'Temporarily unable to order'
+                    })
+                } else {
+                    await db.Oder.create({
+                        userId: dataOder.userId,
+                        name: dataOder.name,
+                        email: dataOder.email,
+                        phoneNumber: dataOder.phoneNumber,
+                        gender: dataOder.gender,
+                        provincial: dataOder.provincial,
+                        district: dataOder.district,
+                        wards: dataOder.wards,
+                        streetName: dataOder.streetName,
+                        state: dataOder.state,
+                        quantity: dataOder.quantity,
+                        sumPrice: dataOder.sumPrice,
+                        note: dataOder.note,
+                    }).then(async (data) => {
+                        if (data && data.dataValues && data.dataValues.id) {
+                            dataOderProduct.map(item => {
+                                item.oderId = data.dataValues.id
+                            })
+                            await db.ProductOder.bulkCreate(dataOderProduct);
+                        }
+                    });
 
+                    resolve({
+                        errCode: 0,
+                        message: 'oke'
+                    })
+                }
+
+            }
+        } catch (e) {
+            reject(e)
+        }
+    })
+};
+const getOderById = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const oder = await db.Oder.findOne({
+                where: { userId: id },
+                include: [
+                    { model: db.ProductOder, },
+                ],
+            });
+            if (!oder) {
+                resolve({
+                    errCode: 2,
+                    message: `The product isn't exist`
+                })
+            } else {
                 resolve({
                     errCode: 0,
-                    message: 'oke'
+                    message: `oke`,
+                    data: oder
                 })
             }
         } catch (e) {
@@ -466,6 +501,7 @@ const createOder = ({ dataOder, dataOderProduct }) => {
         }
     })
 };
+
 module.exports = {
     handleCreateProductService,
     handleGetProductById,
@@ -480,5 +516,6 @@ module.exports = {
     handleAllProductOnlyNameAndId,
     handlePostMarkDown,
     handleMarkDownById,
-    createOder
+    createOder,
+    getOderById
 }

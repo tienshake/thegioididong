@@ -14,14 +14,15 @@ const initWebRoutes = (app) => {
     router.post("/api/refresh-token", userController.handleRefreshToken);
     router.post("/api/createUser", middleWareController.verifyToken, userController.createUserController);
     router.get("/api/getAllUser", middleWareController.verifyToken, userController.handleGetAllUseController);
-    router.get("/api/getUserById",  middleWareController.verifyToken,userController.handleGetUserById);
-    router.delete("/api/deleteUserById", middleWareController.verifyToken,userController.handleDeleteUserById);
+    router.get("/api/getUserById", middleWareController.verifyToken, userController.handleGetUserById);
+    router.delete("/api/deleteUserById", middleWareController.verifyToken, userController.handleDeleteUserById);
     //Product API======================================================
     router.post("/api/create-product", middleWareController.verifyToken, productController.handleCreateProduct);
     router.get("/api/get-product-by-id", middleWareController.verifyToken, productController.handleGetProductById);
     router.get("/api/get-all-product", middleWareController.verifyToken, productController.handleGetAllProduct);
     router.get("/api/get-all-product-home", productController.handleGetAllProductHome);
     router.post("/api/createOder", productController.createOder);
+    router.get("/api/getOderById", middleWareController.verifyToken, productController.getOderById);
 
     router.post("/api/create-color-product", productController.handleCreateColorProduct);
     router.post("/api/create-imgDetail-product", productController.handleCreateImgDetailProduct);
