@@ -9,13 +9,14 @@ const initWebRoutes = (app) => {
     router.get("/api/AllCode", userController.handleAllCode);
     router.post("/api/create-item-allCode", userController.handleCreateItemAllCode);
     //User API================================================================
-    router.post("/api/createUser", userController.createUserController);
+    router.post("/api/register", userController.register);
     router.post("/api/login", userController.handleLogin);
+    router.post("/api/createUser", middleWareController.verifyTokenAndAdmin, userController.createUserController);
+    router.get("/api/getAllUser", middleWareController.verifyTokenAndAdmin, userController.handleGetAllUseController);
+    router.delete("/api/deleteUserById", middleWareController.verifyTokenAndAdmin, userController.handleDeleteUserById);
     router.post("/api/logout", middleWareController.verifyToken, userController.handleLogout);
     router.post("/api/refresh-token", middleWareController.verifyToken, userController.handleRefreshToken);
-    router.get("/api/getAllUser", middleWareController.verifyTokenAndAdmin, userController.handleGetAllUseController);
     router.get("/api/getUserById", middleWareController.verifyToken, userController.handleGetUserById);
-    router.delete("/api/deleteUserById", middleWareController.verifyTokenAndAdmin, userController.handleDeleteUserById);
     //Product API======================================================
     router.post("/api/create-product", middleWareController.verifyTokenAndAdmin, productController.handleCreateProduct);
     router.get("/api/get-product-by-id", middleWareController.verifyToken, productController.handleGetProductById);

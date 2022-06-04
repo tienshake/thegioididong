@@ -111,6 +111,20 @@ const createUserController = async (req, res) => {
         })
     }
 };
+const register = async (req, res) => {
+    try {
+        const message = await userServices.createUserServices(req.body);
+        return res.status(200).json(message)
+    } catch (e) {
+        console.log('create error:', e)
+        return res.status(200).json({
+            errCode: -1,
+            errMessage: 'Error from server'
+        })
+    }
+};
+
+
 const handleDeleteUserById = async (req, res) => {
     try {
         const id = req.query.id
@@ -195,5 +209,6 @@ module.exports = {
     handleRefreshToken,
     handleLogout,
     handleCreateItemAllCode,
-    handleDeleteUserById
+    handleDeleteUserById,
+    register
 }
