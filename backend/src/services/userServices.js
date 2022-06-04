@@ -178,15 +178,7 @@ const createUserServices = (data) => {
 
     return new Promise(async (resolve, reject) => {
         try {
-            if (!data.email || !data.password || !data.name
-                || !data.address || !data.phoneNumber || !data.gender
-                || !data.roleId || !data.image
-            ) {
-                resolve({
-                    errCode: 3,
-                    errMessage: 'Missing required parameter!'
-                })
-            } else {
+            if (data.roleId === "R2") {
                 const check = await checkUserEmail(data.email)
                 if (check === true) {
                     resolve({
@@ -210,6 +202,41 @@ const createUserServices = (data) => {
                         message: 'oke'
                     })
                 }
+            } else {
+                if (!data.email || !data.password || !data.name
+                    || !data.address || !data.phoneNumber || !data.gender
+                    || !data.roleId || !data.image
+                ) {
+                    resolve({
+                        errCode: 3,
+                        errMessage: 'Missing required parameter!'
+                    })
+                } else {
+                    const check = await checkUserEmail(data.email)
+                    if (check === true) {
+                        resolve({
+                            errCode: 1,
+                            errMessage: 'you email is already in used, please another email'
+                        })
+                    } else {
+                        const hashPasswordFromBcrypt = await hashUserPassword(data.password);
+                        await db.User.create({
+                            email: data.email,
+                            password: hashPasswordFromBcrypt,
+                            name: data.name,
+                            address: data.address,
+                            phoneNumber: data.phoneNumber,
+                            gender: data.gender,
+                            roleId: data.roleId,
+                            image: data.image,
+                        });
+                        resolve({
+                            errCode: 0,
+                            message: 'oke'
+                        })
+                    }
+                }
+
             }
 
         } catch (e) {

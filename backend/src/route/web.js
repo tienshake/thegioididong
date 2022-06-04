@@ -9,17 +9,17 @@ const initWebRoutes = (app) => {
     router.get("/api/AllCode", userController.handleAllCode);
     router.post("/api/create-item-allCode", userController.handleCreateItemAllCode);
     //User API================================================================
+    router.post("/api/createUser", userController.createUserController);
     router.post("/api/login", userController.handleLogin);
     router.post("/api/logout", middleWareController.verifyToken, userController.handleLogout);
-    router.post("/api/refresh-token", userController.handleRefreshToken);
-    router.post("/api/createUser", middleWareController.verifyToken, userController.createUserController);
-    router.get("/api/getAllUser", middleWareController.verifyToken, userController.handleGetAllUseController);
+    router.post("/api/refresh-token", middleWareController.verifyToken, userController.handleRefreshToken);
+    router.get("/api/getAllUser", middleWareController.verifyTokenAndAdmin, userController.handleGetAllUseController);
     router.get("/api/getUserById", middleWareController.verifyToken, userController.handleGetUserById);
-    router.delete("/api/deleteUserById", middleWareController.verifyToken, userController.handleDeleteUserById);
+    router.delete("/api/deleteUserById", middleWareController.verifyTokenAndAdmin, userController.handleDeleteUserById);
     //Product API======================================================
-    router.post("/api/create-product", middleWareController.verifyToken, productController.handleCreateProduct);
+    router.post("/api/create-product", middleWareController.verifyTokenAndAdmin, productController.handleCreateProduct);
     router.get("/api/get-product-by-id", middleWareController.verifyToken, productController.handleGetProductById);
-    router.get("/api/get-all-product", middleWareController.verifyToken, productController.handleGetAllProduct);
+    router.get("/api/get-all-product", middleWareController.verifyTokenAndAdmin, productController.handleGetAllProduct);
     router.get("/api/get-all-product-home", productController.handleGetAllProductHome);
     router.post("/api/createOder", productController.createOder);
     router.get("/api/getOderById", middleWareController.verifyToken, productController.getOderById);

@@ -86,7 +86,7 @@ const handleLogout = async (req, res) => {
 };
 
 
-const handleCreateItemAllCode= async (req, res) => {
+const handleCreateItemAllCode = async (req, res) => {
     try {
         const message = await userServices.handleCreateItemAllCode(req.body);
         return res.status(200).json(message)
@@ -111,7 +111,7 @@ const createUserController = async (req, res) => {
         })
     }
 };
-const handleDeleteUserById =async (req, res) => {
+const handleDeleteUserById = async (req, res) => {
     try {
         const id = req.query.id
         const message = await userServices.handleDeleteUserById(id);
