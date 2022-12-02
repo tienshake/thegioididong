@@ -5,6 +5,7 @@ import initWebRoutes from './route/web';
 import connectDB from './config/connectDB'
 const cookieParser = require("cookie-parser");
 var cors = require('cors')
+require("dotenv").config();
 
 //evn
 require("dotenv").config();

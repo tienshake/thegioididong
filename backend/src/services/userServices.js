@@ -1,7 +1,7 @@
 import db from '../models/index';
 import bcrypt from 'bcryptjs';
 import jwt from "jsonwebtoken";
-import dotenv from "dotenv"
+import dotenv from "dotenv";
 const salt = bcrypt.genSaltSync(10);
 
 dotenv.config()
@@ -99,7 +99,8 @@ const handleUserLogin = (email, password) => {
                 userData.errCode = 1;
                 userData.errMessage = `Your's email isn't exist in your system. Please try other email`;
             }
-            // userData.user.image = new Buffer(userData.user.image, 'base64').toString('binary');
+            // userData.user.image = Buffer.from(userData.user.image, 'base64').toString('binary');
+          
             resolve(userData)
 
         } catch (e) {
@@ -305,7 +306,7 @@ const getAllUserServices = (userId, limit, page) => {
             if (users && users.length > 0) {
                 users.map((user) => {
                     if (user.image) {
-                        user.image = new Buffer(user.image, 'base64').toString('binary');
+                        user.image = Buffer.from(user.image, 'base64').toString('binary');
                         return user
                     }
                 })
@@ -356,7 +357,7 @@ const handleGetUserById = (id) => {
                     where: { id: id }
                 });
                 if (user && user.image) {
-                    user.image = new Buffer(user.image, 'base64').toString('binary');
+                    user.image = Buffer.from(user.image, 'base64').toString('binary');
                 }
                 res.errCode = 0;
                 res.data = user;

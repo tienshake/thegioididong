@@ -160,7 +160,7 @@ const handleGetAllProductHome = async (req, res) => {
         return res.status(200).json({
             errCode: 0,
             errMessage: 'oke',
-            data: data && data.products ? data.products : [],
+            data: data?.products || [],
             count: data && data.products ? data.countData : ''
         })
     } catch (e) {

@@ -91,7 +91,7 @@ const handleGetAllProductService = (limit, page) => {
             countData = count;
             if (products && products.length > 0) {
                 products.map((item) => {
-                    item.image = new Buffer(item.image, 'base64').toString('binary');
+                    item.image = Buffer.from(item.image, 'base64').toString('binary');
                     return item
                 })
 
@@ -127,7 +127,7 @@ const handleGetAllProductHome = (limit, option) => {
             countData = count;
             if (products && products.length > 0) {
                 products.map((item) => {
-                    item.image = new Buffer(item.image, 'base64').toString('binary');
+                    item.image = Buffer.from(item.image, 'base64').toString('binary');
                     // delete item.image
                     return item
                 })
@@ -229,7 +229,7 @@ const handleUpdateProductCartService = (keyId) => {
                 });
                 product.map(item => {
                     if (item && item.image) {
-                        item.image = new Buffer(item.image, 'base64').toString('binary');
+                        item.image = Buffer.from(item.image, 'base64').toString('binary');
                     }
                     return item
                 })
@@ -339,14 +339,14 @@ const handleGetProductById = (id) => {
                 ]
             });
             if (product && product.image) {
-                product.image = new Buffer(product.image, 'base64').toString('binary');
+                product.image = Buffer.from(product.image, 'base64').toString('binary');
             }
             if (product && product.imgAngle) {
-                product.imgAngle = new Buffer(product.imgAngle, 'base64').toString('binary');
+                product.imgAngle = Buffer.from(product.imgAngle, 'base64').toString('binary');
             }
             if (product && product.photoDetail && product.photoDetail.length > 0) {
                 product.photoDetail.map(item => {
-                    item.image = new Buffer(item.image, 'base64').toString('binary');
+                    item.image = Buffer.from(item.image, 'base64').toString('binary');
                     return item;
                 })
             }
